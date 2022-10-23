@@ -3,7 +3,7 @@ title: "Tight-binding modelの第二量子化表示を初歩からちゃんと�
 emoji: "🐈"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","
-quantumcomputer","物理","物理学","物性物理学","固体物理学"]
+quantumcomputer","物理","物理学"]
 published: true
 ---
 # はじめに
@@ -12,7 +12,7 @@ published: true
 $$
 \mathcal{H} = \sum_{\left <i,j \right>,\sigma }\left( -t_{ij}a^\dagger_{i\sigma }a_{j\sigma }  \right) 
 $$
-ここで$ \left<i,j \right>$は最近接の格子点について和を取ることを表します。$t_{ij}$は飛び移り積分、$a^\dagger_{i\sigma },a_{j\sigma }$はそれぞれ格子点$i(j)$、スピン$\sigma $の電子の生成（消滅）演算子です。
+ここで$\left<i,j \right> $は最近接の格子点について和を取ることを表します。$t_{ij}$は飛び移り積分、$a^\dagger_{i\sigma },a_{j\sigma }$はそれぞれ格子点$i(j)$、スピン$\sigma $の電子の生成（消滅）演算子です。
 
 このモデルは固体内の電子が格子点（原子核や分子イオン）に強く束縛され、ほぼ局在していると仮定した描像に対応しています。
 
