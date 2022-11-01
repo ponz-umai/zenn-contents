@@ -37,7 +37,9 @@ $$
 公開予定の記事は以下の通りです。紙の上では大体できているので、latexを打ったり説明を補足したりでき次第公開予定です。（とはいえ書きながらやっぱりわかっていなかった部分がどんどん出てきて中々進まないのですが。。）
 
 ## [水素原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-hydrogen-atom)
-## 多粒子系の波動関数と多電子原子中の電子
+## [多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)
+## （補足）電子のスピン
+## 多電子原子中の電子
 ## 固体（結晶）中の電子状態
 ## Tight-binding 近似（第一量子化）
 ## Tight-binding modelの第二量子化表示
