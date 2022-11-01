@@ -165,6 +165,7 @@ C\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_j,\cdots,\boldsym
 $$
 
 と書けます。ここで電子は、
+
 $$
 C = -1
 $$
