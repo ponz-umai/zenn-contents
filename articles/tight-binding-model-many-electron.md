@@ -3,12 +3,8 @@ title: "多電子状態の波動関数"
 emoji: "🌟"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
-published: false
+published: true
 ---
-
-todo: この章では多粒子系の性質について取り上げることにして、小タイトルを整合性を持ったものに書き換える
-
-
 # はじめに
 前回の[水素原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-hydrogen-atom)では「1つの原子核＋1つの電子」の場合について扱い、電子の固有状態を求めました。
 
