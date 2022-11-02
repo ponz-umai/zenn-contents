@@ -37,6 +37,7 @@ $$
 公開予定の記事は以下の通りです。紙の上では大体できているので、latexを打ったり説明を補足したりでき次第公開予定です。（とはいえ書きながらやっぱりわかっていなかった部分がどんどん出てきて中々進まないのですが。。）
 
 ## [水素原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-hydrogen-atom)
+## [（補足）水素原子中の電子のシュレディンガー方程式の具体的な計算](https://zenn.dev/ponzumai/articles/appendix-hidrogen-atom)
 ## [多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)
 ## （補足）電子のスピン
 ## 多電子原子中の電子
