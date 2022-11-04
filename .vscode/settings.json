@@ -1,3 +1,5 @@
 {
-    "explorer.autoReveal": false
+    "explorer.autoReveal": false,
+    "scm.autoReveal": false,
+    "editor.tabCompletion": "on"
 }

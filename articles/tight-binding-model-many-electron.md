@@ -119,10 +119,10 @@ $$
 $$
 
 の解は、それぞれのシュレディンガー方程式を解いて得られた固有関数を
-$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$として
+$\varphi_a, \varphi_b,\cdots,\varphi_n,\cdots$として
 
 $$
-\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\varphi_\lambda(\boldsymbol{r}_1)\varphi_\mu(\boldsymbol{r}_2)\cdots\varphi_\xi(\boldsymbol{r}_i)\cdots
+\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\varphi_a, \varphi_b,\cdots,\varphi_n,\cdots
 $$
 
 となります。数学的にはこれでOK！なのですが、ここで新たな条件が付け加わることになります。
@@ -179,7 +179,14 @@ $$
 
 ## スレーター行列式
 
-さて話を戻して、シュレディンガー方程式$\sum_i\hat{H}_i\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) = E \Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots)$は普通に変数分離で解くと$\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\varphi_\lambda(\boldsymbol{r}_1)\varphi_\mu(\boldsymbol{r}_2)\cdots\varphi_\xi(\boldsymbol{r}_i)\cdots$となりました。しかしこの解は反対称性を満たしません。どうすればよいでしょうか。
+さて話を戻して、シュレディンガー方程式$\sum_i\hat{H}_i\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) = E \Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots)$は普通に変数分離で解くと
+
+$$
+\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =
+\varphi_a(\boldsymbol{r}_1)\varphi_b(\boldsymbol{r}_2)\cdots\varphi_n(\boldsymbol{r}_n)\cdot
+$$
+
+となりました。しかしこの解は反対称性を満たしません。どうすればよいでしょうか。
 
 ここで線形微分方程式の性質を利用します。すなわち、
 
@@ -187,7 +194,7 @@ $$
 線形微分方程式の解の線形結合もまた、元の微分方程式の解となる
 :::
 
-という性質を利用し、変数分離解$\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\varphi_\lambda(\boldsymbol{r}_1)\varphi_\mu(\boldsymbol{r}_2)\cdots\varphi_\xi(\boldsymbol{r}_i)\cdots$の線形結合を上手くとることで反対称性を満たす解を作ります。
+という性質を利用し、変数分離解$\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots) =\varphi_a(\boldsymbol{r}_1)\varphi_b(\boldsymbol{r}_2)\cdots\varphi_n(\boldsymbol{r}_n)\cdots$の線形結合を上手くとることで反対称性を満たす解を作ります。
 
 いきなり一般の多粒子状態を扱うとややこしくなるので、例として2粒子状態のシュレディンガー方程式
 
@@ -242,19 +249,19 @@ $$
 $$
 
 と座標の入れ替えごとにマイナスが掛かるような線形結合で表したいのですが、これも上述のように「行列の行を入れ替えるとマイナスがかかる」という行列式の性質を用いることで、
-変数分離で得られた固有関数を$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi$としてそれらを並べた行列式
+変数分離で得られた固有関数を$\varphi_a, \varphi_b,\cdots,\varphi_n$としてそれらを並べた行列式
 
 $$
 \begin{align*}
 \Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
 \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
+\varphi_a(\boldsymbol{r}_1) & \varphi_b(\boldsymbol{r}_1) & \cdots & \varphi_n(\boldsymbol{r}_1)\\
+\varphi_a(\boldsymbol{r}_2) & \varphi_b(\boldsymbol{r}_2) & \cdots & \varphi_n(\boldsymbol{r}_2)\\
 & \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
+\varphi_a(\boldsymbol{r}_N) & \varphi_b(\boldsymbol{r}_N) & \cdots & \varphi_n(\boldsymbol{r}_N)
 \end{vmatrix}\\
-&=\frac{1}{\sqrt{N!}}\sum_P(-1)^P\hat{P}\varphi_\lambda(\boldsymbol{r}_1)\varphi_\mu(\boldsymbol{r}_2)\cdots\varphi_\xi(\boldsymbol{r}_i)\cdots
+&=\frac{1}{\sqrt{N!}}\sum_P(-1)^P\hat{P}\varphi_a(\boldsymbol{r}_1)\varphi_b(\boldsymbol{r}_2)\cdots\varphi_n(\boldsymbol{r}_N)
 \end{align*}
 $$
 
@@ -278,7 +285,7 @@ $$
 ここで波動関数をスレーター行列式で表した際、その解は以下の重要な性質を持ちます。
 
 :::message 
-スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない
+スレーター行列式に含まれる1粒子固有関数$\varphi_a, \varphi_b,\cdots,\varphi_n,\cdots$はすべて異なる関数でなければならない
 :::
 
 これは「パウリの排他原理」と呼ばれる性質で、行列式の性質から直接導かれます。すなわち行列式の同じ行に二つ以上の同じ関数があれば、行列の列を入れ替えると行の場合と同様に符号が入れ替わるという性質を用いて、2列目と最終列を入れ替えます。（見た目は同じですが入れ替えたことで負号がかかっています）
@@ -288,17 +295,17 @@ $$
 \Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
 \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\mu(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\mu(\boldsymbol{r}_2)\\
+\varphi_a(\boldsymbol{r}_1) & \varphi_b(\boldsymbol{r}_1) & \cdots & \varphi_b(\boldsymbol{r}_1)\\
+\varphi_a(\boldsymbol{r}_2) & \varphi_b(\boldsymbol{r}_2) & \cdots & \varphi_b(\boldsymbol{r}_2)\\
 & \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\mu(\boldsymbol{r}_N)
+\varphi_a(\boldsymbol{r}_N) & \varphi_b(\boldsymbol{r}_N) & \cdots & \varphi_b(\boldsymbol{r}_N)
 \end{vmatrix}\\
 &=-\frac{1}{\sqrt{N!}}
 \begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\mu(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\mu(\boldsymbol{r}_2)\\
+\varphi_a(\boldsymbol{r}_1) & \varphi_b(\boldsymbol{r}_1) & \cdots & \varphi_b(\boldsymbol{r}_1)\\
+\varphi_a(\boldsymbol{r}_2) & \varphi_b(\boldsymbol{r}_2) & \cdots & \varphi_b(\boldsymbol{r}_2)\\
 & \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\mu(\boldsymbol{r}_N)
+\varphi_a(\boldsymbol{r}_N) & \varphi_b(\boldsymbol{r}_N) & \cdots & \varphi_b(\boldsymbol{r}_N)
 \end{vmatrix}\\
 &=-\Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N)\\
 &\Rightarrow \Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) = 0
@@ -312,7 +319,7 @@ $$
 
 後述もしますが、化学の周期表を勉強した際に、ソロバンのように電子を軌道に一つづつ"詰めて”いくように習ったかと思います。その頃は疑いもせずに受け入れていた描像ですが、あれも「パウリの排他原理があるため、電子が一つ増えるごとに各電子はそれぞれ異なる固有状態を取っている」という理屈なのだとわかります。また、こちらも先取りですが固体内の電子の固有状態は「エネルギーバンド」というグネグネした道に下から電子を埋めていくように考えるのですが、それもこの原理から来ています。
 
-と言っても抽象的な記号が続いたので（$\varphi_\xi$とか）、改めて多粒子系の性質をまとめた上で、具体的な問題設定を扱って本章を終わりにしようと思います。
+と言っても抽象的な記号が続いたので（$\varphi_n$とか）、改めて多粒子系の性質をまとめた上で、具体的な問題設定を扱って本章を終わりにしようと思います。
 
 ## ここまでのまとめと具体例
 

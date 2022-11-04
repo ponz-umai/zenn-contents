@@ -39,7 +39,7 @@ $$
 ## [水素原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-hydrogen-atom)
 ## [（補足）水素原子中の電子のシュレディンガー方程式の具体的な計算](https://zenn.dev/ponzumai/articles/appendix-hidrogen-atom)
 ## [多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)
-## （補足）電子のスピン
+## [電子のスピンを考慮した多電子系の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-spin)
 ## 多電子原子中の電子
 ## 固体（結晶）中の電子状態
 ## Tight-binding 近似（第一量子化）

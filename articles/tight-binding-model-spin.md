@@ -1,12 +1,12 @@
 ---
-title: "電子のスピン"
+title: "電子のスピンを考慮した多電子系の波動関数"
 emoji: "🗂"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
-published: false
+published: true
 ---
 # はじめに
-前章[多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)では多電子状態の波動関数が満たすべき「反対称性」を導入し、その要件がスレーター行列式で満たされることを見ました。そしてその結果「スレーター行列式に含まれる1粒子固有関数はすべて異なる関数でなければならない」パウリの排他原理が導かれました。
+前章[多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)では多電子状態の波動関数が満たすべき「反対称性」を導入し、その要件がスレーター行列式で満たされることを見ました。そしてその結果「スレーター行列式に含まれる1粒子固有関数はすべて異なる関数でなければならない」というパウリの排他原理が導かれました。
 
 その結果基底状態の波動関数は、エネルギーが低い順に一電子固有状態を"詰めて"行った構造となりました。
 
@@ -14,15 +14,13 @@ published: false
 
 電子の状態を表す波動関数として、これまでは位置座標$\boldsymbol{r}$の関数$\varphi(\boldsymbol{r})$を考え、その意味は「位置座標$\boldsymbol{r}$で電子が観測される確率密度」（正確には絶対値の二乗を取ったもの）でした。
 
-しかし実は同じ位置座標の関数で表される状態$\boldsymbol{r}$の関数$\varphi(\boldsymbol{r})$は、上向きスピン状態と下向きスピン状態の二つの状態を考える必要があるのです。
+しかし実は同じ位置座標の関数で表される状態$\boldsymbol{r}$の関数$\varphi(\boldsymbol{r})$は、上向きスピン状態と下向きスピン状態の二つの状態を取り得ることが分かっています。
 
 とはいえこれだけだとなんのこっちゃという感じなので、本章で電子の持つ新たな性質「スピン」についてまとめていきます。
 
 なお名前の通り「スピン」は回転、すなわち角運動量に対応した性質を持っており、普通の量子力学の教科書では電子の（軌道）角運動量の話題の後に「ちなみに」みたいな感じで導入されることが多いですが、こと「Tight-bindingについて理解する」という目標に限れば（多分）角運動量について触れずに行けると思っているので、本稿ではあくまで「波動関数の新たなラベル（座標）」という位置づけに限ってスピンを導入していこうと思います。
 
-特に、初めは天下り的にスピンを導入し、前章で見た多電子系の波動関数の取り扱いを書き換えます。先に進むためにはここまでで十分です。
-
-余力がどこかで生まれれば、章の後半でもう少し丁寧に記載しようと思います。（いつか追記予定）
+余力がどこかで生まれれば、別ページで角運動量演算子から始めてちゃんと書こうと思います。（いつか追記予定）
 
 # スピンの必要最低限の導入
 
@@ -44,14 +42,14 @@ published: false
 - 負の角運動量状態：$\varphi_{n\downarrow},\varphi_{n-}$
 - 一般の場合：$\varphi_{n\sigma}$
 
-と書いたり、正の角運動量状態はそのままで、負の角運動量状態を$\bar{\varphi_n}$と書いたりします。
+と書いたり、正の角運動量状態はそのままで、負の角運動量状態を$\overline{\varphi_n}$と書いたりします。
 
-矢印$\uparrow, \downarrow$と対応して、「正の角運動量状態」を「上向きスピン状態」「下向きスピン状態」と呼びます。本稿でも以降、そのように書きます。
+矢印$\uparrow, \downarrow$と対応して、「正の角運動量状態」を「上向きスピン状態」、「負の角運動量状態」を「下向きスピン状態」と呼びます。本稿でも以降、そのように書きます。
 
 ### スピン変数とスピン関数を用いた表現
 
 大抵の場合は上記の表現で乗り切れるのですが、例えば「軌道部分が複数の状態の重ね合わせ状態で、かつスピン部分も「上向き」と「下向き」の重ね合わせの状態」みたいな関数を考えるには上記の表現では限界があります。
-（実際、もっとも簡単な例では二原子分子内の電子の状態でそのような状態が出てきます）
+（実際、そのような例を次章で扱う予定です）
 
 そこで一般的には、座標を変数とした波動関数$\varphi(\boldsymbol{r})$の解釈「位置$\boldsymbol{r}$で電子が観測される確率密度」（正確には絶対値の二乗を取ったもの）と対応させて、「スピン変数」$\sigma$を新たな波動関数の引数として加え、「位置$\boldsymbol{r}$スピン$\sigma$で電子が観測される確率密度」
 
@@ -218,10 +216,10 @@ $$
 \Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
 \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
+\varphi_a(\boldsymbol{r}_1) & \varphi_b(\boldsymbol{r}_1) & \cdots & \varphi_n(\boldsymbol{r}_1)\\
+\varphi_a(\boldsymbol{r}_2) & \varphi_b(\boldsymbol{r}_2) & \cdots & \varphi_n(\boldsymbol{r}_2)\\
 & \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
+\varphi_a(\boldsymbol{r}_N) & \varphi_b(\boldsymbol{r}_N) & \cdots & \varphi_n(\boldsymbol{r}_N)
 \end{vmatrix}
 \end{align*}
 $$
@@ -231,9 +229,17 @@ $$
 
 また重要な性質として、「パウリの排他原理」
 ::: message
-スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない
+スレーター行列式に含まれる1粒子固有関数$\varphi_a, \varphi_b,\cdots,\varphi_c,\cdots$はすべて異なる関数でなければならない
 :::
 を得ました。
+
+この結果、多電子系の波動関数の基底状態は、
+
+::: message
+一粒子のシュレーディンガー方程式を解いて得られた固有エネルギーが小さい順から固有関数を選び、スレーター行列式に"詰めて”行くことで得られる
+:::
+
+と結論付けられました。
 
 ## スピンを考慮した多電子系の波動関数
 
@@ -279,64 +285,134 @@ $$
 \hat{H}(\boldsymbol{r},\nabla)\phi(\boldsymbol{r})  = \epsilon\phi(\boldsymbol{r})
 $$
 
-を解いて**軌道部分の**固有関数$\varphi_1, \varphi_2\cdots$を求め、それらの上向き/下向きスピン状態$\varphi_{1\uparrow}, \varphi_{1\downarrow},\varphi_{2\uparrow}, \varphi_{2\downarrow}\cdots$を一粒子固有関数とする。
+を解いて**軌道部分の**固有関数$\varphi_a, \varphi_b\cdots$を求め、 **それらの上向き/下向きスピン状態$\varphi_{1\uparrow}, \varphi_{1\downarrow},\varphi_{2\uparrow}, \varphi_{2\downarrow}\cdots$、または別の表現をするとスピン関数$\alpha(\sigma)$、$\beta(\sigma)$の積** を一粒子固有関数とする。
 
-スピン関数$\alpha(\sigma)$または$\beta(\sigma)$の積を一粒子固有関数$\varphi$とする。
+**得られたスピン軌道関数を、軌道関数の量子数（例えば水素様原子中の電子の場合だと$(n,l,m)$）とスピン状態のラベル$\uparrow,\downarrow$をまとめて、ギリシャ文字$\lambda,\mu,\xi$などと表し^[本稿では可能な限り、軌道関数の固有状態のラベルをアルファベット$a,b,c\cdots$で書き、スピン状態も含めた固有状態のラベルをギリシャ文字$\lambda,\mu,\xi\cdots$で書くことにする。とはいえ明確な場合以外は都度どちらを意味しているか明記するようにする。]、位置座標$\boldsymbol{r}$とスピン座標$\sigma$を合わせて$\tau$と表す。**
 
-得られた固有関数**とスピン関数の積**$\varphi_\xi(\boldsymbol{r})\alpha(\sigma$をスレーター行列式を用いて
+スピン軌道関数$\varphi_\lambda(\tau_1), \varphi_\mu(\tau_2),\cdots,\varphi_\xi(\tau_N)$をスレーター行列式を用いて
 
 $$
 \begin{align*}
-\Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
+\Phi_\mathrm{F}(\tau_1, \tau_2,\cdots,\tau_N) &= 
 \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
+\varphi_\lambda(\tau_1) & \varphi_\mu(\tau_1) & \cdots & \varphi_\xi(\tau_1)\\
+\varphi_\lambda(\tau_2) & \varphi_\mu(\tau_2) & \cdots & \varphi_\xi(\tau_2)\\
 & \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
+\varphi_\lambda(\tau_N) & \varphi_\mu(\tau_N) & \cdots & \varphi_\xi(\tau_N)
 \end{vmatrix}
 \end{align*}
 $$
 
 と反対称化することで多粒子系の波動関数が得られる
-:::
 
-また重要な性質として、「パウリの排他原理」
-::: message
-スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない
-:::
-を得ました。
-
-反対称性：
-
-::: message
-粒子の**一座標とスピン座標**の入れ替え
+スレーター行列式は、スピン関数との積で書く表現や、スピン関数$\alpha$との積の場合（上向きスピン状態の場合）は軌道関数のまま$\varphi_n$、スピン関数$\beta$との積（下向きスピン状態の場合）は軌道関数の上にバーをつけた$\overline{\varphi}_n$で書く表現などがある。また、含まれる一粒子固有状態の種類が指定できれば良いので、
 
 $$
-\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N)
-\rightarrow
-\Phi(\boldsymbol{r}_2, \boldsymbol{r}_1,\cdots,\boldsymbol{r}_N)
+\begin{align*}
+\Phi_\mathrm{F}(\tau_1, \tau_2,\cdots,\tau_N) &= 
+\frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\varphi_\lambda(\tau_1) & \varphi_\mu(\tau_1) & \cdots & \varphi_\xi(\tau_1)\\
+\varphi_\lambda(\tau_2) & \varphi_\mu(\tau_2) & \cdots & \varphi_\xi(\tau_2)\\
+& \cdots & \cdots\\
+\varphi_\lambda(\tau_N) & \varphi_\mu(\tau_N) & \cdots & \varphi_\xi(\tau_N)
+\end{vmatrix}\\
+&\equiv \left| \varphi_a \overline{\varphi}_b\cdots \overline{\varphi}_n\right|
+\end{align*}
 $$
 
-に対して波動関数に係数$-1$がかかる
+のように書くことも多い。本稿でもスペースとタイピング節約のために以降この略記法を多用する。（この略記法は複数の教科書で使われているが、一般的に通用するかどうかは保証されていない）
+
+なお、これも後に出てくるので先に注意しておくと、**スレーター行列式の線形結合もまた、**
+
+$$
+\begin{align*}
+\Phi_\mathrm{F}^{12}(\tau_1, \tau_2,\cdots,\tau_N)&\equiv C_1\Phi_\mathrm{F}^1(\tau_1, \tau_2,\cdots,\tau_N) + 
+C_2 \Phi_\mathrm{F}^2(\tau_1, \tau_2,\cdots,\tau_N)\\
+\Rightarrow \Phi_\mathrm{F}^{12}(\tau_2, \tau_1,\cdots,\tau_N) &=  C_1\Phi_\mathrm{F}^1(\tau_2, \tau_1,\cdots,\tau_N) + 
+C_2 \Phi_\mathrm{F}^2(\tau_2, \tau_1,\cdots,\tau_N)\\
+&=  - C_1\Phi_\mathrm{F}^1(\tau_1, \tau_2,\cdots,\tau_N) + 
+-C_2 \Phi_\mathrm{F}^2(\tau_1, \tau_2,\cdots,\tau_N)\\
+&= - \Phi_\mathrm{F}^{12}(\tau_1, \tau_2,\cdots,\tau_N)
+\end{align*}
+$$
+
+**のように反対称性を満たし、多電子系の波動関数の解となり得る。**
+
 :::
 
-# スピンの必要以上の導入
+### パウリの排他原理
 
-## 角運動量
+::: message
+スレーター行列式に含まれる1粒子固有関数は、**軌道部分の固有関数
+$\varphi_n(\boldsymbol{r})$ 1つに対して、上向きスピン状態$\varphi_{n\uparrow}$または$\varphi_n(\boldsymbol{r}\alpha(\sigma)$、下向きスピン状態$\varphi_{n\downarrow}$または$\varphi_n(\boldsymbol{r}\beta(\sigma)$の2つのみ（2つまで）** を取ることができる。
+:::
 
-### 球面調和関数と同時固有状態
+なお、スピンも考慮に入れることで、パウリの排他原理の座標バージョンのような結果「同じスピン状態を持つ粒子は同じ座標を取らない」という効果も生まれます。（証明は追記予定）
 
-### 軌道角運動量（水素原子中の電子の角運動量）
 
-### スピン角運動量
+### 多電子系の波動関数の基底状態
 
-## 相対論的量子力学
+::: message
+一粒子のシュレーディンガー方程式を解いて得られた固有エネルギーが小さい順から固有関数を選び、**スピン上向き状態、下向き状態をひとつづつ、計2つを選んで**スレーター行列式に"詰めて”行くことで多電子系の波動関数の基底状態が得られる。
+※ここではハミルトニアン演算子にスピンの項が含まれない、すなわちスピンの向きによってエネルギーが変わらない場合を想定している。例えば磁場中の電子や、スピン軌道相互作用などハミルトニアン中にスピンに作用する演算子を含む場合はこの限りではない。そしておそらく本稿ではそういう状態は扱わない。
+:::
 
-### ディラック方程式
+これでようやく、スピンまで考慮に入れた場合の多電子系の波動関数の条件、具体的な問題の考え方が揃いました。
 
-### ディラックの波動関数
+## 例題：N個の自由電子の波動関数
 
-### 角運動量演算子
+最後に改めて前章で扱った例題を、スピンまで考慮して解きなおしてみます。
 
-## 
+N個の自由電子のハミルトニアン
+
+$$
+\mathcal{H} = \sum_{i=1}^N\left( \frac{-\hbar^2}{2m}\nabla_i^2 \right)
+$$
+
+を一体のハミルトニアンに分解して一体のシュレディンガー方程式
+
+$$
+\frac{-\hbar^2}{2m}\nabla^2 \phi(\boldsymbol{r}) = \epsilon\phi(\boldsymbol{r})
+$$
+
+を解き、固有関数と固有エネルギーを以下のように得るところまでは同じです。
+
+$$
+\varphi_{\boldsymbol{k}} = \frac{1}{\sqrt{V}}e^{i\boldsymbol{k}\cdot\boldsymbol{r}},\\
+\epsilon_{\boldsymbol{k}} = C,\\
+\boldsymbol{k} = (k_x, k_y, k_z), k_i = \frac{2\pi}{L}n_i,\\
+(i = x,y,z, n_i = 0,\pm1,\pm2,\cdots)
+$$
+
+ここで、最低エネルギー状態（基底状態）の波動関数は、**固有エネルギーが小さい順から上向きスピン状態、下向きスピン状態をそれぞれひとつづつ**選んだスレーター行列式
+
+$$
+\Phi_\mathrm{F}(\tau_1, \tau_2,\cdots,\tau_N) = 
+\left|
+\varphi_{\boldsymbol{k}_0} \overline{\varphi}_{\boldsymbol{k}_0} \cdots  \overline{\varphi}_{\boldsymbol{k}_{N/2}}
+\right|
+$$
+
+
+で書かれます。
+
+固有エネルギーは一粒子シュレディンガー方程式を解いて得られた固有エネルギーを小さい順に足し合わせた
+
+$$
+E = \epsilon_{\boldsymbol{k}_0} + \epsilon_{\boldsymbol{k}_1} + \cdots + \epsilon_{\boldsymbol{k}_{N/2}}
+$$
+
+となります。（エネルギーが小さい順から軌道関数を並べて、一つの軌道状態当たりスピン上向き、下向きの2通りが取れるので、$N$粒子を考えた場合は$N/2$番目の固有エネルギーまでの和となります。）
+
+### フェルミ波数・フェルミエネルギー
+
+（追記予定）
+
+
+# おわりに
+
+ここまでで、なるべく角運動量などに触れずにスピンを導入し、スピンを考慮した多電子系の波動関数の性質を整理しました。おそらく「Tight-bindingモデルの理解」という目標だけを目指すのであれば、これで最低限の内容はかけたかと思います。
+
+ここで整理した内容をもとに、次章ではいよいよ多電子原子中の電子の波動関数について扱っていきます。
