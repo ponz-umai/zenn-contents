@@ -316,38 +316,7 @@ $$
 
 ## ここまでのまとめと具体例
 
-というわけで、多粒子系を扱う場合でも粒子間の相互作用を扱わず、ハミルトニアンが一粒子の演算子の和で書けた場合は、波動関数は
-
-$$
-\mathcal{H} \simeq \sum_i\hat{H}_i
-$$
-
-で書けた場合は、それぞれ一体のシュレディンガー方程式
-
-$$
-\hat{H}_i\phi_i(\boldsymbol{r}_i)  = \epsilon_i\phi_i(\boldsymbol{r}_i)
-$$
-
-を解いて固有関数を求め、（フェルミオンの場合は）得られた固有関数の積を
-
-$$
-\begin{align*}
-\Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
-\frac{1}{\sqrt{N!}}
-\begin{vmatrix}
-\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
-\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
-& \cdots & \cdots\\
-\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
-\end{vmatrix}\\
-&=\frac{1}{\sqrt{N!}}\sum_P(-1)^P\hat{P}\varphi_\lambda(\boldsymbol{r}_1)\varphi_\mu(\boldsymbol{r}_2)\cdots\varphi_\xi(\boldsymbol{r}_i)\cdots
-\end{align*}
-$$
-
-と反対称化することで多粒子系の波動関数が得られることがわかりました。
-
-また重要な性質として、「スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない」というパウリの排他原理を持つことがわかりました。
-
+というわけで、
 上記を踏まえて、具体的にN個の自由電子のハミルトニアン
 
 $$

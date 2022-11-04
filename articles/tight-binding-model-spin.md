@@ -26,6 +26,8 @@ published: false
 
 # スピンの必要最低限の導入
 
+## 実験事実
+
 最大限に省略して書くと、電子の様子を注意深く観測したところ、電子は3次元空中の運動状態によらない謎の角運動量を持っていることがわかり、かつその値はある軸を中心に丁度同じ大きさで「正の角運動量」「負の角運動量」（不正確だけど「左回転」「右回転」みたいなもん）に対応する2つの値のみを持つらしいことが実験から分かったようです。
 
 （今のところの私の知る限り「どうやらそうらしい」としか言えないのでこのような自信なさげな書き方になっております。）
@@ -33,20 +35,25 @@ published: false
 ## スピン変数とスピン関数
 したがって、今までは一粒子の固有状態を、ラベル（例えば自由電子なら$\boldsymbol{k} = (k_x,k_y,k_z)$、水素原子なら$n,l,m$）で分類して、$\varphi_1, \varphi_2,\cdots$と書いていましたが、その固有状態がさらに「正の角運動量を持つ状態」「負の角運動量を持つ状態」の両方の状態を持ちうる、ということになります。
 
+### ラベル的な表現
+
 このような二つの状態を、ラベル$n$（水素原子中の電子のように$n,m,l$等と複数含む場合も含む）で表される座標の関数$\varphi_n(\boldsymbol{r})$（**軌道部分**とか**軌道関数**とか呼んだりします。以降この呼び方を使います）に、
 「正の角運動量状態」を上向き矢印$\uparrow$や$+$、「負の角運動量状態」を下向き矢印$\downarrow$や$-$でラベルを付けて、
 
-- 上向き：$\varphi_{n\uparrow}, \varphi_{n+}$
-- 下向き：$\varphi_{n\downarrow},\varphi_{n-}$
+- 正の角運動量状態：$\varphi_{n\uparrow}, \varphi_{n+}$
+- 負の角運動量状態：$\varphi_{n\downarrow},\varphi_{n-}$
 - 一般の場合：$\varphi_{n\sigma}$
 
-と書いたり、下向きスピンの状態を$\bar{\varphi_n}$と書いたりします。
+と書いたり、正の角運動量状態はそのままで、負の角運動量状態を$\bar{\varphi_n}$と書いたりします。
+
+矢印$\uparrow, \downarrow$と対応して、「正の角運動量状態」を「上向きスピン状態」「下向きスピン状態」と呼びます。本稿でも以降、そのように書きます。
+
+### スピン変数とスピン関数を用いた表現
 
 大抵の場合は上記の表現で乗り切れるのですが、例えば「軌道部分が複数の状態の重ね合わせ状態で、かつスピン部分も「上向き」と「下向き」の重ね合わせの状態」みたいな関数を考えるには上記の表現では限界があります。
-（実際、複数の原子核内の電子、もっとも簡単な例では二原子分子内の電子の状態ではそのような状態が出てきます）
+（実際、もっとも簡単な例では二原子分子内の電子の状態でそのような状態が出てきます）
 
-そこで一般的には、座標を変数とした波動関数$\varphi(\boldsymbol{r})$の解釈「位置$\boldsymbol{r}$で電子が観測される確率密度」（正確には絶対値の二乗を取ったもの）と対応させて、「スピン変数」$\sigma$
-を新たな波動関数の引数として加え、「位置$\boldsymbol{r}$スピン$\sigma$で電子が観測される確率密度」
+そこで一般的には、座標を変数とした波動関数$\varphi(\boldsymbol{r})$の解釈「位置$\boldsymbol{r}$で電子が観測される確率密度」（正確には絶対値の二乗を取ったもの）と対応させて、「スピン変数」$\sigma$を新たな波動関数の引数として加え、「位置$\boldsymbol{r}$スピン$\sigma$で電子が観測される確率密度」
 
 $$
 \varphi(\boldsymbol{r},\sigma)
@@ -58,14 +65,12 @@ $$
 ::: message alert
 ここまでで、あるいはこれからの説明を読む中で、「スピンは状態なのか変数（座標）なのかラベル（量子数）なのかどっちなんだ？」と混乱するかもしれません。というか私もいまだに混乱しています。
 
-さしあたっては、電子は座標や運動状態とは独立に、謎の2種類の角運動量を持った状態を持つらしい、ということを受け入れて、その状態を上手く扱うために波動関数にラベルを付け加えたり、スピン変数（スピン座標）を付け加えたりしている、ということにして計算方法をインストールして頂ければ。^[なお、この「角運動量」というのは何か抽象的なものではなく、マクロな系の「回転」と同じものであることは確かなようです。参考：たとえばhttps://www.px.tsukuba.ac.jp/~onoda/ssh/node12.html]
+さしあたっては、電子は座標や運動状態とは独立に、謎の2種類の角運動量を持った状態を持つらしい、ということを受け入れて、その状態を上手く扱うために波動関数にラベルを付け加えたり、スピン変数（スピン座標）を付け加えたりしている、ということにして計算方法をインストールして頂ければと思います。^[なお、この「角運動量」というのは何か抽象的なものではなく、マクロな系の「回転」と同じものであることは確かなようです。参考：たとえばhttps://www.px.tsukuba.ac.jp/~onoda/ssh/node12.html]
 
 わけわからんですね。しかし、すでに「物質は実は波」みたいな最大限にわけわからん仮定を受け入れて量子力学を使っているわけで、このような考え方も受け入れながら徐々に慣れていくしかないのかと思っています。また具体的にスピン関数を扱う中で、わけわからんなりに道具としては使えるようになります。
-
-このあたり私の理解も深まっていけば加筆修正していければと思っております。
 :::
 
-新たにスピンを引数として加えた波動関数$\varphi(\boldsymbol{r},\sigma)$は、以下のように設定することで上手く扱うことができるようになります。なお、以降その関数を「**スピン軌道関数**」等と呼びます
+新たにスピンを引数として加えた波動関数$\varphi(\boldsymbol{r},\sigma)$は、以下のように設定することで上手く扱うことができるようになります。なお、以降その関数を「**スピン軌道関数**」等と呼び、座標$\boldsymbol{r}$の関数を「軌道部分」や「軌道関数」と呼ぶことと対応し、スピンの関数を「スピン部分」「スピン関数」などと呼びます
 
 まず「スピン変数」$\sigma$は、上向き、下向きに対応した2つの値を持ち、それを
 
@@ -82,10 +87,10 @@ $$
 と書いたりします。^[多分上向き・下向きの状態に紐づいていれば数値が何であっても問題ないと思うのですが（$\uparrow,\downarrow$とかありますし）、数値で表す際は$\pm\frac{1}{2}$とするのが慣例のようです。記事の後半でいずれ触れるつもりですが、球面調和関数$Y_l^m$の$z$方向角運動量演算子$\hat{L}_z$
 の固有値、つまり固有状態$\varphi_{nlm}=R_{nl}Y_l^m$（$n,l$は任意）の、$z$方向の角運動量）が、量子数$m$を用いて$\hbar m$となることに対応して、$z$方向のスピン角運動量演算子$\hat{s}_z$の固有値が$\pm\frac{\hbar}{2}$である場合は、量子数$m_s=\pm\frac{1}{2}$に対応します。この$\pm\frac{1}{2}$を「スピン変数」としている感じだと思います。]
 
-スピン関数の変数として扱う場合は、数値$\pm\frac{1}{2}$を使い、状態のラベルとして扱う場合は$\uparrow,\downarrow$を使うことが多いです。本稿でも原則そのように使い分けるつもりです。
+スピン関数の変数として扱う場合は、数値$\pm 1/2$を使い、状態のラベルとして扱う場合は$\uparrow,\downarrow$を使うことが多いです。本稿でも原則そのように使い分けるつもりです。
 
 
-「正の角運動量状態」に対応する「スピン関数」を$\alpha(\sigma)$, 「負の角運動量状態」に対応するスピン関数を$\beta(\sigma)$と置き、それぞれスピン座標$\sigma=\pm\frac{1}{2}$に対する値を
+上向き状態に対応する「スピン関数」を$\alpha(\sigma)$, 下向き状態に対応するスピン関数を$\beta(\sigma)$と置き、それぞれスピン座標$\sigma=\pm 1/2$に対する値を
 
 $$
 \alpha\left(\frac{1}{2}\right) = 1, \alpha\left(-\frac{1}{2}\right)  = 0,\\
@@ -94,13 +99,13 @@ $$
 
 と置くと、
 
-軌道部分が$\varphi(\boldsymbol{r})$で上向きスピン状態を持つ状態を
+軌道部分が$\varphi(\boldsymbol{r})$でスピン状態が上向きの状態を
 
 $$
 \varphi_\uparrow(\boldsymbol{r},\sigma) = \varphi(\boldsymbol{r})\alpha(\sigma)
 $$
 
-軌道部分が$\varphi(\boldsymbol{r})$で下向きスピン状態を持つ状態を
+軌道部分が$\varphi(\boldsymbol{r})$でスピン状態が下向きの状態を
 
 
 $$
@@ -114,56 +119,207 @@ $$
 \varphi_\uparrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(\frac{1}{2}\right) = \varphi(\boldsymbol{r}),\\
 \varphi_\uparrow\left(\boldsymbol{r},-\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(-\frac{1}{2}\right) = 0,\\
 \varphi_\downarrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\beta\left(\frac{1}{2}\right) = 0,\\
-\varphi_\uparrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(-\frac{1}{2}\right) = \varphi(\boldsymbol{r}),\\
+\varphi_\uparrow\left(\boldsymbol{r},-\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(-\frac{1}{2}\right) = \varphi(\boldsymbol{r}),\\
 \end{align*}
 $$
 
 なので、それぞれ$\varphi_\uparrow(\boldsymbol{r},\sigma)$は軌道部分が$\varphi(\boldsymbol{r})$で上向きスピンをもつ状態（略記した表現だと$\varphi_{\uparrow}$）、$\varphi_\downarrow(\boldsymbol{r},\sigma)$は軌道部分が$\varphi(\boldsymbol{r})$で下向きスピンをもつ状態（略記した表現だと$\varphi_{\downarrow}$）を上手く表現できていることがわかります。
 
-またスピン関数の一般の状態として重ね合わせ状態を考えることもでき、$|d_+|^2 + |d_-|^2 = 1$の係数を用いて
+### 内積と規格直交性
+
+スピン関数同士の内積は$\alpha(\sigma)$を例にすると
+
+$$
+\begin{align*}
+\int\alpha^*(\sigma)\alpha(\sigma)d\sigma &=\sum_\sigma\alpha^*(\sigma)\alpha(\sigma)\\
+ &=\alpha^*\left(\frac{1}{2}\right)\alpha\left(\frac{1}{2}\right) + \alpha^*\left(-\frac{1}{2}\right)\alpha\left(-\frac{1}{2}\right)
+\end{align*}
+$$
+
+のように定義され、$\alpha(\sigma), \beta(\sigma)$は以下の規格直交性を満たすものとします。
+
+$$
+\int\alpha^*(\sigma)\alpha(\sigma)d\sigma = 
+\int\beta^*(\sigma)\beta(\sigma)d\sigma = 1,\\
+\int\alpha^*(\sigma)\beta(\sigma)d\sigma = \int\beta^*(\sigma)\alpha(\sigma) d\sigma= 0
+$$
+
+またスピン関数の一般の状態として重ね合わせ状態^[注意点としては、この状態を観測した場合、スピンは中途半端な値を持つわけではなく、あくまで観測値は「上向き」または「下向き」のどちらかとなります。「$d_+$、$d_-$」の係数が意味するのは「同じ状態をたくさん集めて観測した場合に上向き（下向き）が観測される割合」です。
+とはいえこのあたりはあまり深入りせず、「重ね合わせ状態もあるよ」という程度に認識しておいていただければ。]を考えることもでき、$|d_+|^2 + |d_-|^2 = 1$の係数を用いて
 
 $$
 \gamma(\sigma) = d_+\alpha(\sigma) + d_-\beta(\sigma)
 $$
 
-と書きます。注意点としては、この状態を観測した場合、スピンは中途半端な値を持つわけではなく、あくまで観測値は「上向き」または「下向き」のどちらかとなります。「$d_+$、$d_-$」の係数が意味するのは「同じ状態をたくさん集めて観測した場合に上向き（下向き）が観測される割合」です。
-
-とはいえこのあたりはあまり深入りせず、「重ね合わせ状態もあるよ」という程度に認識しておいていただければ。
-
-
-### 規格直交性
+と書き、この関数も規格化されています：
 
 $$
-\int\alpha^*(\sigma)\alpha(\sigma)d\sigma = \alpha^*(\downarrow)\alpha(\uparrow) + \alpha^*(\downarrow)\alpha(\downarrow) = 1 \\
-\int\beta^*(\sigma)\beta(\sigma)d\sigma = 1,\\
-\int\alpha^*(\sigma)\beta(\sigma)d\sigma = \int\beta^*(\sigma)\alpha(\sigma) d\sigma= 0,\\
-\int\gamma^*(\sigma)\gamma(\sigma)d\sigma = |d_+|^2 + |d_-|^2
+\int\gamma^*(\sigma)\gamma(\sigma)d\sigma = |d_+|^2 + |d_-|^2 = 1
 $$
 
+## ここまでのまとめ
+
+というわけで今までの電子の状態についての考え方：「シュレーディンガー方程式を解いて得られた固有状態（やその重ね合わせ状態）によって記述される」に対して、以下の設定が新たに追加されることとなりました。
+
+- 電子の状態は、位置座標に関する固有状態に加えて、スピンに関する2つの固有状態を持つ
+
+- その状態をラベルを用いて$\varphi_{n\sigma}$と書いたり、スピン関数を用いて$\varphi(\boldsymbol{r})\gamma(\sigma)$と書いたりする
+
+これにより前章で整理した多電子系の波動関数が満たすべき「反対称性」の表現が以下のように修正されることになります。
+
+# スピンを考慮した多電子系の波動関数
+
+## 前章の再掲
+
+前章で、多電子系の波動関数について、以下のように整理しました。
+
+::: message
+波動関数は全電子の座標変数の関数
+
 $$
-\varphi(\boldsymbol{r})\gamma(\sigma)
+\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots)
 $$
 
-によって表され、その意味は「位置$\boldsymbol{r}$スピン$\sigma$で電子が観測される確率密度」となります。
+によって表される。
+:::
 
-
-スピン変数$\sigma$の取る値は
-
-$$
-\sigma = \pm \frac{1}{2}
-$$
+::: message
+多電子系の波動関数は「反対称性」すなわち粒子の入れ替え
 
 $$
-\sigma = \uparrow, \downarrow
+\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N)
+\rightarrow
+\Phi(\boldsymbol{r}_2, \boldsymbol{r}_1,\cdots,\boldsymbol{r}_N)
 $$
 
-で、スピン関数$\gamma(\sigma)$の取る値は、
+に対して波動関数に係数$-1$がかかる
+:::
+
+
+その上で、特に多粒子系を扱う場合でも粒子間の相互作用を扱わず、ハミルトニアンが一粒子の演算子の和
 
 $$
-\gamma(\uparrow) = 
+\mathcal{H} \simeq \sum_i\hat{H}_i
 $$
 
-# 多電子系の波動関数の性質
+で書けた場合の波動関数の表現について以下のように整理しました。
+
+::: message
+一体のシュレディンガー方程式
+
+$$
+\hat{H}_i\phi_i(\boldsymbol{r}_i)  = \epsilon_i\phi_i(\boldsymbol{r}_i)
+$$
+
+を解いて固有関数を求め、得られた固有関数の積をスレーター行列式を用いて
+
+$$
+\begin{align*}
+\Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
+\frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
+\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
+& \cdots & \cdots\\
+\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
+\end{vmatrix}
+\end{align*}
+$$
+
+と反対称化することで多粒子系の波動関数が得られる
+:::
+
+また重要な性質として、「パウリの排他原理」
+::: message
+スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない
+:::
+を得ました。
+
+## スピンを考慮した多電子系の波動関数
+
+本章で導入したスピンを考慮することで、上記の多電子系の波動関数が以下のように書き換えられます。
+
+### 多電子系の波動関数
+::: message
+波動関数は全電子の座標変数$\boldsymbol{r}_i$とスピン変数$\sigma_i$を合わせた変数$\tau_i = (\boldsymbol{r}_i,\sigma_i)$の関数
+
+$$
+\Phi(\tau_1, \tau_2,\cdots)
+$$
+
+によって表される。
+:::
+### 反対称性
+::: message
+多電子系の波動関数は「反対称性」すなわち粒子の**位置座標とスピン座標**の入れ替え
+
+$$
+\Phi(\tau_1, \tau_2,\cdots)
+\rightarrow
+\Phi(\tau_2, \tau_1,\cdots)
+$$
+
+に対して波動関数に係数$-1$がかかる
+:::
+
+### 一体ハミルトニアンの和からなるシュレーディンガー方程式
+ハミルトニアンが一粒子の演算子の和、**特にスピン変数に作用する演算子を含まない**、
+
+$$
+\mathcal{H} \simeq \sum_i\hat{H}_i,\\
+\hat{H}_i = \hat{H}(\boldsymbol{r}_i,\nabla_i)
+$$
+
+で書けた場合（第二式は一粒子演算子が作用する粒子に対して形を変えない、の意）、
+
+::: message
+一体の（スピンを考慮しない）シュレディンガー方程式
+
+$$
+\hat{H}(\boldsymbol{r},\nabla)\phi(\boldsymbol{r})  = \epsilon\phi(\boldsymbol{r})
+$$
+
+を解いて**軌道部分の**固有関数$\varphi_1, \varphi_2\cdots$を求め、それらの上向き/下向きスピン状態$\varphi_{1\uparrow}, \varphi_{1\downarrow},\varphi_{2\uparrow}, \varphi_{2\downarrow}\cdots$を一粒子固有関数とする。
+
+スピン関数$\alpha(\sigma)$または$\beta(\sigma)$の積を一粒子固有関数$\varphi$とする。
+
+得られた固有関数**とスピン関数の積**$\varphi_\xi(\boldsymbol{r})\alpha(\sigma$をスレーター行列式を用いて
+
+$$
+\begin{align*}
+\Phi_\mathrm{F}(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N) &= 
+\frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\varphi_\lambda(\boldsymbol{r}_1) & \varphi_\mu(\boldsymbol{r}_1) & \cdots & \varphi_\xi(\boldsymbol{r}_1)\\
+\varphi_\lambda(\boldsymbol{r}_2) & \varphi_\mu(\boldsymbol{r}_2) & \cdots & \varphi_\xi(\boldsymbol{r}_2)\\
+& \cdots & \cdots\\
+\varphi_\lambda(\boldsymbol{r}_N) & \varphi_\mu(\boldsymbol{r}_N) & \cdots & \varphi_\xi(\boldsymbol{r}_N)
+\end{vmatrix}
+\end{align*}
+$$
+
+と反対称化することで多粒子系の波動関数が得られる
+:::
+
+また重要な性質として、「パウリの排他原理」
+::: message
+スレーター行列式に含まれる1粒子固有関数$\varphi_\lambda, \varphi_\mu,\cdots,\varphi_\xi,\cdots$はすべて異なる関数でなければならない
+:::
+を得ました。
+
+反対称性：
+
+::: message
+粒子の**一座標とスピン座標**の入れ替え
+
+$$
+\Phi(\boldsymbol{r}_1, \boldsymbol{r}_2,\cdots,\boldsymbol{r}_N)
+\rightarrow
+\Phi(\boldsymbol{r}_2, \boldsymbol{r}_1,\cdots,\boldsymbol{r}_N)
+$$
+
+に対して波動関数に係数$-1$がかかる
+:::
 
 # スピンの必要以上の導入
 
