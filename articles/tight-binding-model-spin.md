@@ -56,8 +56,9 @@ $$
 本稿ではその時々で便利な表現を使い分けることにします。
 
 ::: message alert
-ここまでで、あるいはこれからの説明を読む中で、「スピンは状態なのか変数（座標）なのかどっちなんだ？」と混乱するかもしれません。というか私もいまだに混乱しています。
-一般的には（数学的な定義では）スピンを座標として考えるようです。すなわち、電子（やその他ミクロな粒子）の状態は、3次元空間の座標$\boldsymbol{r}$に、スピン座標$\sigma$を加えた4次元空間の関数によって記述される、という考え方をするようです。
+ここまでで、あるいはこれからの説明を読む中で、「スピンは状態なのか変数（座標）なのかラベル（量子数）なのかどっちなんだ？」と混乱するかもしれません。というか私もいまだに混乱しています。
+
+さしあたっては、電子は座標や運動状態とは独立に、謎の2種類の角運動量を持った状態を持つらしい、ということを受け入れて、その状態を上手く扱うために波動関数にラベルを付け加えたり、スピン変数（スピン座標）を付け加えたりしている、ということにして計算方法をインストールして頂ければ。^[なお、この「角運動量」というのは何か抽象的なものではなく、マクロな系の「回転」と同じものであることは確かなようです。参考：たとえばhttps://www.px.tsukuba.ac.jp/~onoda/ssh/node12.html]
 
 わけわからんですね。しかし、すでに「物質は実は波」みたいな最大限にわけわからん仮定を受け入れて量子力学を使っているわけで、このような考え方も受け入れながら徐々に慣れていくしかないのかと思っています。また具体的にスピン関数を扱う中で、わけわからんなりに道具としては使えるようになります。
 
@@ -78,13 +79,17 @@ $$
 \sigma = \uparrow, \downarrow
 $$
 
-と書いたりします。多分上向き・下向きの状態に紐づいていれば数値が何であっても問題ないと思うのですが（$\uparrow,\downarrow$とかありますし）、数値で表す際は$\pm\frac{1}{2}$とするのが慣例のようです。
+と書いたりします。^[多分上向き・下向きの状態に紐づいていれば数値が何であっても問題ないと思うのですが（$\uparrow,\downarrow$とかありますし）、数値で表す際は$\pm\frac{1}{2}$とするのが慣例のようです。記事の後半でいずれ触れるつもりですが、球面調和関数$Y_l^m$の$z$方向角運動量演算子$\hat{L}_z$
+の固有値、つまり固有状態$\varphi_{nlm}=R_{nl}Y_l^m$（$n,l$は任意）の、$z$方向の角運動量）が、量子数$m$を用いて$\hbar m$となることに対応して、$z$方向のスピン角運動量演算子$\hat{s}_z$の固有値が$\pm\frac{\hbar}{2}$である場合は、量子数$m_s=\pm\frac{1}{2}$に対応します。この$\pm\frac{1}{2}$を「スピン変数」としている感じだと思います。]
 
-「正の角運動量状態」に対応する「スピン関数」を$\alpha(\sigma)$, 「負の角運動量状態」に対応するスピン関数を$\beta(\sigma)$と置き、それぞれスピン座標$\sigma=\uparrow,\downarrow$に対する値を
+スピン関数の変数として扱う場合は、数値$\pm\frac{1}{2}$を使い、状態のラベルとして扱う場合は$\uparrow,\downarrow$を使うことが多いです。本稿でも原則そのように使い分けるつもりです。
+
+
+「正の角運動量状態」に対応する「スピン関数」を$\alpha(\sigma)$, 「負の角運動量状態」に対応するスピン関数を$\beta(\sigma)$と置き、それぞれスピン座標$\sigma=\pm\frac{1}{2}$に対する値を
 
 $$
-\alpha(\uparrow) = 1, \alpha(\downarrow) = 0,\\
-\beta(\uparrow) = 0, \beta(\downarrow) = 1,\\
+\alpha\left(\frac{1}{2}\right) = 1, \alpha\left(-\frac{1}{2}\right)  = 0,\\
+\beta\left(\frac{1}{2}\right) = 0, \beta\left(-\frac{1}{2}\right)  = 1,\\
 $$
 
 と置くと、
@@ -106,26 +111,25 @@ $$
 
 $$
 \begin{align*}
-\varphi_\uparrow(\boldsymbol{r},\uparrow) &= \varphi(\boldsymbol{r})\alpha(\uparrow) = \varphi(\boldsymbol{r}),\\
-\varphi_\uparrow(\boldsymbol{r},\downarrow) &= \varphi(\boldsymbol{r})\alpha(\downarrow) = 0,\\
-\varphi_\downarrow(\boldsymbol{r},\uparrow) &= \varphi(\boldsymbol{r})\beta(\uparrow) = 0,\\
-\varphi_\uparrow(\boldsymbol{r},\downarrow) &= \varphi(\boldsymbol{r})\alpha(\downarrow) = \varphi(\boldsymbol{r}),\\
+\varphi_\uparrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(\frac{1}{2}\right) = \varphi(\boldsymbol{r}),\\
+\varphi_\uparrow\left(\boldsymbol{r},-\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(-\frac{1}{2}\right) = 0,\\
+\varphi_\downarrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\beta\left(\frac{1}{2}\right) = 0,\\
+\varphi_\uparrow\left(\boldsymbol{r},\frac{1}{2}\right) &= \varphi(\boldsymbol{r})\alpha\left(-\frac{1}{2}\right) = \varphi(\boldsymbol{r}),\\
 \end{align*}
 $$
 
 なので、それぞれ$\varphi_\uparrow(\boldsymbol{r},\sigma)$は軌道部分が$\varphi(\boldsymbol{r})$で上向きスピンをもつ状態（略記した表現だと$\varphi_{\uparrow}$）、$\varphi_\downarrow(\boldsymbol{r},\sigma)$は軌道部分が$\varphi(\boldsymbol{r})$で下向きスピンをもつ状態（略記した表現だと$\varphi_{\downarrow}$）を上手く表現できていることがわかります。
 
-
-
-### 関数の値
-
-
-
-### 一般のスピン状態
+またスピン関数の一般の状態として重ね合わせ状態を考えることもでき、$|d_+|^2 + |d_-|^2 = 1$の係数を用いて
 
 $$
 \gamma(\sigma) = d_+\alpha(\sigma) + d_-\beta(\sigma)
 $$
+
+と書きます。注意点としては、この状態を観測した場合、スピンは中途半端な値を持つわけではなく、あくまで観測値は「上向き」または「下向き」のどちらかとなります。「$d_+$、$d_-$」の係数が意味するのは「同じ状態をたくさん集めて観測した場合に上向き（下向き）が観測される割合」です。
+
+とはいえこのあたりはあまり深入りせず、「重ね合わせ状態もあるよ」という程度に認識しておいていただければ。
+
 
 ### 規格直交性
 
