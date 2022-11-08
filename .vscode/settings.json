@@ -1,5 +1,11 @@
 {
     "explorer.autoReveal": false,
     "scm.autoReveal": false,
-    "editor.tabCompletion": "on"
+    "editor.tabCompletion": "on",
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.useInlineCompletions": true,
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on"
+    }
 }
