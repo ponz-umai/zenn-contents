@@ -32,6 +32,8 @@ VS Code
 →markdown all in oneを入れる
 （もしかしてこれだけでスニペットも使えるようになる？→要確認）
 
+自動整形→要確認
+
 $$
 \begin{align}
 H &= a+B\\
