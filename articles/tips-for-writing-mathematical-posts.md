@@ -1,6 +1,6 @@
 ---
-title: "数式を含む記事作成時の設定・Tips"
-emoji: "🐙"
+title: "zennで数式を含む投稿を始めたい人のためのガイド・Tips"
+emoji: "📝"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
 published: false
