@@ -89,10 +89,91 @@ $$
 
 となります。
 
-## Self-consistent近似
+## Self-consistent法
 
-上記電子間相互作用を無視した解を求めましたが、実際には電子はそれぞれもう一方の電子からの斥力ポテンシャルを感じているはずです。その効果を取り入れるために、
-参考：http://cms.phys.s.u-tokyo.ac.jp/~naoki/CIPINTRO/CIP/atom.html
+上記電子間相互作用を無視した解を求めましたが、実際には電子はそれぞれもう一方の電子からの斥力ポテンシャルを感じているはずです。
+特に基底状態の場合に対して、その効果を取り入れた近似的な波動関数の形を求める方法が**self-consistent法**（自己無撞着法）です。これは後に出てくる、一般の多電子状態に適用するHartree-Fock近似の最も簡単な場合です。
+
+<!--参考：http://cms.phys.s.u-tokyo.ac.jp/~naoki/CIPINTRO/CIP/atom.html-->
+
+近似的な波動関数を求めるために、量子力学の「変分原理」の考え方（変分法）を用います。
+すなわち、試行関数を用意して、ハミルトニアン演算子の期待値、つまりエネルギー期待値をを最小にするという条件を満たす関数形を求めます。
+
+具体的には、まずは相互作用を無視した場合と同様に、基底状態の波動関数の解の形を何らかの軌道関数$\varphi(\boldsymbol{r})$にスピン関数$\alpha(\sigma), \beta(\sigma)$をそれぞれかけ合わせた関数からなるスレーター行列式と仮定します。この時軌道関数は規格化されているものと仮定します。
+
+すなわち
+
+$$
+\begin{align*}
+\Phi(\tau_1,\tau_2)  &=
+\left|
+    \varphi \overline{\varphi}
+\right|\\
+&=\frac{1}{\sqrt{2}}\left\{
+    \varphi(\boldsymbol{r}_1)\alpha(\sigma_1) 
+    \varphi(\boldsymbol{r}_2)\beta(\sigma_2) 
+    -
+    \varphi(\boldsymbol{r}_1)\beta(\sigma_1) 
+    \varphi(\boldsymbol{r}_2)\alpha(\sigma_2) 
+\right\}
+\end{align*}
+$$
+
+ハミルトニアン演算子
+
+$$
+\mathcal{H} = \frac{-\hbar^2}{2m}\nabla_1{}^2 + \frac{-\hbar^2}{2m}\nabla_2{}^2 
++ \frac{-Ze^2}{4\pi\varepsilon_0r_1}
++ \frac{-Ze^2}{4\pi\varepsilon_0r_2}
++ \frac{e^2}{4\pi\varepsilon_0r_{12}}
+$$
+
+に対するエネルギー期待値は、途中、$\varphi(\boldsymbol{r_1}), \alpha(\sigma_1)$を$\varphi(1)\alpha(1)$等と略記して、
+
+$$
+\begin{align*}
+\langle E \rangle &= \int\Phi^*(\tau_1,\tau_2) \mathcal{H}\Phi(\tau_1,\tau_2) d\tau_1d\tau_2\\
+&=
+    \frac{1}{2}
+    \int \left[\varphi(1)\alpha(1)\varphi(2)\beta(2) -\varphi(1)\beta(1)\varphi(2)\alpha(2)\right]^*\mathcal{H}\\
+    &\>\>\>\>\>\>\>\>\left[\varphi(1)\alpha(1)\varphi(2)\beta(2) -\varphi(1)\beta(1)\varphi(2)\alpha(2)\right]d\boldsymbol{r}_1d\boldsymbol{r}_2d\sigma_1\sigma_2\\
+&=
+    \frac{1}{2}\left[ 
+    \int\alpha^*(1)\beta^*(2)\alpha(1)\beta(2)d\sigma_1d\sigma_2
+    \int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1\boldsymbol{r}_2\right.\\
+    &\>\>\>\>\>\>-
+    \int\alpha^*(1)\beta^*(2)\beta(1)\alpha(2)d\sigma_1d\sigma_2
+    \int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1\boldsymbol{r}_2\\
+    &\>\>\>\>\>\>-
+    \int\alpha^*(1)\beta^*(2)\beta(1)\alpha(2)d\sigma_1d\sigma_2
+    \int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1\boldsymbol{r}_2\\
+    &\>\>\>\>\>\>+ \left.
+    \int\beta^*(1)\alpha^*(2)\beta(1)\alpha(2)d\sigma_1d\sigma_2
+    \int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1\boldsymbol{r}_2
+   \right]\\
+&=\int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1d\boldsymbol{r}_2
+\end{align*}
+$$
+
+となります。ここで2式目の第2項、第3項はスピン関数の直交性よりゼロになり、また二つの固有関数の軌道関数を同一の関数と仮定したことから、最後の式のように一つの積分だけが残ります。
+
+ハミルトニアン演算子の中身を具体的に書いてもう少し計算を進めると、
+
+$$
+\begin{align*}
+&\int \varphi^*(1)\varphi^*(2)\mathcal{H}\varphi(1)\varphi(2)d\boldsymbol{r}_1d\boldsymbol{r}_2\\
+&=
+    2\int\varphi^*(\boldsymbol{r})\left( \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-Ze^2}{4\pi\varepsilon_0r} \right)
+    \varphi(\boldsymbol{r})d\boldsymbol{r}\\
+&\>\>\>\>+
+    \int\int \varphi^*(\boldsymbol{r}_1)\varphi^*(\boldsymbol{r}_2)\frac{e^2}{4\pi\varepsilon_0\left|\boldsymbol{r}_{1}-\boldsymbol{r}_2\right|}
+    \varphi(\boldsymbol{r}_1)\varphi(\boldsymbol{r}_2)d\boldsymbol{r}_1d\boldsymbol{r}_2
+\end{align*}
+$$
+
+ここに、束縛条件として軌道関数の規格化条件を課した上で、上記エネルギー期待値を最小にする関数$\varphi(\boldsymbol{r})$を求めればよいことになります。
+
+を最小にする
 
 # 一般の多電子原子
 ## Hartree近似

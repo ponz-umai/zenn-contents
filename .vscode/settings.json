@@ -7,5 +7,6 @@
     "editor.quickSuggestions": {
         "comments": "on",
         "strings": "on"
-    }
+    },
+    "editor.autoClosingBrackets": "never"
 }
