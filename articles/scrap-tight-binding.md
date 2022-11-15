@@ -26,3 +26,20 @@ $$
 
 
 $$
+------------------------
+$$
+\begin{align*}
+&=
+ 2\int
+    \delta\varphi^*(\boldsymbol{r})
+    \hat{H}
+    \varphi(\boldsymbol{r})
+    d\boldsymbol{r}
+    +
+    2\int
+        \varphi^*(\boldsymbol{r})
+    \hat{H}
+    \delta\varphi(\boldsymbol{r})
+    d\boldsymbol{r}
+\end{align*}
+$$

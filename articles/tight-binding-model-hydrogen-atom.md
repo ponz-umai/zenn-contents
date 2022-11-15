@@ -60,7 +60,8 @@ $$
 
 さて、話を戻して、原子核の電荷を$Ze$（水素原子の場合は$Z=1$）と電子間のクーロン相互作用が電子の位置を$\boldsymbol{r}$, 原子核の座標を$\boldsymbol{R}$として、
 
-$$ V({\boldsymbol r})=-\frac{Ze^2}{4\pi \epsilon_0 \left|{\boldsymbol r - R}\right|}
+$$
+V({\boldsymbol r})=-\frac{Ze^2}{4\pi \epsilon_0 \left|{\boldsymbol r - R}\right|}
 $$
 
 原子核と電子の相対座標を考え、相対座標の運動のみを考えるとポテンシャルが$\boldsymbol{r}$の絶対値$r\geq  0)$のみの関数となることを踏まえて、シュレディンガー方程式は
