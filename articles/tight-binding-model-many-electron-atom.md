@@ -45,13 +45,13 @@ $$
 
 特に、tight-binding近似（和名：強束縛近似）はその名前の通り固体中の（内殻電子じゃない）電子を、「原子核に強く束縛された状態」つまり「ほぼ孤立原子中の電子」として扱う考え方です。
 
-**というわけで、本章では水素様原子中から一歩進んで、「原子核＋多数の電子」の状態つまり「多電子原子」の状態の考え方について整理していきます。**
+そこで固体物理に行く前の最後のステップとして、「原子核＋多数の電子」の状態つまり「多電子原子」の状態の考え方を理解することにします。
 
-とはいえ、これも色々と歴史が長く研究レベルの内容まで踏み込むのが厳しかったので、具体的に解けるもっとも簡単な多電子原子、つまりHe原子（原子核＋2電子）の状態を中心に扱い、多電子原子の場合の考え方について雰囲気をつかめればOK、という方針で書いていくことにします。
+本章では具体的に解けるもっとも簡単な多電子原子、つまりHe原子（原子核＋2電子）の状態を中心に扱い、
+次章で多電子原子の場合の考え方について雰囲気をつかめればOKくらいの内容で書いていこうと思います。
 
 
-
-# He原子
+# He原子中の電子
 
 まずはもっとも簡単な多電子原子、He原子のシュレディンガー方程式を題材に、多電子原子の波動関数を理解していきます。例によって雑なイラストで表すと、
 
@@ -709,86 +709,9 @@ $$
 
 初めに簡単な一体部分から考えていきます。^[水素様原子の一体のハミルトニアンに対して水素様原子の固有関数を考えているので、一見単純に固有値を使えばいいように思えますが（というか私が最初そのように勘違いして計算して答えが合わなかったのですが）、ハミルトニアンは$Z=2$、試行関数は$Z$を変数として扱っているので実は固有関数にならず、ちゃんと計算しないといけないのでした。]
 
-はじめにポテンシャル部分について、$\varphi_{1s}$の関数を入れて角度部分を先に積分します。
 
-$$
-\begin{align*}
 
-2\int\varphi_{1s}^*(r)\left(  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
-    \varphi_{1s}(r)d\boldsymbol{r}
-
-&=
-
-2\times\frac{-2e^22^2}{4\pi(4\pi\varepsilon_0)}
-\left(\frac{Z}{a_0}\right)^3\int
-    \frac{1}{r} 
-    e^{-2Zr/a_0}
-    d\boldsymbol{r}\\
-
-&=
-\frac{-2^4e^2}{4\pi(4\pi\varepsilon_0)}
-\left(\frac{Z}{a_0}\right)^3
-\int
-    \frac{1}{r} 
-    e^{-2Zr/a_0}
-    r^2dr
-    \iint\sin\theta d\theta d \phi\\
-
-&=
-\frac{-2^4e^2}{4\pi\varepsilon_0}
-\left(\frac{Z}{a_0}\right)^3
-\int
-    re^{-2Zr/a_0}
-    dr
-\end{align*}
-$$
-
-ここで$\int r e^{-2\alpha r}dr$について以下の関係を考えて、
-
-$$
--\frac{1}{2\alpha}
-    \left\{
-        \left(r+\frac{1}{2\alpha}\right)
-    e^{-2\alpha r} 
-    \right\}' = re^{-2\alpha r}
-$$
-
-定積分を計算すると、
-
-$$
-\begin{align*}
-\frac{-2^4e^2}{4\pi\varepsilon_0}
-\left(\frac{Z}{a_0}\right)^3
-\int
-    re^{-2Zr/a_0}
-    dr
-&=
-\frac{-2^4e^2}{4\pi\varepsilon_0}
-\left(\frac{Z}{a_0}\right)^3
-    \frac{-1}{2}\left(\frac{Z}{a_0}\right)^{-1}
-    \left[
-    \left\{
-        r + \frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
-    \right\}
-    e^{-2Zr/a_0}   
-    \right]_0^\infty\\
-
-&=
-\frac{2^3e^2}{4\pi\varepsilon_0}
-\left(\frac{Z}{a_0}\right)^3
-    \left(\frac{Z}{a_0}\right)^{-1}
-    \left\{
-        -\frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
-        \right\}\\
-
-&=
-    \frac{-4e^2}{4\pi\varepsilon_0}
-    \frac{Z}{a_0}
-
-\end{align*}
-$$
-
-続いて運動エネルギー部分は、極座標表示のラプラシアンの$e^{-Zr/a_0}$への作用
+まず運動エネルギー部分は、極座標表示のラプラシアンの$e^{-Zr/a_0}$への作用
 
 $$
 \begin{align*}
@@ -853,6 +776,8 @@ $$
 \end{align*}
 $$
 
+この積分は以下の関係
+
 $$
 -\frac{1}{2\alpha}
     \left\{
@@ -870,6 +795,8 @@ $$
     \right\}' = r^2e^{-2\alpha r}
 
 $$
+
+を考えると実行できて、
 
 
 $$
@@ -915,30 +842,128 @@ $$
         \right]\\
 
 &=
-    \frac{-\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
+    \frac{\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
 \end{align*}
 $$
+
+ここに
 
 $$
 a_0 = \frac{4\pi\varepsilon_0\hbar^2}{me^2}
 $$
 
-$$
-\frac{-\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
-=
-\frac{-e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
-$$
+を代入して、最終的に運動エネルギー部分は
 
+$$
+2\int\varphi_{1s}^*(r)\left( 
+    \frac{-\hbar^2}{2m}\nabla{}^2 
+    \right)
+    \varphi_{1s}(r)d\boldsymbol{r}
+=
+\frac{\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
+=
+\frac{e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
+$$
 
 となります。
 
-$\langle E \rangle$の第2項
+
+続いてポテンシャル部分について計算していきます。
+角度部分を先に積分して、
+
+$$
+\begin{align*}
+
+2\int\varphi_{1s}^*(r)\left(  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
+    \varphi_{1s}(r)d\boldsymbol{r}
+
+&=
+
+2\times\frac{-2e^22^2}{4\pi(4\pi\varepsilon_0)}
+\left(\frac{Z}{a_0}\right)^3\int
+    \frac{1}{r} 
+    e^{-2Zr/a_0}
+    d\boldsymbol{r}\\
+
+&=
+\frac{-2^4e^2}{4\pi(4\pi\varepsilon_0)}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    \frac{1}{r} 
+    e^{-2Zr/a_0}
+    r^2dr
+    \iint\sin\theta d\theta d \phi\\
+
+&=
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    re^{-2Zr/a_0}
+    dr
+\end{align*}
+$$
+
+先ほどと同様に定積分を計算すると、
+
+$$
+\begin{align*}
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    re^{-2Zr/a_0}
+    dr
+&=
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+    \frac{-1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+    \left[
+    \left\{
+        r + \frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+    \right\}
+    e^{-2Zr/a_0}   
+    \right]_0^\infty\\
+
+&=
+\frac{2^3e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+    \left(\frac{Z}{a_0}\right)^{-1}
+    \left\{
+        -\frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+        \right\}\\
+
+&=
+    \frac{-4e^2}{4\pi\varepsilon_0}
+    \frac{Z}{a_0}
+
+\end{align*}
+$$
+
+というわけで先ほどの結果と合わせて、一体部分は
+
+$$
+\begin{align*}
+2\int\varphi_{1s}^*(r)\left( \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
+    \varphi_{1s}(r)d\boldsymbol{r}
+&=
+    \frac{e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
+    -
+    \frac{4e^2}{4\pi\varepsilon_0}
+    \frac{Z}{a_0}
+\end{align*}
+$$
+
+となります。
+
+
+続いて$\langle E \rangle$の第2項
 
 $$
 \iint \varphi_{1s}^*(r)\varphi_{1s}^*(r')\frac{e^2}{4\pi\varepsilon_0\left|\boldsymbol{r}-\boldsymbol{r}'\right|}
     \varphi_{1s}(r)\varphi_{1s}(r')d\boldsymbol{r}d\boldsymbol{r}'
 $$
-について、先に$\boldsymbol{r}'$についての積分を行います。これは有効ポテンシャル$V(r)$に対応します^[この部分の計算は[こちらのノート](http://www.th.phys.titech.ac.jp/~muto/lectures/QMII10/QMII10_chap17.pdf)を参考にしました。感謝です。]。
+について考えていきます。
+
+まずは$\boldsymbol{r}'$についての積分を行います。これは有効ポテンシャル$V(r)$に対応します^[この部分の計算は[こちらのノート](http://www.th.phys.titech.ac.jp/~muto/lectures/QMII10/QMII10_chap17.pdf)を参考にしました。感謝です。]。
 
 積分では$\boldsymbol{r}$を固定して$\boldsymbol{r}'$についての積分を求めるので、以下のように
 $\boldsymbol{r}$の方向を$z$軸、にとって極座標表示を行うと、
@@ -1010,49 +1035,31 @@ $$
 \left|\varphi_{1s}(r') \right|^2 d\boldsymbol{r}'
 
 &=
+2^2\left(\frac{Z}{a_0}\right)^3
+\left\{
 \int_0^r
-\frac{A^2}{r}e^{-2Zr'/a_0}r'^2dr'
+\frac{1}{r}e^{-2Zr'/a_0}r'^2dr'
 
 +
 \int_r^{\infty}
-\frac{A^2}{r'}e^{-2Zr'/a_0}r'^2dr'\\
+\frac{1}{r'}e^{-2Zr'/a_0}r'^2dr'
+\right\}\\
 
 &=
-\frac{A^2}{r}\int_0^r
+2^2\left(\frac{Z}{a_0}\right)^3
+\left\{
+\frac{1}{r}\int_0^r
 e^{-2Zr'/a_0}r'^2dr'
 
 +
-A^2\int_r^{\infty}
+\int_r^{\infty}
 e^{-2Zr'/a_0}r'dr'
+\right\}
 \end{align*}
 $$
 
-この積分は
-
-$$
--\frac{1}{\alpha}
-    \left\{
-        \left(r+\frac{1}{\alpha}\right)
-    e^{-\alpha r} 
-    \right\}' = re^{-\alpha r},\\
--\frac{1}{\alpha}\left\{
-    \left(
-    r^2
-    +
-    \frac{2}{\alpha}r
-    +
-     \frac{2}{\alpha^2} 
-     \right)e^{-\alpha r}
-    \right\}' = r^2e^{-\alpha r}
-$$
-
-を考えて定積分の計算をして
-$$
-A = 2\left(\frac{Z}{a_0}\right)^{3/2}
-$$
-
-を戻すと、最終的に
-
+この積分も先ほどと同様に
+定積分の計算をして
 
 $$
 \begin{align*}
@@ -1134,8 +1141,15 @@ $$
 最後に随分前に計算した第1項
 
 $$
-2\varepsilon_1
-= -\frac{Z^2e^2}{4\pi\varepsilon_0 a_0}
+\begin{align*}
+2\int\varphi_{1s}^*(r)\left( \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
+    \varphi_{1s}(r)d\boldsymbol{r}
+&=
+    \frac{e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
+    -
+    \frac{4e^2}{4\pi\varepsilon_0}
+    \frac{Z}{a_0}
+\end{align*}
 $$
 
 と合わせて、
@@ -1144,13 +1158,16 @@ $$
 \begin{align*}
 \langle E \rangle
 &=
--\frac{Z^2e^2}{4\pi\varepsilon_0 a_0}
+\frac{e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
+    -
+    \frac{4e^2}{4\pi\varepsilon_0}
+    \frac{Z}{a_0}
 +
 \frac{e^2}{4\pi\varepsilon_0}\frac{5}{8}\frac{Z}{a_0}\\
 
 &=
 -\frac{e^2}{4\pi\varepsilon_0 a_0}\left(
-    Z^2 - \frac{5}{8}Z
+    Z^2 - 4Z + \frac{5}{8}Z
     \right)
 \end{align*}
 $$
@@ -1159,17 +1176,39 @@ $$
 
 $$
 \frac{d\langle E \rangle}{dZ} = -\frac{e^2}{4\pi\varepsilon_0 a_0}\left(
-    2Z - \frac{5}{8}
+    2Z - \frac{27}{8}
     \right)
 = 0
 $$
 
 より、
 $$
-Z = \frac{5}{16}
+Z = \frac{27}{16}=1.6875
 $$
 
-とすれば良いことになります。
+が得られました。
+手元の[猪木川合](https://bookclub.kodansha.co.jp/product?item=0000147776)をカンニングすると、この値を使って計算した$\langle E \rangle$は実測値の約98%の精度となっており、かなり良い近似であると考えられます。
+
+これは、$Z=1.6875$とした$1s$型の波動関数つまり「原子核の電荷$Z=2$が、もう一方の電子雲によってちょっと遮蔽されて$Z=1.687$くらいに感じている波動関数」
+
+
+$$
+\varphi(r) = \frac{1}{\sqrt{4\pi}}\left( \frac{Z}{a_0}  \right)^{3/2}2e^{-Zr/a_0} 
+$$
+
+がHe原子中の電子の良い近似的な波動関数になっているということです。
+
+
+## まとめ
+というわけでいくつかの面から、多電子原子中の電子の状態について具体的に見てきました。その結果
+
+- 多電子原子中の電子間の相互作用は、個別の電子に着目したうえで、それ以外の電子から受ける相互作用を「電荷密度が存在確率に応じて広がったポテンシャル」（平均場ポテンシャル）として一体の相互作用として取り入れることで近似的に一体の電子の問題として扱うことができる
+- そのように考えた場合、近似的に「原子核からの（引力）クーロンポテンシャルが、電子間の平均場によってちょっと遮蔽された（小さくなった）状態として有効ポテンシャルを考えることができる
+- その結果、多電子原子中の電子の固有状態も、水素様原子中の電子状態と大体同じような関数で考えることができる
+
+という雰囲気がつかめたかと思います。
+
+2電子の問題を扱った本節に比べて一般の多電子の場合を考えるともう少し複雑にはなるのですが、大体同じような考え方・結論となります。
 
 
 
