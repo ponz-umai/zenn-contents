@@ -669,7 +669,8 @@ $$
 \end{align*}
 $$
 
-と仮定し、かつ軌道関数の試行関数として水素様原子中の電子の$1s$状態
+と仮定し、かつ軌道関数の試行関数として,
+原子核の電荷が$+Ze$の水素様原子中の電子の$1s$状態
 
 $$
 \varphi_{1s} = \varphi _{100} = R_{10}Y_0^0,\\
@@ -682,13 +683,23 @@ $$
 
 「原子核からのクーロンポテンシャルが弱まった状態」を予想しているので、原子核の電荷に対応する$Z$を変分法で最適化するパラメータと考え、変分計算を具体的に行っていきます。
 
+ここで注意点としては、ハミルトニアンはHe原子のハミルトニアン、つまり$Z=2$として考える必要があります。
+
+$$
+\mathcal{H} = \frac{-\hbar^2}{2m}\nabla_1{}^2 + \frac{-\hbar^2}{2m}\nabla_2{}^2 
++ \frac{-2e^2}{4\pi\varepsilon_0r_1}
++ \frac{-2e^2}{4\pi\varepsilon_0r_2}
++ \frac{e^2}{4\pi\varepsilon_0r_{12}}
+$$
+
+
 1s状態は原点からの距離$|\boldsymbol{r}|=r$のみの関数なので以降$\varphi_{1s}(r)$と書き、エネルギー期待値$\langle E \rangle$は、スピン部分を先ほどと同じく先に積分して
 
 $$
 \begin{align*}
 \langle E \rangle &= \int \varphi_{1s}^*(1)\varphi_{1s}^*(2)\mathcal{H}\varphi_{1s}(1)\varphi_{1s}(2)d\boldsymbol{r}_1d\boldsymbol{r}_2\\
 &=
-    2\int\varphi_{1s}^*(r)\left( \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-Ze^2}{4\pi\varepsilon_0r} \right)
+    2\int\varphi_{1s}^*(r)\left( \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
     \varphi_{1s}(r)d\boldsymbol{r}\\
 &\>\>\>\>+
     \int\int \varphi_{1s}^*(r)\varphi_{1s}^*(r')\frac{e^2}{4\pi\varepsilon_0\left|\boldsymbol{r}-\boldsymbol{r}'\right|}
@@ -696,13 +707,114 @@ $$
 \end{align*}
 $$
 
-ここで第1項は水素様原子の場合のシュレーディンガー方程式と同じ形です。
-$\varphi_{1s}$は微分方程式の固有関数なのでその固有値
+初めに簡単な一体部分から考えていきます。^[水素様原子の一体のハミルトニアンに対して水素様原子の固有関数を考えているので、一見単純に固有値を使えばいいように思えますが（というか私が最初そのように勘違いして計算して答えが合わなかったのですが）、ハミルトニアンは$Z=2$、試行関数は$Z$を変数として扱っているので実は固有関数にならず、ちゃんと計算しないといけないのでした。]
+
+はじめにポテンシャル部分について、$\varphi_{1s}$の関数を入れて角度部分を先に積分します。
 
 $$
-\varepsilon_1 = 
--\frac{Z^2e^2}{8\pi\varepsilon_0a_0}
+\begin{align*}
+
+2\int\varphi_{1s}^*(r)\left(  \frac{-2e^2}{4\pi\varepsilon_0r} \right)
+    \varphi_{1s}(r)d\boldsymbol{r}
+
+&=
+
+2\times\frac{-2e^22^2}{4\pi(4\pi\varepsilon_0)}
+\left(\frac{Z}{a_0}\right)^3\int
+    \frac{1}{r} 
+    e^{-2Zr/a_0}
+    d\boldsymbol{r}\\
+
+&=
+\frac{-2^4e^2}{4\pi(4\pi\varepsilon_0)}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    \frac{1}{r} 
+    e^{-2Zr/a_0}
+    r^2dr
+    \iint\sin\theta d\theta d \phi\\
+
+&=
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    re^{-2Zr/a_0}
+    dr
+\end{align*}
 $$
+
+ここで$\int r e^{-2\alpha r}dr$について以下の関係を考えて、
+
+$$
+-\frac{1}{2\alpha}
+    \left\{
+        \left(r+\frac{1}{2\alpha}\right)
+    e^{-2\alpha r} 
+    \right\}' = re^{-2\alpha r}
+$$
+
+定積分を計算すると、
+
+$$
+\begin{align*}
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+\int
+    re^{-2Zr/a_0}
+    dr
+&=
+\frac{-2^4e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+    \frac{-1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+    \left[
+    \left\{
+        r + \frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+    \right\}
+    e^{-2Zr/a_0}   
+    \right]_0^\infty\\
+
+&=
+\frac{2^3e^2}{4\pi\varepsilon_0}
+\left(\frac{Z}{a_0}\right)^3
+    \left(\frac{Z}{a_0}\right)^{-1}
+    \left\{
+        -\frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+        \right\}\\
+
+&=
+    \frac{-4e^2}{4\pi\varepsilon_0}
+    \frac{Z}{a_0}
+
+\end{align*}
+$$
+
+続いて運動エネルギー部分は、極座標表示のラプラシアンの$e^{-Zr/a_0}$への作用
+
+$$
+\begin{align*}
+\left(
+    \frac{d^2}{dr^2} + \frac{2}{r}\frac{d}{dr} + 
+    \frac{1}{r}\Lambda(\theta,\phi)
+\right)
+e^{-Zr/a_0}
+
+&=
+    
+    \left(
+        \frac{d^2}{dr^2} + \frac{2}{r}\frac{d}{dr} 
+    \right)
+    e^{-Zr/a_0}\\
+
+&=
+    \left\{
+    \left(\frac{Z}{a_0}\right)^2
+    +
+    \frac{2}{r}\frac{Z}{a_0}
+    \right\}e^{-Zr/a_0}
+\end{align*}
+$$
+
+
 
 を用いて
 
@@ -710,16 +822,113 @@ $$
 \begin{align*}
 
 &2\int\varphi_{1s}^*(r)\left( 
-    \frac{-\hbar^2}{2m}\nabla{}^2 +  \frac{-Ze^2}{4\pi\varepsilon_0r} 
+    \frac{-\hbar^2}{2m}\nabla{}^2 
     \right)
     \varphi_{1s}(r)d\boldsymbol{r}\\
 
 
-&=2\varepsilon_1\int \varphi_{1s}^*(r)
-    \varphi_{1s}(r)d\boldsymbol{r} = 2\varepsilon_1
-= -\frac{Z^2e^2}{4\pi\varepsilon_0 a_0}
+&=
+    2 \frac{-\hbar^2}{2m}
+    2^2\left(\frac{Z}{a_0}\right)^3
+    \frac{1}{4\pi}
+\int 
+    \left\{
+    \left(\frac{Z}{a_0}\right)^2
+    -
+    \frac{2}{r}\frac{Z}{a_0}
+    \right\}e^{-2Zr/a_0}
+    r^2dr
+    \iint\sin\theta d\theta d\phi\\
+
+&=
+    \frac{-2^3\hbar^2}{2m}
+    \left(\frac{Z}{a_0}\right)^3
+    \int
+    \left\{
+    \left(\frac{Z}{a_0}\right)^2r^2
+    -
+    2r\frac{Z}{a_0}
+    \right\}e^{-2Zr/a_0}
+    dr
 \end{align*}
 $$
+
+$$
+-\frac{1}{2\alpha}
+    \left\{
+        \left(r+\frac{1}{2\alpha}\right)
+    e^{-2\alpha r} 
+    \right\}' = re^{-2\alpha r},\\
+-\frac{1}{2\alpha}\left\{
+    \left(
+    r^2
+    +
+    \frac{1}{\alpha}r
+    +
+     \frac{1}{2\alpha^2} 
+     \right)e^{-2\alpha r}
+    \right\}' = r^2e^{-2\alpha r}
+
+$$
+
+
+$$
+\begin{align*}
+ &\frac{-2^3\hbar^2}{2m}
+    \left(\frac{Z}{a_0}\right)^3
+    \int
+    \left\{
+    \left(\frac{Z}{a_0}\right)^2r^2
+    -
+    2r\frac{Z}{a_0}
+    \right\}e^{-2Zr/a_0}
+    dr\\
+&=
+ \frac{-2^3\hbar^2}{2m}
+    \left(\frac{Z}{a_0}\right)^3
+    \left(
+        \frac{-1}{2}\left(\frac{Z}{a_0}\right)\left[
+            \left\{
+                r^2 +\left( \frac{Z}{a_0}\right)^{-1}r + 
+                \frac{1}{2}\left( \frac{Z}{a_0}\right)^{-2}
+            \right\}e^{-2Zr/a_0}
+            \right]_0^{\infty}\right.\\            
+&\>\>\>\>+
+\left.
+        
+        \left[
+            \left\{
+                r + \frac{1}{2}\left( \frac{Z}{a_0}\right)^{-1}
+                \right\}e^{-2Zr/a_0}
+        \right]_0^{\infty}
+        
+
+    \right)\\
+
+&=
+    \frac{-2^3\hbar^2}{2m}
+    \left(\frac{Z}{a_0}\right)^3
+    \left[
+        \frac{1}{4}\left(\frac{Z}{a_0}\right)^{-1}
+        -
+        \frac{1}{2}\left(\frac{Z}{a_0}\right)^{-1}
+        \right]\\
+
+&=
+    \frac{-\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
+\end{align*}
+$$
+
+$$
+a_0 = \frac{4\pi\varepsilon_0\hbar^2}{me^2}
+$$
+
+$$
+\frac{-\hbar^2}{m}\left(\frac{Z}{a_0}\right)^2
+=
+\frac{-e^2}{4\pi\varepsilon_0}\frac{Z^2}{a_0}
+$$
+
 
 となります。
 
