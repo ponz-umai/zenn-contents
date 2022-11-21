@@ -43,3 +43,40 @@ $$
     d\boldsymbol{r}
 \end{align*}
 $$
+
+
+
+これは水素様原子中の電子のシュレーディンガー方程式
+
+$$
+\left(-\frac{\hbar^2}{2m} \nabla^2  -\frac{Ze^2}{4\pi\epsilon _0r}  \right) \varphi(\boldsymbol{r}) =\epsilon \varphi (\boldsymbol{r} )
+$$
+
+において第2項に$V(r)$が付け加わった形になっています。
+
+したがって水素原子の場合で行ったように極座標表示に変換して変数分離をすることで、3つの微分方程式
+
+$$
+-\frac{\hbar^2}{2m} \left(
+        \frac{d ^2R}{d r^2} + \frac{2}{r}\frac{d R}{d r}
+        -\frac{\lambda }{r^2} R
+        \right)
+        +
+        \left(
+        -\frac{Ze^2}{4\pi\epsilon _0r}
+        + V(r)
+        \right)R = \epsilon R
+       ,\\
+\frac{1}{\sin\theta } \frac{d}{d\theta } \left( \sin\theta \frac{d\Theta }{d\theta }   \right) + \left( \lambda - \frac{m^2}{\sin^2\theta }  \right) \Theta =0,\\
+\frac{d^2\Phi }{d\phi ^2} + m^2\Phi =0.
+$$
+
+と、クーロンポテンシャル部分に新たに平均場ポテンシャル$V(r)$が付け加わった形に整理できます。
+
+ところで今回、一体の固有関数は球対称と仮定したのでした。そこで角度部分は定数、具体的には
+$$
+Y_0^0 = \frac{1}{\sqrt{4\pi}}
+$$
+
+となり、
+試行関数$\varphi(|\boldsymbol{r}|)$を求めるための微分方程式は、動径部分のみの1変数微分方程式で$\lambda = 0$とした
