@@ -41,7 +41,8 @@ $$
 ## [多電子状態の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron)
 ## [電子のスピンを考慮した多電子系の波動関数](https://zenn.dev/ponzumai/articles/tight-binding-model-spin)
 ## [多電子原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron-atom)
-## 格子ベクトルと逆格子ベクトル
+## [格子ベクトルと逆格子ベクトル](https://zenn.dev/ponzumai/articles/tight-binding-model-lattice-vec)
+## 逆格子ベクトル・逆格子点の物理的な意味
 ## 固体（結晶）中の電子状態
 ## Tight-binding 近似（第一量子化）
 ## Tight-binding modelの第二量子化表示

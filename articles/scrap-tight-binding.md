@@ -80,3 +80,50 @@ $$
 
 となり、
 試行関数$\varphi(|\boldsymbol{r}|)$を求めるための微分方程式は、動径部分のみの1変数微分方程式で$\lambda = 0$とした
+
+面心立方格子の結晶内のポテンシャル
+
+面心立方格子は以下の基本併進ベクトルで表され、
+
+$$
+\boldsymbol{a}_1 = \frac{a}{2}\boldsymbol{e}_x + \frac{a}{2}\boldsymbol{e}_y, \\ 
+{}\\
+\boldsymbol{a}_2 =  \frac{a}{2}\boldsymbol{e}_y + \frac{a}{2}\boldsymbol{e}_z,\\
+{}\\
+\boldsymbol{a}_3 =  \frac{a}{2}\boldsymbol{e}_x + \frac{a}{2}\boldsymbol{e}_z.
+$$
+
+結晶内のポテンシャルは格子ベクトルを
+
+$$
+\boldsymbol{n} = n_1\boldsymbol{a}_1 
++
+n_2\boldsymbol{a}_2
++
+n_3\boldsymbol{a}_3
+$$
+
+として$V(\boldsymbol{r}+\boldsymbol{n}) = V(\boldsymbol{r})$の周期を持ちます。この時逆格子ベクトルを
+
+$$
+\boldsymbol{K} = m_1\boldsymbol{b}_1 + m_2\boldsymbol{b}_2 + m_3\boldsymbol{b}_3,\\
+
+\boldsymbol{b}_1 
+=
+\frac{\boldsymbol{a}_2\times\boldsymbol{a}_3}{\boldsymbol{a}_1\cdot(\boldsymbol{a}_2\times\boldsymbol{a}_3)}
+=
+\frac{2\pi}{a}(\boldsymbol{e}_x +\boldsymbol{e}_y - \boldsymbol{e}_z ) 
+$$
+
+と置くと
+
+結晶内のポテンシャルは
+
+
+$$
+V(\boldsymbol{r}) = \sum_{\boldsymbol{K}}V_{\boldsymbol{K}}e^{i\boldsymbol{K}\cdot\boldsymbol{r}}\\
+V_{\boldsymbol{K}}= \frac{1}{v_c}\int_{v_c} V(\boldsymbol{r})e^{-i\boldsymbol{K}\cdot\boldsymbol{r}}d\boldsymbol{r}
+$$
+
+
+と書けます。
