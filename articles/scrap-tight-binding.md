@@ -127,3 +127,56 @@ $$
 
 
 と書けます。
+
+
+$H_q$を対角化する行列$T$：
+
+$$
+T^{-1}H_qT = 
+\begin{bmatrix}
+\ddots &   &  &  &   \\
+ & \>\varepsilon_{n,q} & \\
+  &&\ddots  & & &\\
+ & & & \>\>\varepsilon_{n',q} \\
+ & &  &  & \ddots &  &  \\
+   & & &&& \varepsilon_{n'',q} & \\
+&& & & &&\ddots &  \\
+\end{bmatrix}
+$$
+
+
+を考えると（ラベルのセンスが悪い気がしますが））、「固有ベクトル」
+
+$$
+T
+\begin{bmatrix}
+\vdots \\
+c_{q - K_l} \\
+\vdots \\
+c_q \\
+\vdots \\
+c_{q + K_l} \\
+\vdots
+\end{bmatrix}
+
+=
+\begin{bmatrix}
+\vdots \\
+\sum_{m}T_{nm}c_{q - K_m} \\
+\vdots \\
+\sum_{m}T_{n'm}c_{q - K_m} \\
+\vdots \\
+\sum_{m}T_{n''m}c_{q - K_m} \\
+\vdots
+\end{bmatrix}
+$$
+
+と、（無限個の）$H_{q}$に対する$n$でラベルされた固有値
+
+$$
+\varepsilon_{n,q}
+$$
+
+を得ることができます。
+
+（行列表示の都合で$K$を$K_m$、全ての$K$に関する和を$\sum_m$と書いていたところを、2行目で「全ての$K$に関する和$\sum_K$と書き換えました）
