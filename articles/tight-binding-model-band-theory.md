@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "バンド理論超概略"
 emoji: "🎃"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: []
