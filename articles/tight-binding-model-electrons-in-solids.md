@@ -3,7 +3,7 @@ title: "固体・周期ポテンシャル内の電子状態～ブロッホの定
 emoji: "💠"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
-published: false
+published: true
 ---
 # はじめに
 前章で結晶の周期を持つ関数のFourier展開を定義することができたので、いよいよ固体、つまり周期的ポテンシャル内の電子の性質を考えていきます。
@@ -42,22 +42,22 @@ $$
 
 しかし1電子のシュレーディンガー方程式になったところで、やはり上式はそのままでは解けません。具体的な解を求めるためにはさらなる近似が必要となります。
 
-## ブロッホの定理
 
 近似にも色々ありますが、そのうちの一つに多電子原子の章で活用した変分法、すなわち波動関数の解になりそうな試行関数を仮定し、仮定した関数が解となるための条件を考えていく方法があります。
+多電子原子について変分法を考えた際は、水素原子のシュレーディンガー方程式（中心力ポテンシャルの下でのシュレーディンガー方程式）が厳密に解けていたこともあり、その波動関数を出発点に置き、それなりに上手くいくことを見ました。それでは今回のような周期的なポテンシャルのもとでの試行関数はどのようなものを選べば良いでしょうか。
 
-多電子原子について考えた際は、水素原子のシュレーディンガー方程式（中心力ポテンシャルの下でのシュレーディンガー方程式）が厳密に解けていたこともあり、その波動関数を出発点に置き、それなりに上手くいくことを見ました。それでは今回のような周期的なポテンシャルのもとでの試行関数はどのようなものを選べば良いでしょうか。
+## ブロッホの定理
 
-その指針となるのが、表題のブロッホの定理です。
+その指針となるのが、表題のブロッホの定理です。また、変分法の出発点にとどまらず、周期的なポテンシャルの下で電子がどのような性質を持つのか。あるいはその性質をどのような表現で考えて行けばよいのかなど、固体内の電子状態について考える際に前提となる情報を得ることができます。
 
-ブロッホの定理は、格子ベクトルの並進に対して周期的なハミルトニアンの下で波動関数が従うべき条件についての定理です。
+というわけで本章では「周期的なポテンシャル中の1電子状態」に着目して、色々と考えていきます。
+
+さて、話を戻して、今回考えるのは先ほど示したハミルトニアンよりももう少し一般的な状況、すなわち格子ベクトルの並進に対して周期的なハミルトニアンの下で波動関数が従うべき条件についての定理です。
 
 そのようなポテンシャルを$U(\boldsymbol{r})$と置きます。$U(\boldsymbol{r})$は前章・前々章で定義した格子ベクトル
 
 $$
-\begin{align*}
-\boldsymbol{n} &= n_1\boldsymbol{a}_1 + n_2\boldsymbol{a}_2 + n_3\boldsymbol{a}_3\\
-\end{align*}
+\boldsymbol{n} = n_1\boldsymbol{a}_1 + n_2\boldsymbol{a}_2 + n_3\boldsymbol{a}_3
 $$
 
 に対して
@@ -84,10 +84,12 @@ $$
 
 ::: message
 固有値、固有関数はブロッホ波数$\boldsymbol{k}$, バンド指標$n$でラベルされ、
+
 $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}),\\
 \varepsilon_{n,\boldsymbol{k}}
 $$
+
 となる。^[ここで、波数$\boldsymbol{k}$と位置$\boldsymbol{r}$が同じ関数に現れていることが意味わからんと感じるかもしれません。私は長らくなんじゃこりゃと思いながら雰囲気で使っていました。これは「Fourier展開した際に波数$\boldsymbol{k}$に代表されるような波数成分のみ持つ位置$\boldsymbol{r}$の関数」というような意味です。Fourier係数$c_{\boldsymbol{k}}$とは別物です。紛らわしいですね。その辺は証明を追えばわかると思います。それに対応してブロッホ波数$\boldsymbol{k}$も、電子の運動量ではないことに注意してください。（とはいえ運動量っぽい性質に対応しており、「結晶運動量」等と呼ばれています。そのため$\boldsymbol{k}$の文字が使われているようです。ただ、本稿ではそのあたりまでは触れないと思います）]
 
 この時の波動関数をブロッホ関数と呼び、ブロッホ関数$\varphi_{n,\boldsymbol{k}}$は格子ベクトル$\boldsymbol{n}$に対して
@@ -110,17 +112,13 @@ $$
 
 また、上記のブロッホの定理で導かれた固有値を考えることで、固体内の電子が持つエネルギーの性質を表すエネルギーバンドという概念が登場することになります。
 
-本章ではそのあたりの内容について、例によって最低限、整理していきます。
+本章ではそのあたりの内容について整理していきます。
 
-以下、証明を書いていきます。
+以下、上記定理の証明や具体的な内容を書いていきます。
 
 証明には並進の演算子を用いる方法と、波動関数が満たす条件を具体的に求める方法の2パターンあり、本章では後者の方針で証明を記載します。（前者の方がすっきりと書けるのですがその前提となる定理を色々と追記する必要があり、地道に理解できる後者の方向で書いていきます）
 
-## ブロッホの定理の前半部分の証明（1次元）
-
-初めに、色々と考えやすくなるので1次元の場合について証明を記載します。3次元の場合も後に触れますが、ほぼ同じです。
-
-まずは「ブロッホ波数」とかいうものについては置いておいて、周期的なハミルトニアンの固有関数が格子ベクトル$\boldsymbol{n}$に対して
+まずは「ブロッホ波数」とかいうものについては置いておいて、周期的なハミルトニアンの固有関数が格子ベクトル$\boldsymbol{n}$の並進（1次元の場合は定数$na$の並進）に対して
 
 $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = e^{i\boldsymbol{k}\cdot\boldsymbol{n}}
@@ -135,9 +133,14 @@ $$
 
 を満たすことを確かめていきます。
 
+## ブロッホの定理の前半部分の証明（1次元）
+
+初めに、色々と考えやすくなるので1次元の場合について考えます。3次元の場合も後に触れますが、ほぼ同じです。
+
+
 ### 波数表示でのシュレーディンガー方程式
 
-1次元周期ポテンシャルの下でのシュレーディンガー方程式を以下のように書きましょう。
+1次元版を考えるにあたり、1次元周期ポテンシャルの下でのシュレーディンガー方程式は以下のように書けます。
 
 $$
 \left(
@@ -165,7 +168,7 @@ $$
 
 $$
 U(x) = \sum_K U_K e^{iKx},\\
-K = \frac{2\pi}{a}l, \>\>l = 0,\pm 1, \pm 2\cdots
+K = \frac{2\pi}{a}m, \>\>m = 0,\pm 1, \pm 2\cdots
 $$
 
 とFourier展開できます。ここで波数$K$は逆格子に対応するものなので、その意味を強調するために大文字で書いています。
@@ -173,11 +176,11 @@ $$
 また、周期的境界条件を設定したことから波動関数も周期$Na$を持ち、
 
 $$
-\varphi(x) = \sum_q c_q e^{iqx},\\
+\varphi(x) = \frac{1}{\sqrt{Na}}\sum_q c_q e^{iqx},\\
 q = \frac{2\pi}{Na}m, \>\>m = 0,\pm 1, \pm 2\cdots
 $$
 
-と展開できます。
+と展開できます。ここで係数$1/\sqrt{Na}$は上記周期的境界条件の下で波動関数を規格化するための係数です。
 
 これらをシュレーディンガー方程式に代入して整理します。運動エネルギー項に対しては
 
@@ -194,23 +197,24 @@ $$
 U(x)\varphi(x) 
 
 &= 
+\frac{1}{\sqrt{Na}}
 \sum_{K}\sum_{q}U_{K}
 c_{q}
 e^{i(K+q)x}\\
 
 &=
-\sum_{K}\sum_{q'}U_{K}
+\frac{1}{\sqrt{Na}}\sum_{K}\sum_{q'}U_{K}
 c_{q'-K}
 e^{iq'x}\\
 \end{align*}
 $$
 
-ですが、$q + K = \frac{2\pi}{Na}(m + lN)\rightarrow q'$の置き換えに対しても$\sum_{q'}$の和の範囲は変わらないので、改めて$q'\rightarrow q$と置きなおして、
+ですが、$q + K = \frac{2\pi}{Na}(m + Nm')\rightarrow q'$の置き換えに対しても$\sum_{q'}$の和の範囲は変わらないので、改めて$q'\rightarrow q$と置きなおして、
 
 $$
 U(x)\varphi(x) 
 =
-\sum_{K}\sum_{q}U_{K}
+\frac{1}{\sqrt{Na}}\sum_{K}\sum_{q}U_{K}
 c_{q-K}
 e^{iqx}\\
 $$
@@ -218,6 +222,7 @@ $$
 と書けます。これらをまとめて、波数表示のシュレーディンガー方程式を
 
 $$
+\frac{1}{\sqrt{Na}}
 \sum_{q}e^{iqx}
 \left[
     (\frac{\hbar^2}{2m}q^2 - \varepsilon)c_{q} + 
@@ -240,16 +245,16 @@ $$
 
 ### ブロッホ関数の導出
 
-この方程式は任意に選んだある$q$と、その逆格子分異なる$q-K, q\pm K', q\pm K''$の係数を持つFourier係数のみを含む連立方程式のブロックになっています。（このようなブロックを代表する$q$は、逆格子の周期に関して最小単位となる逆格子空間の単位胞内でとればよいことを後に確かめます）
+この方程式は任意に選んだある$q$と、その逆格子分異なる$q-K, q\pm K', q\pm K''$の係数を持つFourier係数のみを含む（無限個の）連立方程式のブロックになっています。（このようなブロックを代表する$q$は、逆格子の周期に関して最小単位となる逆格子空間の単位胞内でとればよいことを後に確かめます）
 
-行列表示の都合上、逆格子$K=\frac{2\pi}{a}m$は、$m=0,\pm 1, \pm 2\cdots$なので、それぞれ$K_0, \pm K_1, \cdots,\pm K_m\cdots$と書くと、ある$q$を選ぶと、その逆格子分だけ異なる係数に関する行列の固有値方程式
+行列表示の都合上、逆格子$K=\frac{2\pi}{a}m$は、$m=0,\pm 1, \pm 2\cdots$なので、それぞれ$K_0(=0), \pm K_1, \cdots,\pm K_m\cdots$と書くと、ある$q$を選ぶと、その逆格子分だけ異なる係数に関する行列の固有値方程式
 
 $$
 \begin{bmatrix}
 \ddots &   &  &  &   \\
  & \ddots & \\
   & & \ddots  & & &\\
- & & & \ddots \\
+ & & &  \\
 \cdots & \cdots & U_{-K_2} &  U_{-K_1} & \frac{\hbar^2}{2m}q^2 + U_0 & U_{K_1} & U_{K_2}&\cdots \\
 \\
    & & &&& \ddots & \\
@@ -329,16 +334,17 @@ c_{n, q + K_m} \\
 $$
 
 を得ることができます。
+ここで、$\varepsilon_{n,q}$はエネルギーが小さい順にラベル$n$を付与していくものとします。（そのように考えておくと後々都合が良くなります。）
 
 
 この結果から、元々求めたかったシュレーディンガー方程式に対する固有関数を先ほど求めた固有ベクトルの係数$\{c_{n,q-Km}\}$を用いて
 
 $$
-\varphi_{n,q}(x) = \sum_{m}c_{n,q-K_m}e^{i(q-K_m)x}
+\varphi_{n,q}(x) =　\frac{1}{\sqrt{Na}} \sum_{m}c_{n,q-K_m}e^{i(q-K_m)x}
 $$
 
 を得ます。
-すなわち、周期的なハミルトニアンに対する固有値は、$n$でラベルされた様々な波数$q-K_m$の係数の組み$c_{n,q-K_m}$のみをFourier成分として持つ関数として表される、ということがわかります。
+すなわち、周期的なハミルトニアンに対する固有関数は、ある波数$q$と、全ての逆格子$\cdots, K_{m-1}, K_m, K_{m+1}, \cdots$分だけ異なる波数$\cdots, q-K_{m-1},q- K_m,q- K_{m+1}, \cdots$の係数$\cdots , c_{n, q-K_{m-1}}, c_{n,q-K_m}, c_{n, q-k_{m+1}}\cdots$のみをFourier成分として持つ関数として表される、ということがわかります。
 
 
 実際、$\varphi_{n,q}$は$\hat{H} = \frac{-\hbar^2}{2m}\frac{d^2}{d x^2} + U(x)$に対して
@@ -371,11 +377,7 @@ $$
 \sum_m e^{i(q-K_m)x} \left[
     \varepsilon_{n,q} 
     c_{n,q-K_m} 
-    \right]\\
-
-&=
-\varepsilon_{n,q}\varphi_{n,q}(\boldsymbol{r})
-
+    \right]
 \end{align*}
 $$
 
@@ -384,7 +386,7 @@ $$
 またラベル$m$についての和は、逆格子$K$についての和と等しいので、エネルギー固有値$\varepsilon_{n,q}$に対応する固有関数は
 
 $$
-\varphi_{n,q}(x) = \sum_K c_{n,q-K}e^{i(q-K)x}
+\varphi_{n,q}(x) = \frac{1}{\sqrt{Na}}\sum_K c_{n,q-K}e^{i(q-K)x}
 $$
 
 とも書けます。
@@ -399,9 +401,9 @@ $$
 
 $$
 \begin{align*}
-    \varphi_{n,q}(x + na) &= \sum_K c_{n,q-K}e^{i(q-K)x}e^{i(q-K)na}\\
+    \varphi_{n,q}(x + na) &= \frac{1}{\sqrt{Na}}\sum_K c_{n,q-K}e^{i(q-K)x}e^{i(q-K)na}\\
     &=
-    \sum_K c_{n,q-K}e^{i(q-K)x}e^{iqna}\\
+    \frac{1}{\sqrt{Na}}\sum_K c_{n,q-K}e^{i(q-K)x}e^{iqna}\\
     &=
     e^{iqna}\varphi_{n,q}(x) 
 \end{align*}
@@ -410,14 +412,14 @@ $$
 を満たします。また、
 
 $$
-\varphi_{n,q}(x) = e^{iqx}\sum_K c_{n,q-K}e^{-iKx}
+\varphi_{n,q}(x) = \frac{1}{\sqrt{Na}}e^{iqx}\sum_K c_{n,q-K}e^{-iKx}
 $$
-と書くと、右辺$e^{iqx}$を除いた部分は
+と書くと、右辺$\frac{1}{\sqrt{Na}}e^{iqx}$を除いた部分は
 
 $$
-\sum_K C_{n,q-K}e^{-iK(x + na)} = \sum_K C_{n,q-K}e^{-iKx}e^{-iKna}
+\sum_K c_{n,q-K}e^{-iK(x + na)} = \sum_K c_{n,q-K}e^{-iKx}e^{-iKna}
 =
-\sum_K C_{n,q-K}e^{-iK(x)}
+\sum_K c_{n,q-K}e^{-iK(x)}
 $$
 
 を満たし、結晶の周期性を持つ関数$u(x)$と書けます。
@@ -475,7 +477,7 @@ $$
 \varphi(\boldsymbol{r} + N_i\boldsymbol{a}_i) = \varphi(\boldsymbol{r})
 $$
 
-という条件を考えます。すると「逆格子ベクトル」^[かっこをつけている理由は、正確には「逆格子ベクトル」は結晶の格子ベクトルの双対ベクトルに対して使用する用語だと教科書に書いてあったからです。なので境界条件の周期性に対して「逆格子ベクトル」と書くのは正確ではないっぽいのですが、ここではわかりやすさを優先してこのように書きます]
+という条件を考えます。すると逆格子ベクトルと$1/N_i$異なる波数ベクトル^[逆格子ベクトル」は結晶の格子ベクトルの双対ベクトルに対して使用する用語のようなので、このような回りくどい書き方にしています]
 
 $$
 \begin{align*}
@@ -504,10 +506,10 @@ $$
 の平面波$e^{i\boldsymbol{q}\cdot \boldsymbol{r}}$を用いて以下のように展開できます：
 
 $$
-\varphi(\boldsymbol{r}) = \sum_{\boldsymbol{q}}c_{\boldsymbol{q}}e^{i\boldsymbol{q}\cdot\boldsymbol{r}}
+\varphi(\boldsymbol{r}) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol{q}}c_{\boldsymbol{q}}e^{i\boldsymbol{q}\cdot\boldsymbol{r}}
 $$
 
-これらをシュレーディンガー方程式に代入して整理すると、運動エネルギー項に対しては
+ここで$\frac{1}{\sqrt{V}}$は規格化のための係数で、結晶の単位胞の体積$v_c = \boldsymbol{a}_1\cdot(\boldsymbol{a}_2\times\boldsymbol{a}_3)$の$N=N_1N_2N_3$倍の定数です。これらをシュレーディンガー方程式に代入して整理すると、運動エネルギー項に対しては
 
 $$
 \nabla^2\sum_{\boldsymbol{q}}c_{\boldsymbol{q}}e^{i\boldsymbol{q}\cdot\boldsymbol{r}}
@@ -522,11 +524,13 @@ $$
 U(\boldsymbol{r})\varphi(\boldsymbol{r}) 
 
 &= 
+\frac{1}{\sqrt{V}}
 \sum_{\boldsymbol{K}}\sum_{\boldsymbol{q}}U_{\boldsymbol{K}}
 c_{\boldsymbol{q}}
 e^{i(\boldsymbol{K}+\boldsymbol{q})\cdot\boldsymbol{r}}\\
 
 &=
+\frac{1}{\sqrt{V}}
 \sum_{\boldsymbol{K}}\sum_{\boldsymbol{q}'}U_{\boldsymbol{K}}
 c_{\boldsymbol{q}'-\boldsymbol{K}}
 e^{i\boldsymbol{q}'\cdot\boldsymbol{r}}\\
@@ -538,6 +542,7 @@ $$
 $$
 U(\boldsymbol{r})\varphi(\boldsymbol{r}) 
 =
+\frac{1}{\sqrt{V}}
 \sum_{\boldsymbol{K}}\sum_{\boldsymbol{q}}U_{\boldsymbol{K}}
 c_{\boldsymbol{q}-\boldsymbol{K}}
 e^{i\boldsymbol{q}\cdot\boldsymbol{r}}\\
@@ -546,6 +551,7 @@ $$
 と書けます。これらをまとめて、波数表示のシュレーディンガー方程式を
 
 $$
+\frac{1}{\sqrt{V}}
 \sum_{\boldsymbol{q}}e^{i\boldsymbol{q}\cdot\boldsymbol{r}}
 \left[
     (\frac{\hbar^2}{2m}q^2 - \varepsilon)c_{\boldsymbol{q}} + 
@@ -564,10 +570,10 @@ $$
 c_{\boldsymbol{q}-\boldsymbol{K}} = 0
 $$
 
-を得ることができます。ここから、逆格子ベクトルに何らかの順番を考えて行列表示で考えれば1次元の場合と同様に、ある波数$\boldsymbol{q}$と、その逆格子ベクトルだけ異なるFourier級数からなるブロッホ関数
+を得ることができます。ここから、逆格子ベクトルに何らかの順番を考えて行列表示で考えれば1次元の場合と同様に、値が小さい順に振られたラベル$n$と、方程式を指定する波数$\boldsymbol{q}$に対応する固有値$\varepsilon_{n,\boldsymbol{q}}$が得られ、それに対応して波数$\boldsymbol{q}$と、その逆格子ベクトルだけ異なるFourier級数からなるブロッホ関数
 
 $$
-\varphi_{n,\boldsymbol{q}}(\boldsymbol{r}) = \sum_{\boldsymbol{K}}c_{n,\boldsymbol{q} - \boldsymbol{K}}
+\varphi_{n,\boldsymbol{q}}(\boldsymbol{r}) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol{K}}c_{n,\boldsymbol{q} - \boldsymbol{K}}
 e^{i(\boldsymbol{q} - \boldsymbol{K} )\cdot \boldsymbol{r}}
 $$
 
@@ -607,10 +613,12 @@ $$
 
 ::: message
 固有値、固有関数はブロッホ波数$\boldsymbol{k}$, 離散的なバンド指標$n$でラベルされ、
+
 $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}),\\
 \varepsilon_{n,\boldsymbol{k}}
 $$
+
 となる（固有値$\varepsilon_{n,\boldsymbol{k}}$は$\boldsymbol{k}$についての連続関数であることを表して$\varepsilon_n(\boldsymbol{k})$とも書かれる）。
 ブロッホ波数$\boldsymbol{k}$は、逆格子空間の特別な単位胞である（第1）ブリルアンゾーンに含まれる波数ベクトルとして定義される。
 :::
@@ -709,7 +717,7 @@ $$
 
 を得ることができますが、その中には必ず先に選んだ$q = q' + K_l$も含まれており、結局全ての方程式を参照すると全く同じ式の集まりであることがわかります。
 
-当然、その方程式から作られる行列の固有値$\varepsilon_{n,q'}$も、固有関数$\varphi_{n,q'}(x)$も先に考えた固有値$\varepsilon_{n,q}$も、固有関数$\varphi_{n,q}(x)$と全く同じものになります。
+ラベル$n$については値が小さい順に振ると決めてありましたので、その方程式から作られる行列の固有値$\varepsilon_{n,q'}$も、固有関数$\varphi_{n,q'}(x)$も先に考えた固有値$\varepsilon_{n,q}$も、固有関数$\varphi_{n,q}(x)$と全く同じものになります。
 
 これはある波数$q$を選んで得た（無限個の$n$でラベルされた）固有値$\varepsilon_{n,q}$、固有関数$\varphi_{n,q}$と、先ほどの波数から逆格子だけ異なる波数$q-K$を選んで得た固有値$\varepsilon_{n,q-K}$、固有関数$\varphi_{n,q-K}$が一致していることを意味しています。ラベル$q$は方程式を指定するラベルであり、逆格子分ずれたラベルからは同じ方程式が指定されるわけです^[ショッピングモールの入り口がたくさんあったとしても、どこから入っても店舗さえ指定されていれば同じ商品が売ってる、みたいなもんです。]。
 
@@ -727,7 +735,6 @@ $$
 $$
 
 を持つ周期関数であるとも考えることができます。
-
 周期関数であれば、関数を考える際やグラフで表示する際、1周期分のみを考えれば良いわけです。
 
 いずれにしても、波数空間の周期の最小単位内の波数を代表して選べば、全ての波数に対する方程式が得られることがわかります。
@@ -776,20 +783,21 @@ $$
 
 
 ここはあまり深く突っ込まないのですが、なぜこんなややこしいことをするかというと、Wigner-Seitz cellはあるブラベー格子（これは実空間の格子であっても逆格子空間の逆格子ベクトルの集まりであっても）を考えた際に、そのブラベー格子が持つ対称性と等しい対称性を持つ、という性質があるからのようです。
-
 この辺はいずれ、ちゃんと勉強して何かしら追記しますが、この段階ではひとまずこんなところで。
 
-ここまでの流れでわかるように（ブロッホ）波数は、「ある「連立方程式ブロック」を代表する波数」という意味ですので、ラベルが直接関数を指定していた自由電子の波動関数$\varphi_k(x) = Ae^{ikx}$や中心力場内の電子の固有関数$\varphi_{nml} = R_{nl}Y_l^m$とは若干違う意味合いで使われおり、「方程式群を指定するラベル」$k$と、「そこから得られる関数を指定するラベル$n$」というセットとなっております。
+補足として、ここまでの流れでわかるように（ブロッホ）波数は、「ある「連立方程式ブロック」を代表する波数」という意味ですので、ラベルが直接関数を指定していた自由電子の波動関数$\varphi_k(x) = Ae^{ikx}$や中心力場内の電子の固有関数$\varphi_{nml} = R_{nl}Y_l^m$とは若干違う意味合いで使われおり、「方程式群を指定するラベル」$k$と、「そこから得られる関数を指定するラベル$n$」というセットとなっております。
 その上に自由電子と全く同じラベルが使われているので中々ややこしいなと感じますが、「結晶内の波数っぽい物理量に対応している」的な意味で自由電子の波数と同じ記号が使われ、「結晶運動量」等と呼ばれたりしているようです。（先述の通り本稿では今のところはここも深く突っ込まないことにします）
 
 さて、話を戻して、以上で格子の周期を持つハミルトニアンの下での固有値、固有ベクトルの性質であるブロッホの定理
 
 ::: message
 固有値、固有関数はブロッホ波数$\boldsymbol{k}$, バンド指標$n$でラベルされ、
+
 $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}),\\
 \varepsilon_{n,\boldsymbol{k}}
 $$
+
 となる。
 
 この時の波動関数をブロッホ関数と呼び、ブロッホ関数$\varphi_{n,\boldsymbol{k}}$は格子ベクトル$\boldsymbol{n}$に対して
@@ -827,11 +835,11 @@ $$
 の（無限個の）根として$\varepsilon_{n,\boldsymbol{k}}$が得られたのでした。
 
 この時、パラメータに依存した行列の固有値はそのパラメータに対して連続かつ微分可能である、らしいです。
-**すいません。**このあたりの証明がよくわかっていないので、ここは曖昧なままにしてしまいます。いずれ線形代数か量子力学の最初の方か色々読み返して、ちゃんとやります。
+**突然自信を失って申し訳ありません。** このあたりの証明がよくわかっていないので、ここは曖昧なままにしてしまいます。いずれ線形代数か量子力学の最初の方か色々読み返して、ちゃんとやります。
 
 またこちらも全く曖昧なのですが、行列$H_{\boldsymbol{k}}$の対角要素$\frac{\hbar^2}{2m}(\boldsymbol{q} - \boldsymbol{K})^2$の逆格子ベクトル$\boldsymbol{K}$が離散的であることから、対角化して得られる固有値$\varepsilon_n$は$n$に対して離散的になる、らしいです。
 
-全く正確ではないと思うのですが、今のところは、行列式
+全く正確ではないと思うのですが、今のところは次のように考えてみます。すなわち、行列式
 
 $$
 |H_{\boldsymbol{k}} - \varepsilon I|=0
@@ -845,6 +853,158 @@ $$
 
 みたいな方程式になるわけですが、この根は上記方程式左辺を$\varepsilon$の関数としてプロットした場合に横軸との交点になるわけで、まあ確かに、$\boldsymbol{k}$の変化に対して滑らかに交点は変化しそうですし、交点は離散的になりそうな気がします。
 
+あるいは、もう少し物理的に考えると、周期ポテンシャルを無視（$U(\boldsymbol{r})\rightarrow 0$）した場合（これは「空格子モデル」等と呼ばれます。）、行列$H_{\boldsymbol{k}}$は対角化されたものとなります。すなわち行列の固有ベクトルは、
+
+$$
+\begin{bmatrix}
+\vdots \\
+c_{q - K_m} \\
+\vdots \\
+c_q \\
+\vdots \\
+c_{q + K_m} \\
+\vdots
+\end{bmatrix}
+$$
+
+のうち、1つの係数$c_{q-K_m}$のみが$1$となり、残りは$0$であるような場合に対応します。
+というか、これは自由電子の固有関数
+
+$$
+\varphi_{n,\boldsymbol{k}} = \frac{1}{\sqrt{V}}c_{n, \boldsymbol{k}- \boldsymbol{K}}e^{i(\boldsymbol{k} - \boldsymbol{K})\cdot\boldsymbol{r}}
+$$
+
+で、ポテンシャルがない場合を考えているので当然そうなります。
+
+さて、自由電子のハミルトニアンにはなりましたが、一応先ほどと同じ「ブロック」は残っているのでブロッホ波数$\boldsymbol{k}$で指定されるブロックを対角化した固有値$\varepsilon_{n,\boldsymbol{k}}$について考えてみると、これは逆格子ベクトルと一対一で対応し
+
+$$
+\varepsilon_{n,\boldsymbol{k}} = \cdots , \frac{\hbar^2}{2m}(\boldsymbol{k} - \boldsymbol{K_m})^2 , \frac{\hbar^2}{2m}(\boldsymbol{k} - \boldsymbol{K_{m-1}})^2 , \cdots, \frac{\hbar^2}{2m}\boldsymbol{k}^2 ,\cdots,  \frac{\hbar^2}{2m}(\boldsymbol{k} + \boldsymbol{K_m})^2 , \cdots
+$$
+
+となります（一応注意として、ラベル$n$は$|\boldsymbol{k} - \boldsymbol{K}_m|$が小さい順に振られるので、上記の順番とラベル$n$の順番は異なります）。
+この時固有エネルギーは明らかにブロッホ波数に対して連続かつ微分可能な滑らかな関数です。
+なお、ブロッホ波数も周期的境界条件に対応して離散的な変数で定義されていますが、関数形としては「$\boldsymbol{k}$について滑らか」であるといえますし、また「十分大きな系を考える」周期的境界条件という前提のもと、$N\rightarrow\infty$と考えるので実質的には$\boldsymbol{k}$は連続変数であると考えることになります。
+
+
+また固有エネルギーの$n$に対する変化は、この場合は逆格子ベクトルの変化と一致しますが、逆格子ベクトル
+
+$$
+    \boldsymbol{K} 
+
+=
+ m_1\frac{2\pi\boldsymbol{a}_2\times\boldsymbol{a}_3}{\boldsymbol{a}_1\cdot(\boldsymbol{a}_2\times\boldsymbol{a}_3)}
++
+
+ m_2\frac{2\pi\boldsymbol{a}_3\times\boldsymbol{a}_1}{\boldsymbol{a}_2\cdot(\boldsymbol{a}_3\times\boldsymbol{a}_1)}
++
+ m_3\frac{2\pi\boldsymbol{a}_1\times\boldsymbol{a}_2}{\boldsymbol{a}_3\cdot(\boldsymbol{a}_1\times\boldsymbol{a}_2)}
+$$
+
+と、ブロッホ波数
+
+$$
+\begin{align*}
+    \boldsymbol{k} 
+ &=
+ 
+ \frac{m_1}{N_1}\frac{2\pi\boldsymbol{a}_2\times\boldsymbol{a}_3}{\boldsymbol{a}_1\cdot(\boldsymbol{a}_2\times\boldsymbol{a}_3)}
++
+
+\frac{m_2}{N_2}\frac{2\pi\boldsymbol{a}_3\times\boldsymbol{a}_1}{\boldsymbol{a}_2\cdot(\boldsymbol{a}_3\times\boldsymbol{a}_1)}
++
+\frac{m_3}{N_3}\frac{2\pi\boldsymbol{a}_1\times\boldsymbol{a}_2}{\boldsymbol{a}_3\cdot(\boldsymbol{a}_1\times\boldsymbol{a}_2)}
+
+\end{align*}
+$$
+
+はざっくり逆格子の方が$N_i$倍程度大きいので、ブロッホ波数の変化に対するエネルギー固有値の変化に比べて、ラベル$n$の変化$=$逆格子ベクトル$\boldsymbol{K}$の変化に対するエネルギー固有値の変化は離散的であると考えられます。
+
+以上のように考えてみても、エネルギー固有値$\varepsilon_{n,\boldsymbol{k}}$の性質をなんとなくイメージできるかと思います。本当はもっとシンプルな証明があるのだろうと思いますが、その辺はいずれ追記したいところです。
+
+
+さて話を戻して、以上から、ブロッホ波数$\boldsymbol{k}$に対するエネルギー固有値の変化を描いた場合、
+
+
+- 各$\boldsymbol{k}$点に対して、複数のエネルギー固有値が飛び飛びにプロットされ
+- かつ波数$\boldsymbol{k}$に関しては連続かつ各点で微分可能な滑らかなグラフ
+
+で表されるはずです。1次元の場合は曲線、2次元の場合は曲面でプロットされ、グラフは$\boldsymbol{k}$空間に広がった帯（バンド）のような形状になりそうだと分かりました。そのような性質から、固体内のエネルギー分散を「エネルギーバンド」と呼びます。
+
+この辺りは、次章でもう少し補足しようと思います。
+
+
 # おわりに
 
+本章では、結晶内の電子の性質を考える出発点として、「結晶の周期性を持つポテンシャルの下で電子の波動関数が一般的に持つ性質」としてブロッホの定理を示し、またブロッホの定理に従う波動関数やそのエネルギー固有値の性質を考えることでブリルアンゾーン・エネルギーバンドの概念を導入しました。
 
+これにより固体内の多電子状態に対して「原子核＋内殻電子からの相互作用を1粒子ポテンシャルとして近似する」「価電子間の相互作用を無視する」として、相互作用しない状態に近似し、1電子シュレディンガー方程式へ帰着させた際に、そのシュレディンガー方程式において電子がとるべき状態について理解することができました。
+
+まとめとして再掲すると、
+
+格子ベクトル
+
+$$
+\begin{align*}
+\boldsymbol{n} &= n_1\boldsymbol{a}_1 + n_2\boldsymbol{a}_2 + n_3\boldsymbol{a}_3\\
+\end{align*}
+$$
+
+に対して
+
+$$
+U(\boldsymbol{r} + \boldsymbol{n}) = U(\boldsymbol{r})
+$$
+
+を満たすポテンシャルの下でのシュレーディンガー方程式
+
+$$
+
+\hat{H}\varphi(\boldsymbol{r}) = \varepsilon\varphi(\boldsymbol{r}),\\
+
+\hat{H} = 
+    -\frac{\hbar^2}{2m}\nabla^2
+    +
+   U(\boldsymbol{r})
+$$
+
+に対して、波動関数は以下のブロッホの定理を満たします。
+
+::: message
+固有値、固有関数はブロッホ波数$\boldsymbol{k}$, バンド指標$n$でラベルされ、
+
+$$
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}),\\
+\varepsilon_{n,\boldsymbol{k}}
+$$
+
+となる。
+
+この時の波動関数をブロッホ関数と呼び、ブロッホ関数$\varphi_{n,\boldsymbol{k}}$は格子ベクトル$\boldsymbol{n}$に対して
+
+$$
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = e^{i\boldsymbol{k}\cdot\boldsymbol{n}}
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
+$$
+
+を満たす。この条件は、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+
+$$
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+$$
+
+とも書ける。
+:::
+
+また、ブリルアンゾーン・エネルギーバンドとして
+
+::: message
+固有値$\varepsilon_{n,\boldsymbol{k}}$、ブロッホ波数$\boldsymbol{k}$は、逆格子空間の特別な単位胞=（Wigner-Seitz cell）である（第1）ブリルアンゾーンに含まれる波数ベクトルとして定義され、波数$\boldsymbol{k}$に関して、逆格子ベクトル$\boldsymbol{K}$の周期関数となる。
+そのような$\boldsymbol{k}$の関数としてエネルギー固有値をグラフで描画したものをエネルギーバンドと呼ぶ
+:::
+
+というような内容でした。
+
+
+複数の内容を駆け足で1記事に詰め込んだ感があり、多くの教科書で語られている内容を端折りまくったものとなりましたが、最低限の内容にはなったかなと思います。
+何か不明点や間違い・勘違い・その他感想などありましたら是非コメントなどで教えていただけますとありがたいです。
