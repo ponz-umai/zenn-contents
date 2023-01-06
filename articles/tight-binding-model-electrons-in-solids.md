@@ -99,10 +99,10 @@ $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
 $$
 
-を満たす。この条件は、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+を満たす。この条件は、結晶の周期性を持つ関数$u_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{k}}(\boldsymbol{r})$を用いて
 
 $$
-\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u_{n,\boldsymbol{k}}(\boldsymbol{r})
 $$
 
 とも書ける。
@@ -125,10 +125,10 @@ $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
 $$
 
-または、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+または、結晶の周期性を持つ関数$u_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{k}}(\boldsymbol{r})$を用いて
 
 $$
-\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u_{n,\boldsymbol{k}}(\boldsymbol{r})
 $$
 
 を満たすことを確かめていきます。
@@ -422,7 +422,7 @@ $$
 \sum_K c_{n,q-K}e^{-iK(x)}
 $$
 
-を満たし、結晶の周期性を持つ関数$u(x)$と書けます。
+を満たし、結晶の周期性を持つ関数$u_{n,q}(x)$と書けます。
 
 以上で、ブロッホの定理として示した前半部分
 
@@ -434,10 +434,10 @@ $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
 $$
 
-を満たす。この条件は、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+を満たす。この条件は、結晶の周期性を持つ関数$u_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{k}}(\boldsymbol{r})$を用いて
 
 $$
-\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u_{n,\boldsymbol{k}}(\boldsymbol{r})
 $$
 とも書ける
 :::
@@ -590,7 +590,7 @@ $$
 を満たすことが確認できます。さらに、
 
 $$
-u(\boldsymbol{r}) \equiv
+u_{n,\boldsymbol{q}}(\boldsymbol{r}) \equiv
 \sum_{\boldsymbol{K}}c_{n,\boldsymbol{q} - \boldsymbol{K}}
 e^{-i \boldsymbol{K} \cdot \boldsymbol{r}}
 $$
@@ -598,7 +598,7 @@ $$
 が結晶の周期性を持つ
 
 $$
-u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})
+u_{n,\boldsymbol{q}}(\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{q}}(\boldsymbol{r})
 $$
 
 ことが示せます。
@@ -807,10 +807,10 @@ $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
 $$
 
-を満たす。この条件は、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+を満たす。この条件は、結晶の周期性を持つ関数$u_{n,\boldsymbol{k}}(\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{k}}(\boldsymbol{r})$を用いて
 
 $$
-\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u_{n,\boldsymbol{k}}(\boldsymbol{r})
 $$
 
 とも書ける。
@@ -987,10 +987,10 @@ $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) 
 $$
 
-を満たす。この条件は、結晶の周期性を持つ関数$u(\boldsymbol{r} + \boldsymbol{n}) = u(\boldsymbol{r})$を用いて
+を満たす。この条件は、結晶の周期性を持つ関数$\boldsymbol{r} + \boldsymbol{n}) = u_{n,\boldsymbol{k}}(\boldsymbol{r})$を用いて
 
 $$
-\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u(\boldsymbol{r})
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})= e^{i\boldsymbol{k}\cdot\boldsymbol{r}}u_{n,\boldsymbol{k}}(\boldsymbol{r})
 $$
 
 とも書ける。
