@@ -1,6 +1,6 @@
 ---
 title: "Tight-binding modelの第二量子化表示を初歩からちゃんと理解する"
-emoji: "🐈"
+emoji: "👶"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
 published: true
@@ -44,6 +44,7 @@ $$
 ## [格子ベクトルと逆格子ベクトル](https://zenn.dev/ponzumai/articles/tight-binding-model-lattice-vec)
 ## [逆格子ベクトル・逆格子点の物理的な意味](https://zenn.dev/ponzumai/articles/tight-binding-model-reciprocal-lattice)
 ## [固体（結晶）中の電子状態](https://zenn.dev/ponzumai/articles/tight-binding-model-electrons-in-solids)
+## [Bloch関数の局在関数ーWannier関数ーを用いた展開](https://zenn.dev/ponzumai/articles/tight-binding-model-wannier-func)
 ## Tight-binding 近似（第一量子化）
 ## Tight-binding modelの第二量子化表示
 
