@@ -1,6 +1,6 @@
 ---
 title: "水素様原子のシュレディンガー方程式の具体的な計算"
-emoji: "🙌"
+emoji: "🎯"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
 published: true
