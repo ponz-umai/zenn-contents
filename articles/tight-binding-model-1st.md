@@ -89,7 +89,7 @@ $$
 
 第二に、上記方程式やLCAOの展開に対して、「電子が孤立原子に強く束縛されている」と仮定した近似（Tight-binding近似）を行い、具体的な固有関数の形、そして固有エネルギー（エネルギーバンド）を導きます。
 
-**（余談）**この記事を書いていて、色々参考にしていると、同じような操作でも「Tight-binding（又は強束縛、強結合等々）近似」と書いていたり、「Tight-binding（又は以下略）モデル」と書いていたり、どういう部分が「近似」と呼ばれてどこまで行くと「モデル」になるのかよくわからなくなってきました。
+**（余談）** この記事を書いていて、色々参考にしていると、同じような操作でも「Tight-binding（又は強束縛、強結合等々）近似」と書いていたり、「Tight-binding（又は以下略）モデル」と書いていたり、どういう部分が「近似」と呼ばれてどこまで行くと「モデル」になるのかよくわからなくなってきました。
 その辺の厳密な使い分けがあるのかどうか今のところよくわかっていないのですが、本章では、
 - 「電子が強く束縛されている」という描像に基づいた近似を「Tight-binding近似」
 - そのような近似によって得られた最終的な波動関数（固有関数）・固有エネルギーを「Tight-bindingモデル」
@@ -178,12 +178,12 @@ $$
 特に、前章で求めたように、固体内の電子は「格子点に局在した関数」Wannier関数の線形結合で表現できるのでした。このWannier関数を、孤立原子（又は分子等）の波動関数$\phi_m(\boldsymbol{r})$と展開係数$b_m^n$を用いて、
 
 $$
-w_{n,\boldsymbol{R}}(\boldsymbol{r}) = w_n(\boldsymbol{r}-\boldsymbol{R}) \simeq \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R}) 
+w_{n,\boldsymbol{R}}(\boldsymbol{r}) = w_n(\boldsymbol{r}-\boldsymbol{R}) = \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R}) 
 $$
 
-と展開します。（原子軌道関数であることがわかりやすいように、以降、原子軌道関数は先ほどと同じく$\phi$を用いて表します。）
+と展開します。（原子軌道関数であることがわかりやすいように、以降、原子軌道関数は先ほどと同じく$\phi$を用いて表します。）ここで$b_m^n$は規格化条件$\sum_m|b_m^n|^2 = 1$を満たすものとします。
 
-このような考え方は、「原子軌道の線形結合」の英語バージョン"Linear Combination of Atomic Orbital"の頭文字をとってLCAO法、またはLCAO近似（展開する原子軌道に制限をつけなければ「近似」ではないですが、多くの場合物理的な考察に応じて少数の原子軌道で展開することになります。（そうしないとそもそも計算できないし）そのように少数の原子軌道で展開するときに「LCAO近似」というのだと思います）と呼ばれています。
+このような考え方は、「原子軌道の線形結合」の英語バージョン"Linear Combination of Atomic Orbitals"の頭文字をとってLCAO法、またはLCAO近似（展開する原子軌道に制限をつけなければ「近似」ではないですが、多くの場合物理的な考察に応じて少数の原子軌道で展開することになります。（そうしないとそもそも計算できないし）そのように少数の原子軌道で展開するときに「LCAO近似」というのだと思います）と呼ばれています。
 
 この結果、結晶内の電子の固有状態＝Bloch関数は
 
@@ -225,9 +225,9 @@ $$
 
 ここから、上記関数を試行関数として、具体的な関数形、つまり係数$b_m^n$を求めることができれば、具体的な固有関数、そして固有エネルギーを求めることができます。
 
-この係数を決定するために、過去にも用いた「変分法」を使います。すなわち、エネルギー期待値を最小化するような展開係数を求めていきます。
+この係数を決定するために、過去にも用いた変分法を使います。すなわち、エネルギー期待値を最小化するような展開係数を求めていきます。
 
-一旦詳細を省略しますが、「（試行）関数$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$がエネルギー期待値を最小にする」という条件式は結局、元々考えていた固体内の1体ハミルトニアンに対するシュレーディンガー方程式
+[He原子の固有状態を求めた](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron-atom)際には、試行関数として2電子のスレーター行列式を用いたことから変分法の結果平均場を含む方程式が出てきましたが、今回のような1電子のハミルトニアンの下では、「（試行）関数$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$がエネルギー期待値を最小にする」という条件式は結局、元々考えていた固体内の1体ハミルトニアンに対するシュレーディンガー方程式
 
 $$
 \hat{H}\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) = \varepsilon_{n,\boldsymbol{k}}\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}),\\
@@ -235,12 +235,14 @@ $$
 \hat{H} = 
     -\frac{\hbar^2}{2m}\nabla^2
     +
-   \sum_{\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R})
+   \sum_{\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R}),\\
+
+\varphi_{n,\boldsymbol{k}}=\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R})
 $$
 
 と一致します。ここでハミルトニアンが孤立原子のハミルトニアンではなく、孤立原子のポテンシャルを周期的に並べた固体のハミルトニアンであることに注意してください（念のため）
 
-上式に$\varphi_{n,\boldsymbol{k}}=\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R})$を代入し、
+式を全部具体的に書くとこんな感じになります：
 
 $$
 \left(
@@ -252,23 +254,75 @@ $$
     = \varepsilon_{n,\boldsymbol{k}}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R})
 $$
 
-原点を中心とした原子軌道関数の複素共役$\phi_{l}^*(\boldsymbol{r})$（$\boldsymbol{R} = \boldsymbol{0}$の場合に対応する）をかけて全空間について積分することで係数を決定するための固有値方程式を導いていきます。
+ここで、Bloch関数の展開$\varphi_{n,\boldsymbol{k}}=\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R})$で和の順序を入れ替えてみると、
+
+$$
+\varphi_{n,\boldsymbol{k}}=
+\sum_mb_m^n
+\left[\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R})
+\right]
+$$
+
+となり、これはBloch関数を、展開係数$b_m^n$、関数$\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R})$の線形結合で展開していると見ることもできます。なおこの関数はBloch sum（ブロッホ和、Bloch和）と呼ばれるみたいで、Blochの定理を満たします。また、一般に異なる格子点を中心とした原子軌道関数は直交しないので、ブロッホ和も直交しません。^[正規直交性を満たすようなブロッホ和の構成方法もあるみたいなのですが、この章では必要にならないので今はスルーしておきます。]
+
+式を簡略化するためにBloch和を
+
+$$
+\begin{align*}
+\varphi_{n,\boldsymbol{k}}&=
+\sum_mb_m^n
+\left[\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R})
+\right]
+
+&\equiv
+\sum_mb_m^n\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})
+
+\end{align*}
+$$
+
+と置き、上記「シュレーディンガー方程式」に左からBloch和$\Phi_n^*$を掛けて全空間について積分し、
+
+$$
+\sum_mb_m^n\int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\hat{H}\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+=
+\varepsilon_{n,\boldsymbol{k}}\sum_mb_m^n\int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+$$
+
+行列
+
+$$
+\left(M_{\boldsymbol{k}}\right)_{nm} \equiv \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\hat{H}\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r},\\
+\left(S_{\boldsymbol{k}}\right)_{nm} \equiv \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+$$
+
+を定義すると、最終的に固有エネルギー、そして係数$b_m^n$を求めるための方程式は以下の固有値方程式で表され、Bloch波数$\boldsymbol{k}$をパラメータとして$n$バンド分の固有値・固有ベクトルが得られます。
+
+$$
+\begin{Vmatrix}
+  M_{\boldsymbol{k}} - \varepsilon_{\boldsymbol{k}} S_{\boldsymbol{k}}
+\end{Vmatrix} = 0
+$$
+
+・・・とはいえ、これではただの行列表示のシュレーディンガー方程式で、このままで解けるなら何の苦労もないわけで、Wannier関数（Bloch関数）の展開に選んだ関数の数だけある行列の対角化が必要になっちゃいます。
+
+というわけで次節でいよいよ、Tight-bindingな描像に基づいた近似を導入していきます。前置きが長すぎ？
+
+# 第二工程：Tight-binding近似
+
+長かった前置きが終わり、ここから「電子が格子点の局所ポテンシャルにタイトにバインディングされている」描像のもとで以下のような近似を導入し、具体的な固有エネルギー、固有関数を求めていきます。
+
+- 
+
+## Tight-bindingな近似その1：バンド$n$の展開に必要な原子軌道の見積もり^[この部分はアシュクラフト・マーミン上（I)を参考にした。]^[ものすごく余談ですが、最初にゼミで読んだ翻訳書がニジェ・オーランドでGrassmann代数をさらっとかじった後アルトランド・サイモンズで経路積分をかじってさらに例題を解いてくみたいな内容だったので、カナカナ連名著者の教科書は自分には敷居の高い高尚な内容が書かれているものだと思い込んでアシュクラフト・マーミン等も避けていたのですが、最近になって読んでみると非常に丁寧に知りたいことが書いてあり愕然としました。さっさと読めばよかった。。。]
 
 
 
-
-### 固有値方程式の導出
-
+まず初めに、重要な関係性として**各バンド$n$に属する固有関数は少数の原子軌道関数で良く近似できる**ことを確かめます。^[私はこの部分が最近までイマイチ理解できておらず、Tight-bindingモデルの理解にかなり遠回りをしました]
 
 
-・・・とはいえ、これでは近似も何もなくただのシュレーディンガー方程式で、このままで解けるなら何の苦労もないわけです。そこでまず初めに、重要な関係性として**Wannier関数は少数の原子軌道関数で精度良く展開できる**ことを確かめます。^[私はこの部分が最近までイマイチ理解できておらず、Tight-bindingモデルの理解にかなり遠回りをしました]
+さて、前節でWannier関数を原子軌道関数で（又はBloch関数をBloch和で）展開したのですが、展開に用いる原子軌道が多くなればなるほど精度が良くなるように思えます。それはそうなのですが、そんなことを言うと近似も近似でなくなるわけで、以下のようにある係数$b_m$、つまり展開に含まれる原子軌道のうち、$m$番目のエネルギー順位の原子軌道が含まれる割合についての関係式を得ることができ、結局そのエネルギーバンド程度の固有エネルギーに対応する（少数の）原子軌道関数のみで展開できることが分かります。
 
-
-### 展開に用いる原子軌道の見積もり^[この部分はアシュクラフト・マーミン上（I)を参考にした。]^[ものすごく余談ですが、最初にゼミで読んだ翻訳書がニジェ・オーランドでGrassmann代数をさらっとかじった後アルトランド・サイモンズで経路積分をかじってさらに例題を解いてくみたいな内容だったので、カナカナ連名著者の教科書は自分には敷居の高い高尚な内容が書かれているものだと思い込んでアシュクラフト・マーミン等も避けていたのですが、最近になって読んでみると非常に丁寧に知りたいことが書いてあり愕然としました。さっさと読めばよかった。。。]
-
-さて、Wannier関数を原子軌道関数で展開したのですが、展開に用いる原子軌道が多くなればなるほど精度が良くなるように思えます。それはそうなのですが、そんなことを言うと近似も近似でなくなるわけで、以下のようにある係数$b_m$、つまり展開に含まれる原子軌道のうち、$m$番目のエネルギー順位の原子軌道が含まれる割合についての関係式を得ることができ、結局そのエネルギーバンド程度の固有エネルギーに対応する（少数の）原子軌道関数のみでWannier関数を展開できることが分かります。
-
-早速前に進みましょう。先ほど変分法によって得られた、固有状態が満たすべき方程式（＝シュレーディンガー方程式）
+早速前に進みましょう。行列形式は一旦忘れて、先ほど変分法によって初めに得られた、固有状態が満たすべき方程式（＝シュレーディンガー方程式）
 
 $$
 \left(
@@ -288,7 +342,7 @@ $$
     = \varepsilon_{n,\boldsymbol{k}}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \sum_mb_m^n\phi_m(\boldsymbol{r}-\boldsymbol{R})
 $$
 
-に、原点を中心とした原子軌道関数の複素共役$\phi_{l}^*(\boldsymbol{r})$（$\boldsymbol{R} = \boldsymbol{0}$の場合に対応する）をかけて全空間について積分します。
+に、今度は原点を中心とした原子軌道関数の複素共役$\phi_{l}^*(\boldsymbol{r})$（$\boldsymbol{R} = \boldsymbol{0}$の場合に対応する）をかけて全空間について積分します。
 
 まずは比較的シンプルな右辺について、右辺後の計算がわかりやすいように$\sum_{\boldsymbol{R}}$を$\boldsymbol{R} = \boldsymbol{0}$とそれ以外に分けて書くと、
 
@@ -350,10 +404,11 @@ $$
    \hat{H} \psi(\boldsymbol{r}) 
 \right) d\boldsymbol{r}
 &= \int \left(\hat{H}\varphi(\boldsymbol{r})\right)^* \psi(\boldsymbol{r})
+d\boldsymbol{r}
 \end{align*}
 $$
 
-特に$\varphi$が$\hat{H}$の固有状態のとき、固有値を$\varepsilon$とすると固有値は実数なので、$\int \left(\hat{H}\varphi(\boldsymbol{r})\right)^* \psi(\boldsymbol{r}) = \varepsilon\int \varphi^*(\boldsymbol{r}) \psi(\boldsymbol{r})$、を利用して積分を計算していきます。
+特に$\varphi$が$\hat{H}$の固有状態のとき、固有値を$\varepsilon$とすると固有値は実数なので、$\int \left(\hat{H}\varphi(\boldsymbol{r})\right)^* \psi(\boldsymbol{r})d\boldsymbol{r} = \varepsilon\int \varphi^*(\boldsymbol{r}) \psi(\boldsymbol{r})d\boldsymbol{r}$、を利用して積分を計算していきます。
 
 こちらも$\boldsymbol{R} = \boldsymbol{0}$の場合とそれ以外、さらにハミルトニアン部分も孤立原子のハミルトニアンとそれ以外で分けて
 
@@ -499,6 +554,14 @@ $$
 を得ることができます。
 
 等式の右辺についてひとつづつ見ていくと、まず第1項は異なる場所に中心を持つ原子軌道関数同士の積分が含まれています。ここで今、「格子点に強く束縛された状態」を想定していたことから、その展開に含まれる原子軌道関数も各格子点に局在していると考え、この積分の値は小さいとみなせます。
+なお、ここで現れる積分
+
+$$
+\int \phi_l^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+$$
+
+は**Overlap Integral（重なり積分）**と呼ばれます。
 
 また第2項についても、原点を中心とする原子軌道関数$\phi(\boldsymbol{r})$は格子間距離$\boldsymbol{R}$離れた場所では小さくなる一方、原点においては原点以外を中心として持つ孤立原子ポテンシャル$V(\boldsymbol{r}-\boldsymbol{R})$が小さくなると考えられるので、こちらの積分も小さい値を持つと考えられます。
 ^[アシュクラフト・マーミンでは「孤立原子ポテンシャルは波動関数と比べるとそこまで急速に小さくなるわけではないのでこの項が「小さい」とするのは幾分怪しいが、$\boldsymbol{k}$に依存しない項なので問題ないのと、ポテンシャルと波動関数を適切に選べばこの項も小さくできる」というようなことが脚注で書いてある。$\boldsymbol{k}$に依存しないとなぜ問題ないのか、どうやって小さくするのか等まだよくわかっていないのだがひとまず受け入れておくことにする]
@@ -529,35 +592,395 @@ $$
 - バンド指標$n$ごとに離散的な、すなわち程度離れたエネルギーを持ち
 - エネルギー$\varepsilon_{n,\boldsymbol{k}}$は連続、かつ限定的な領域「ブリルアンゾーン」を周期として持つ周期関数
 
-なのでした。つまり指標$n$の固有エネルギーは
+なのでした。つまりバンド指標$n$で指定されるの固有エネルギーは、BZ内のBloch波数$\boldsymbol{k}$に応じて値に幅を持ちますが、最大値と最小値を持ち、一定の幅に収まっているわけです。
+
+従って、「あるバンド$n$のBloch関数$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$またはWannier関数$w_{n,\boldsymbol{R}}(\boldsymbol{r})$の展開に用いる原子軌道関数$\phi_l(\boldsymbol{r})$」は、そのBloch関数が属するエネルギーバンドの幅と近い原子順位$\varepsilon_m^{\rm a}$を持つ原子軌道関数$\phi_m$のみで良く近似される、ということを意味しています！
+
+逆に、この近似の下ではある原子順位の重ね合わせで表現されるBloch関数のバンドは、概ねその原子準位に近い範囲で値を持つと言えます。
+
+もう少し具体的に書くと、バンド$n$に属するBloch関数$\varphi_{n,\boldsymbol{k}}$は、縮退した、又は近い原子準位を持つ原子軌道関数を$m = m_1 , m_2,  m_3$とすると、
+
+$$
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) \simeq \sum_{m = m_1,m_2,m_3}b_m
+\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R})
+$$
+
+と近似できることを意味します。これは大きな進歩です。
+
+### 余談その3
+~~私のように~~余計なことが気になってしまうような人は、前掲の関係式
+
+$$
+\begin{align*}
+(\varepsilon_{n,\boldsymbol{k}} - \varepsilon_l^{\rm a})b_l^n 
+
+&=
+-(\varepsilon_{n,\boldsymbol{k}} - \varepsilon_l^{\rm a})
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} 
+   \int \phi_l^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \right]b^n_m \\
+
+&\>\>\>\>+
+\sum_m 
+\left[
+    \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right) \phi_m(\boldsymbol{r})d\boldsymbol{r}
+      \right] b^n_m\\
+
+&\>\>\>\>+
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right)  \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+      \right]b^n_m 
+\end{align*}
+$$
+
+第1項について、「とはいえ、エネルギー順位が高い原子軌道関数は空間的にも広がっているだろうから、そういう場合を想定すれば第1項は大きくなり、「右辺が全部小さいから左辺も小さい、従ってエネルギーバンド近傍の原子順位の軌道だけで上手く近似できる」という結論にはならないのではないか？」等と~~いらんことを~~考えてしまうかもしれません。
+
+そんな高エネルギー状態を展開に含めるのは物理的にはおかしいし、そもそも「局在した」関数で近似しよう、というのが出発点だとしたら上のようなことが気になるのもおかしいのかもしれませんが、一応安心するために、以下のような怪しい議論をしてみることにします。
+**なお、以下のようなことを書いてある文献は私は寡聞にして知らず、まるで出鱈目なことを書いている可能性があるので注意してください**
 
 
+まず、式の簡略化のため、右辺第1項の「準位$l$の原子軌道関数$\phi_l$の重なり積分（と係数の積）の相和」を
+$$
+S_l^n\equiv\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} 
+   \int \phi_l^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \right]b^n_m 
+$$
 
+第2項、第3項を合わせた「原点以外の周期ポテンシャルを間に挟んだ積分（と係数の積）の相和」を
 
-従って、「あるバンド$n$のBloch関数$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$の展開に用いるWannier関数$w_{n,\boldsymbol{R}}(\boldsymbol{r})$の展開に用いる原子軌道関数$\phi_l(\boldsymbol{r})$」は、そのBloch関数が属するエネルギーバンド
+$$
+V_l^n\equiv
 
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right)  \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+      \right]b^n_m 
+$$
 
-### Tight-bindingな近似その1
+と置きます。
 
-さて、上記LCAO近似で電子の固有状態を近似しましたが、ここでより「強く束縛された状態」の描像に基づいた近似を行います。
-
-具体的には、Wannier関数の近似に用いた原子軌道$varphi_m(\boldsymbol{r}) $に対して、異なる格子点にある原子軌道同士の「重なり」が小さいとして、次の積分を$0$と考えます。つまり
+そして、バンド$n$と近い原子準位を持ち、したがって局在した（重なり積分が小さい）準位を$l$、バンドと離れ、大きい原子準位を持ち、したがって広がりの大きい（重なり積分の大きい）準位を$L$と置いて、展開係数$b^n_l$と$b^n_L$の比を求めてみます。
 
 
 $$
-\int\varphi_m^*(\boldsymbol{r}) \varphi_l(\boldsymbol{r-\boldsymbol{R}})d\boldsymbol{r} \simeq 0 
+\begin{align*}
+\frac{b^n_L}{b^n_l} &= 
+\frac{-S_L^n + (\varepsilon_{n,k} - \varepsilon_L^{\rm a})^{-1}V_L^n}{-S_l^n + (\varepsilon_{n,k} - \varepsilon_l^{\rm a})^{-1}V_l^n}\\
+
+\end{align*}
 $$
 
-とします。この積分は **Overlap Integral（重なり積分）** と呼ばれ、格子間距離に比べてWannier関数を近似している原子軌道の広がりが十分小さい、つまり「強く束縛されている」ようなイメージに対応しています。
+ここで、準位$l$の固有関数は局在性が強いと仮定したので、$S_l^n\simeq 0$とすると、
 
-また、これによりLCAO近似で表したWannier関数も正規直交性を持ちます。（Bloch関数のFourier展開として定義されるWannier関数は正規直交性を満たしますが、
+$$
+\begin{align*}
+\frac{b^n_L}{b^n_l} &\simeq
+\frac{-S_L^n + (\varepsilon_{n,k} - \varepsilon_L^{\rm a})^{-1}V_L^n}{(\varepsilon_{n,k} - \varepsilon_l^{\rm a})^{-1}V_l^n}\\
+
+&=
+(\varepsilon_{n,k} - \varepsilon_l^{\rm a})\frac{-S_L^n }{V_l^n}
++\frac{\varepsilon_{n,k} - \varepsilon_l^{\rm a}}{\varepsilon_{n,k} - \varepsilon_L^{\rm a}} V_L^n
+
+\end{align*}
+$$
+
+となります。ここで第2項も$\varepsilon_{n,k} \simeq \varepsilon_l^{\rm a}, \varepsilon_{n,k} \ll \varepsilon_L^{\rm a}$の仮定から無視して良さそうなので落として、最終的に「広がった」原子準位と「局在した」原子準位の比
+
+$$
+\begin{align*}
+\frac{b^n_L}{b^n_l} &\simeq
+
+(\varepsilon_{n,k} - \varepsilon_l^{\rm a})\frac{-S_L^n }{V_l^n}
+
+\end{align*}
+$$
+
+を得ます。この式を眺めてみると、例え重なり$S_L^n$が大きくても、周期ポテンシャルを含む積分部分
 
 
-### Tight-bindingな近似その2
+$$
+V_l^n=
 
-隣接格子
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right)  \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+      \right]b^n_m 
+$$
 
-### 固有状態と固有エネルギー
+がそれなりに大きければ、
+
+$$
+\begin{align*}
+\frac{b^n_L}{b^n_l} &\simeq
+
+(\varepsilon_{n,k} - \varepsilon_l^{\rm a})\frac{-S_L^n }{V_l^n}
+\simeq 0
+
+\end{align*}
+$$
+
+とでき、先ほどの結論に問題はなさそうです。
+これは局所ポテンシャル（孤立原子のポテンシャル）が大きく、空間的に離れた原子軌道関数の減衰を補う位の積分値を与えてくれるような場合、という描像に対応してそうです。
+「固体内の電子が格子点に強く束縛されている＝孤立原子のポテンシャルが強い」という、当初の「Tight-binding」な仮定とも一致しており、良い感じです。
+（先ほどはこの部分を「小さい」と考えて同様の結論を導いたので矛盾しているように思えますが、比べている対象が違っていて、先ほどはエネルギー差$\varepsilon_{n,\boldsymbol{k}} - \varepsilon_l^{\rm a}$と比べて「小さい」としていて、今回は（広がった原子軌道の）重なり積分の相和$S_L^n$と比べていますが、展開係数$b_l^n$についての規格化条件を考えると、$S_L^n$は最大でも$1$ですので、それに比べて（それなりに大きい）という条件はそこまで矛盾しないかと思います。
+
+さて、逆に周期ポテンシャルが弱い場合、極端な場合では重なり積分の和$S_l^n$とほぼ一致する場合は、$S_L^n/V_l^n$の分子が小さくなり、$(\varepsilon_{n,k} - \varepsilon_l^{\rm a})$と打ち消しあっちゃって$b_L^n/b_l^n$が大きくなり得て、近似が上手くいかなさそうだと考えられます。
+
+というわけで、それなりに強い局所ポテンシャルを考えている限りにおいては、安心してバンド$n$のBloch関数を少数のBloch和で（Wannier関数を少数の原子軌道関数で）展開できそうです。（まあそもそも、そこまでややこしいこと考えずに、展開してみて実験と合えばそれが正義なのかもしれませんが）
+
+### 固有値方程式のブロック対角化
+
+以上のようにWannier関数が少数の原子軌道で、つまりBloch関数が少数のBloch和で展開されると仮定した場合、Bloch関数$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$はバンド指標$n$について、サイズの小さい行列でブロック対角化された形になります。すなわち、バンド$n$について例えば$m = m_1, m_2, m_3$の原子準位に対応する原子軌道で展開される場合、つまり$\varepsilon_{n,\boldsymbol{k}} \simeq \varepsilon_{m_1}^{\rm a}, \varepsilon_{m_2}^{\rm a}, \varepsilon_{m_3}^{\rm a}$であるとき、Bloch関数の展開は
+
+$$
+\varphi_{n,\boldsymbol{k}}=
+\sum_{m = m_1, m_2, m_3}b_m^n
+\left[\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R})
+\right]
+$$
+
+となるため、工程1で求めた固有値方程式は対応する原子準位$\phi_{m_i}(\boldsymbol{r}), i = 1,2,3$を用いて、次の$3\times 3$行列の行列式
+
+$$
+\begin{vmatrix}
+(M_{\boldsymbol{k}})_{11} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{11} & (M_{\boldsymbol{k}})_{12} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{12} & (M_{\boldsymbol{k}})_{13} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{13} \\
+
+(M_{\boldsymbol{k}})_{21} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{21} & (M_{\boldsymbol{k}})_{22} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{22} & (M_{\boldsymbol{k}})_{23} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{23} \\
+
+(M_{\boldsymbol{k}})_{31} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{31} & (M_{\boldsymbol{k}})_{32} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{32} & (M_{\boldsymbol{k}})_{33} -\varepsilon_{n,\boldsymbol{k}}(S_{\boldsymbol{k}})_{33} \\
+\end{vmatrix}
+=0
+$$
+
+を解けばよいことになります。凄い省エネです。
+
+上記のように、求めたいバンドに応じてエネルギー的に近そうな原子準位を選べば、その数程度のサイズの方程式（永年方程式）を解けばよいことになります。
+
+これだけでもかなりの成果ですが、具体的な解を得るためにここからもう少し近似を入れていきます。
+
+
+
+## Tight-bindingな近似その2：原子軌道が強く束縛されている感じの近似
+
+さて、ここでより「強く束縛された状態」の描像に基づいた近似、つまり原子準位の広がりが小さいという近似を行っていきます。
+
+### 重なり積分の近似
+
+
+
+まず、先ほども考えたように、原子軌道$varphi_m(\boldsymbol{r}) $に対して、異なる格子点を中心に持つ原子軌道同士の「重なり」が小さいとして、思い切って次の積分を$0$と考えます。つまり
+
+
+$$
+\int\varphi_m^*(\boldsymbol{r}-\boldsymbol{R}) \varphi_l(\boldsymbol{r-\boldsymbol{R}'})d\boldsymbol{r} \simeq \delta_{m,n}\delta_{\boldsymbol{R},\boldsymbol{R}'}
+$$
+
+とします。この積分（Overlap Integral、重なり積分）が小さいというのは格子間距離に比べてWannier関数を近似している原子軌道の広がりが十分小さい、つまり「強く束縛されている」ようなイメージに対応しています。
+
+これによりLCAO近似で表したWannier関数も正規直交性を持ち、Bloch関数も正規直交性を満たすようになります。
+
+そして、先ほど得た永年方程式において、行列$S_{\boldsymbol{k}}$が単位行列になる：
+
+$$
+\begin{align*}
+\left(S_{\boldsymbol{k}}\right)_{nm} &= \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+\\
+
+&=
+
+\sum_{\boldsymbol{R}'}
+\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot(\boldsymbol{R}'-\boldsymbol{R})}\int
+ \phi_n^*(\boldsymbol{r}-\boldsymbol{R}')
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}\\
+
+ &=
+ \sum_{\boldsymbol{R}'}
+\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot(\boldsymbol{R}'-\boldsymbol{R})}
+\delta_{n,m}\delta_{\boldsymbol{R}',\boldsymbol{R}}\\
+
+&=
+N\delta_{n,m}
+
+\end{align*}
+$$
+
+ことで、永年方程式は
+
+$$
+\begin{Vmatrix}
+(M_{\boldsymbol{k}})_{nm} - N\varepsilon_{n,\boldsymbol{k}}\delta_{nm}
+\end{Vmatrix}
+=0
+$$
+
+となり、行列$M_{\boldsymbol{k}}$の対角化に帰着します。
+
+### 飛び移り積分
+
+さらに
+
+$$
+\begin{align*}
+\left(M_{\boldsymbol{k}}\right)_{nm} 
+&=
+ \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\hat{H}\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r},\\
+
+&=
+\sum_{\boldsymbol{R}_i}
+\sum_{\boldsymbol{R}_j}e^{i\boldsymbol{k}\cdot(\boldsymbol{R}_i-\boldsymbol{R}_j)}\int
+ \phi_n^*(\boldsymbol{r}-\boldsymbol{R}_i)
+ \left(
+ -\frac{\hbar^2}{2m}\nabla^2
+    +
+   \sum_{\boldsymbol{R}_l}V(\boldsymbol{r} - \boldsymbol{R}_l)
+   \right)
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+\end{align*}
+$$
+
+とできますが、ここで並進の対称性を利用して$N$個の$\boldsymbol{R}_i$に対して積分は同じ値を取るので、$\boldsymbol{R}_i = \boldsymbol{0}$の場合の$N$倍を考えることで
+
+$$
+\begin{align*}
+&=
+N
+\sum_{\boldsymbol{R}_j}e^{i\boldsymbol{k}\cdot(\boldsymbol{R}_j)}\int
+ \phi_n^*(\boldsymbol{r})
+ \left(
+ -\frac{\hbar^2}{2m}\nabla^2
+    +
+   \sum_{\boldsymbol{R}_l}V(\boldsymbol{r} - \boldsymbol{R}_l)
+   \right)
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+
+\end{align*}
+$$
+
+となります。さらに原子軌道関数が孤立原子のハミルトニアンの固有関数であることを利用し、また$\boldsymbol{R}_l = \boldsymbol{R}_j$とそれ以外の場合で分けることで
+
+$$
+\begin{align*}
+
+ &=
+N
+\sum_{\boldsymbol{R}_j}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_j}
+\varepsilon_{n}^{\rm a}
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+
+&\>\>\>\>+
+N
+\sum_{\boldsymbol{R}_j}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_j}
+
+\int
+ \phi_n^*(\boldsymbol{r})
+ \left(
+   \sum_{\boldsymbol{R}_l\neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}_l)
+   \right)
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+
+ &=
+N
+\varepsilon_{n}^{\rm a}
+\delta_{n,m}\\
+
+&\>\>\>\>+
+N
+
+\int
+ \phi_n^*(\boldsymbol{r})
+ \left(
+   \sum_{\boldsymbol{R}_l\neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}_l)
+   \right)
+ \phi_m(\boldsymbol{r})d\boldsymbol{r}\\
+
+&\>\>\>\>+
+N
+\sum_{\boldsymbol{R}_j}
+e^{i\boldsymbol{k}\cdot\boldsymbol{R}_j}
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}_j)
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+
+&\>\>\>\>+
+N
+\sum_{\boldsymbol{R}_j}
+e^{i\boldsymbol{k}\cdot\boldsymbol{R}_j}
+\int
+ \phi_n^*(\boldsymbol{r})
+ \left(
+   \sum_{\boldsymbol{R}_l\neq \boldsymbol{0}, \boldsymbol{R}_j}V(\boldsymbol{r} - \boldsymbol{R}_l)
+   \right)
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}\\
+\end{align*}
+$$
+
+となります。ここで、第2項
+
+第3項は、原点と異なる格子点と、それと等しい局所ポテンシャルの積で、関数の局在性から近い位置の間の積分のみ値を持つと考え、特に原点から**再隣接格子点**へのベクトルを$\boldsymbol{R}_I$として
+
+$$
+\sum_{\boldsymbol{R}_j}
+e^{i\boldsymbol{k}\cdot\boldsymbol{R}_j}
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}_j)
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_j)d\boldsymbol{r}
+
+ \simeq
+\sum_{\boldsymbol{R}_I}
+e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I}
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}_I)
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d\boldsymbol{r}
+
+$$
+
+と近似されます。ここで$\sum_{\boldsymbol{R}_I}$は、再隣接格子点のみ和を取ることを表します。
+
+
+また第4項は、全て中心が異なる関数の積分であり、同様にそれぞれの関数が局在していることから無視することができると考えます。（この形の積分を「3中心積分」等と呼ぶようです）
+
+
+# Tight-binding Model：固有状態と固有エネルギー
 
 
 
