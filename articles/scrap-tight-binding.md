@@ -912,3 +912,63 @@ $$
 
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
+
+
+
+
+例えば$m_1,m_2,m_3$の3つの原子軌道で展開したとすると、
+
+$$
+\frac{M_{\boldsymbol{k}}}{N} =
+
+\begin{bmatrix}
+\varepsilon_{m_1}^{\rm a} - \Delta\varepsilon_{m_1m_1} & \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_2} -\Delta\varepsilon_{m_1m_2} & \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_3}- \Delta\varepsilon_{m_1m_3}\\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_1} - \Delta\varepsilon_{m_2m_1} &
+  \varepsilon_{m_2}^{\rm a} -\Delta\varepsilon_{m_2m_2} &
+   \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_3} - \Delta\varepsilon_{m_2m_3}\\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_1} - \Delta\varepsilon_{m_3m_1} &
+ \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_2} - \Delta\varepsilon_{m_3m_2} & 
+ \varepsilon_{m_3}^{\rm a} - \Delta\varepsilon_{m_3m_3}
+\end{bmatrix}
+$$
+
+
+$$
+\\
+
+\begin{bmatrix}
+0 & \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_2}  &
+ \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_3}\\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_1} &
+  0 &
+   \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_3} \\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_1}  &
+ \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_2}  & 
+ 0
+\end{bmatrix}\\
+
+\Rightarrow
+
+\begin{vmatrix}
+\varepsilon & \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_2}  &
+ \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_1m_3}\\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_1} &
+  \varepsilon &
+   \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_2m_3} \\
+
+\sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_1}  &
+ \sum_{\boldsymbol{R}_I}e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m_3m_2}  & 
+ \varepsilon
+\end{vmatrix}=0,\\
+
+\varepsilon \equiv \varepsilon_{\boldsymbol{k}} - (\varepsilon^{\rm a} - \Delta\varepsilon)
+
+$$
+
+
+^[今、$s$軌道は実数関数、つまり$\phi_s(\boldsymbol{r})^* = \phi_s(\boldsymbol{r})$で、かつ角度部分は定数となり$r$のみに依存します。$V$は引力ポテンシャルであることから$V(\boldsymbol{r})<0$です。原子軌道が局在している仮定から、積分の値の大部分は、原点から$\boldsymbol{R}$離れた部分の寄与が大きくなるはずです。ここで動径部分が、原点と、$\boldsymbol{r} = \boldsymbol{R}$で符号を変えないのであれば、積分全体は負になりそうですが、別にそうとも限らない気がするので、$s$バンドの重なり積分が必ず負になるかどうかは私はまだよくわかっていません。]
