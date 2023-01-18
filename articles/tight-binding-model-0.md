@@ -45,7 +45,10 @@ $$
 ## [逆格子ベクトル・逆格子点の物理的な意味](https://zenn.dev/ponzumai/articles/tight-binding-model-reciprocal-lattice)
 ## [固体（結晶）中の電子状態](https://zenn.dev/ponzumai/articles/tight-binding-model-electrons-in-solids)
 ## [Bloch関数の局在関数ーWannier関数ーを用いた展開](https://zenn.dev/ponzumai/articles/tight-binding-model-wannier-func)
-## Tight-binding 近似（第一量子化）
+## [第一量子化のTight-bindingモデル（前編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-1)
+## [第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)
+
+
 ## Tight-binding modelの第二量子化表示
 
 # さいごに
