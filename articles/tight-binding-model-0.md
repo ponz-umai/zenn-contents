@@ -9,17 +9,17 @@ published: true
 物性物理では以下のようなtTight-binding modelがよく使われます。
 
 $$
-\mathcal{H} = \sum_{\left <i,j \right>,\sigma }\left( -t_{ij}a^\dagger_{i\sigma }a_{j\sigma }  \right) 
+\mathcal{H} = \sum_{\left <i,j \right>,\sigma }\left( -t_{ij}a^\dagger_{i\sigma }a_{j\sigma }   + h.c.\right)
 $$
 
-ここで$\left<i,j \right>$は最近接の格子点について和を取ることを表します。$t_{ij}$は飛び移り積分、$a^\dagger_{i\sigma },a_{j\sigma }$はそれぞれ格子点$i(j)$、スピン$\sigma$の電子の生成（消滅）演算子です。
+ここで$\left<i,j \right>$は最近接の格子点について和を取ることを表します。$t_{ij}$は飛び移り積分、$a^\dagger_{i\sigma },a_{j\sigma }$はそれぞれ格子点$i(j)$、スピン$\sigma$の電子の生成（消滅）演算子です。"$h.c.$"は複素共役を意味します。
 
 このモデルは固体内の電子が格子点（原子核や分子イオン）に強く束縛され、ほぼ局在していると仮定した描像に対応しています。
 
 Tight-binding modelは非常にシンプルな構造ですが、そこに電子間のオンサイトクーロン相互作用を加えたHubbard model
 
 $$
-\mathcal{H} = \sum_{\left <i,j \right>,\sigma }\left( -t_{ij}a^\dagger_{i\sigma }a_{j\sigma }  \right)  + U\sum_in_{i\uparrow}n_{i\downarrow}
+\mathcal{H} = \sum_{\left <i,j \right>,\sigma }\left( -t_{ij}a^\dagger_{i\sigma }a_{j\sigma } + h.c. \right)  + U\sum_in_{i\uparrow}n_{i\downarrow}
 $$
 
 に始まり様々なモデルの出発点となっており、それらからMot絶縁体やBCS超伝導、Anderson局在、はたまた今ホットなトポロジカル物性、量子ビット候補のマヨラナ粒子、、等々様々な物理現象が描き出されることになり、物性物理の勉強・研究をしていれば必ず出会うことになります。または物性とは異なる分野の方でも目にする機会はあるのではないかと思います。Hubbard modelの面白さについては例えばこちらの[田崎先生のpdf](https://www.gakushuin.ac.jp/~881791/pdf/KBHubbard.pdf)等を読むとわかりやすく幅広く書いてあります。
@@ -47,8 +47,8 @@ $$
 ## [Bloch関数の局在関数ーWannier関数ーを用いた展開](https://zenn.dev/ponzumai/articles/tight-binding-model-wannier-func)
 ## [第一量子化のTight-bindingモデル（前編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-1)
 ## [第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)
-
-
+## 飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式
+## 重なり積分（Overlap Integral）の物理的意味（の妄想）
 ## Tight-binding modelの第二量子化表示
 
 # さいごに
