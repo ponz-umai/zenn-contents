@@ -473,27 +473,15 @@ $$
 と近似し、さらに隣接格子間の飛び移り積分
 
 $$
-\sum_{\boldsymbol{R}}
-e^{i\boldsymbol{k}\cdot\boldsymbol{R}}
-\int
- \phi_n^*(\boldsymbol{r})
- 
-   V(\boldsymbol{r} - \boldsymbol{R})
- 
- \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
-
- \simeq
-\sum_{\boldsymbol{R}_I}
-e^{i\boldsymbol{k}\cdot\boldsymbol{R}_I}
 \int
  \phi_n^*(\boldsymbol{r})
  
    V(\boldsymbol{r} - \boldsymbol{R}_I)
  
  \phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d\boldsymbol{r}
-
+ \equiv
+ - t_{\boldsymbol{R}_I}^{n,m}
 $$
-
 のみを考えたり、その他色々して、最終的にエネルギーバンドを求める固有値方程式
 
 $$
