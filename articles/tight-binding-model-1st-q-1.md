@@ -686,6 +686,7 @@ $$
 （この後の章^[追記予定]で、さらに怪しい議論を展開して重なり積分が小さいことを納得していく予定です）
 
 まず、式の簡略化のため、右辺第1項の「準位$l$の原子軌道関数$\phi_l$の重なり積分（と係数の積）の総和」を
+
 $$
 S_l^n\equiv\sum_m 
 \left[
@@ -801,17 +802,143 @@ $$
 
 
 みたいな感じ。~~（なお、この段階では異なる軌道間の重なり積分がまだ値を持つので、異なるグループに属する、つまり異なるバンドに属する（近似）ブロッホ関数は直交しません。後に重なり積分をゼロと置く近似をすることで異なるバンド間のBloch関数の正規直交性が満たされることになります）~~
+
 ↓
-:::details （2023年1月20日追記）やっぱり直交するかも
-エルミート演算子の異なる固有値を持つ固有関数は直交しなければならないので、Bloch和の重なり積分が値を持っていたとしても、近似した後のBloch関数は直交します（多分）。
-これは図形的なベクトルでイメージすると、ある行列の固有ベクトルを求めたとして、その固有ベクトル同士は直交します。で、その固有ベクトルを、非直交の基底（例えば逆格子ベクトルを導入したときに考えた「斜め向きの」ベクトルみたいな）ベクトルで展開することもできるはずです。「固有ベクトルを展開した斜め向きの基底」は、（定義から明らかに）正規直交していませんが、だからと言ってそのベクトルで展開された固有ベクトルは、当然直交しているはずです。上の分で「固有ベクトル」を「固有関数」に、「非直交基底」を「Bloch和」に置き換えたような状況が、「異なるBloch和同士の重なり積分がゼロではない場合の固有関数の展開」の状況と一致するものだと思います。
+
+:::details （2023年1月20日追記） やっぱり直交するかも
+~~エルミート演算子の異なる固有値を持つ固有関数は直交しなければならないので、Bloch和の重なり積分が値を持っていたとしても、近似した後のBloch関数は直交します（多分）。
+これは図形的なベクトルでイメージすると、ある行列の固有ベクトルを求めたとして、その固有ベクトル同士は直交します。で、その固有ベクトルを、非直交の基底（例えば逆格子ベクトルを導入したときに考えた「斜め向きの」ベクトルみたいな）ベクトルで展開することもできるはずです。「固有ベクトルを展開した斜め向きの基底」は、（定義から明らかに）正規直交していませんが、だからと言ってそのベクトルで展開された固有ベクトルは、当然直交しているはずです。上の分で「固有ベクトル」を「固有関数」に、「非直交基底」を「Bloch和」に置き換えたような状況が、「異なるBloch和同士の重なり積分がゼロではない場合の固有関数の展開」の状況と一致するものだと思います。~~
 ただ、全く別のBloch和で展開された固有関数同士の内積がどのようにしてゼロとなるのか（それぞれのブロック対角化された固有値方程式を解けば自動的に満たされるのか？）は、ちょっとまだよくわかってないので、いつかちゃんと考えて追記します。
+→これは近似無しで、（無限サイズの）ハミルトニアン行列を非直交基底で展開したときには成り立つ話のような気がしますが後述のように少数の原子軌道で展開した関数は近似的な固有関数なので、上記の考えは多分ちょっとずれていた気がします。
 :::
 
 :::details （2023年1月20日追記その2）：やっぱり直交しなくてもいいかも
 有限個のBloch和で近似した関数は、ハミルトニアンの正確な固有関数ではないので、べつに直交してなくてもいいような気もしてきました。
 「エネルギー的に離れたBloch和同士だけ重なり積分を無視する」という近似に対応しているような気もしてきました。
 頭が混乱しているので一度放置します。
+:::
+
+:::details （2023年1月20日一旦の整理ができたので追記その3）：直交してる
+近似の範囲内で、異なるバンドに対応する（近似的な）固有関数は以下のように直交していると考えてよさそうだと思います。
+
+### エネルギー的に離れた固有関数について
+固有関数を少数の原子軌道で展開するにあたり、展開係数の関係について
+$\varepsilon_{n,\boldsymbol{k}} \simeq \varepsilon_l^{\rm a}$または$b_l^n \simeq 0$としました。ここであるバンド$n$について、固有エネルギーと離れた原子軌道$\varepsilon_L^{\rm a}$に対応する$b_L^n$を、$b_L^n \simeq 0$とした意味を考えてみると、結局
+
+$$
+S_L^n\equiv\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} 
+   \int \phi_L^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \right]b_m^n
+$$
+
+
+
+$$
+V_l^n\equiv
+
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \int \phi_L^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right)  \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+      \right]b^n_m 
+$$
+
+のもと、
+
+$$
+\begin{align*}
+b^n_L = 
+-S_L^n + (\varepsilon_{n,k} - \varepsilon_L^{\rm a})^{-1}V_L^n
+
+\end{align*}
+$$
+
+なのでした。これを$0$と置いたということは、結局
+
+$$
+S_L^n = V_L^n \simeq 0
+$$
+
+と置いたことに対応しており、エネルギー的に離れた原子軌道同士の重なり積分および飛び移り積分をゼロと置く：
+
+$$
+   \int \phi_L^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \simeq 0,\\
+
+   \int \phi_L^*(\boldsymbol{r})
+   
+   
+      V(\boldsymbol{r}-\boldsymbol{R}')
+     \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+     \simeq 0
+$$
+
+ことを意味しています。
+
+その結果、エネルギー的に離れたバンドに対応する、つまり異なるBloch和のグループ（$p,q$としておきます）で展開される
+
+$$
+\varphi_{n_p,\boldsymbol{k}}\simeq\sum_{m = m_{p_1},m_{p_2},m_{p_3}\cdots}b_m^{p}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_{m}(\boldsymbol{r}-\boldsymbol{R})
+$$
+
+と、
+
+$$
+\varphi_{n_q,\boldsymbol{k}}\simeq\sum_{m = m_{q_1},m_{q_2},m_{q_3}\cdots}b_m^{q}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_{m}(\boldsymbol{r}-\boldsymbol{R})
+$$
+
+は、
+
+$$
+   \int \phi_{m_{p_1}}^*(\boldsymbol{r})
+   \phi_{m_{q_i}}(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \simeq 0
+$$
+
+より、
+
+$$
+\int \varphi_{n_p,\boldsymbol{k}}^*\varphi_{n_q,\boldsymbol{k}}d\boldsymbol{r} = 0
+$$
+
+を満たします。
+
+また、同じグループに属する固有関数$\varphi_{n_{p_1}}, \varphi_{n_{p_2}}, \cdots$は、一般化固有値方程式
+
+$$
+\begin{vmatrix}
+  M_{\boldsymbol{k}}^p - \varepsilon_{\boldsymbol{k}} S_{\boldsymbol{k}}^p
+\end{vmatrix} = 0
+$$
+
+を解くことで得られますが、上記方程式は重なり行列
+
+$$
+\left(S_{\boldsymbol{k}}^p\right)_{ij} \equiv \int \Phi_{m_i,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m_j,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+$$
+
+が単位行列になるような行列を考えて、その行列を用いてグループ$p$のBloch和の線形結合を作り、改めてそれらの関数を使って行列$M_{\boldsymbol{k}}^p$を計算しなおせば、結局普通の（？）行列の固有値方程式が得られて、その固有関数として$\varphi_{n_{p_1}}, \varphi_{n_{p_2}}, \cdots$が得られるはずです。
+
+これはただのエルミート行列の固有ベクトルですから、同じグループ内の異なる固有値に属する固有関数は、こちらも直交することになります。
+
+というわけで同じグループ内の固有関数については、重なり積分・飛び移り積分をゼロと近似することもなく直交した関数となることがわかります。
+
+以上まとめれば、
+
+- 原子準位がエネルギー的に離れた原子軌道同士の重なり積分・飛び移り積分をゼロと近似することで、固体中の電子の固有関数はそれぞれ有限個の、エネルギー的に近い原子軌道（Bloch和）で展開できる
+- この近似によりエネルギー的に離れた固有関数は直交する
+- またエネルギー的に近い固有関数も、エルミート行列の異なる固有値に対応する固有関数となるため、こちらも直交する
+
+ということで一応の結論としておきます。
 :::
 
 先述の通り、このように電子の固有状態を（少数の）原子軌道で展開する近似を**LCAO近似**と呼びます。
@@ -856,7 +983,7 @@ $$
 
 $$
 \left(M_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{m_i,\boldsymbol{k}}^{q*}(\boldsymbol{r})\hat{H}\Phi^{q}_{m_j,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r},\\
-\left(S_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+\left(S_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{m_i,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m_j,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
 $$
 
 を定義すると、最終的に固有エネルギー、そして係数$b_m^q$を求めるための方程式は以下の一般化固有値方程式で表されます。
