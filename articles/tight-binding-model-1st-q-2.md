@@ -28,7 +28,7 @@ $$
 
 $$
 \left(M_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{m_i,\boldsymbol{k}}^{q*}(\boldsymbol{r})\hat{H}\Phi^{q}_{m_j,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r},\\
-\left(S_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{n,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
+\left(S_{\boldsymbol{k}}^q\right)_{ij} \equiv \int \Phi_{m_i,\boldsymbol{k}}^*(\boldsymbol{r})\Phi_{m_j,\boldsymbol{k}}(\boldsymbol{r})d\boldsymbol{r}
 $$
 
 $$

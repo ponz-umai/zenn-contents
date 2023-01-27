@@ -47,7 +47,7 @@ $$
 ## [Bloch関数の局在関数ーWannier関数ーを用いた展開](https://zenn.dev/ponzumai/articles/tight-binding-model-wannier-func)
 ## [第一量子化のTight-bindingモデル（前編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-1)
 ## [第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)
-## 飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式
+## [飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式](https://zenn.dev/ponzumai/articles/tight-binding-model-hopping-int)
 ## 重なり積分（Overlap Integral）の物理的意味（の妄想）
 ## Tight-binding modelの第二量子化表示
 

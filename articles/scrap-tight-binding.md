@@ -972,3 +972,306 @@ $$
 
 
 ^[今、$s$軌道は実数関数、つまり$\phi_s(\boldsymbol{r})^* = \phi_s(\boldsymbol{r})$で、かつ角度部分は定数となり$r$のみに依存します。$V$は引力ポテンシャルであることから$V(\boldsymbol{r})<0$です。原子軌道が局在している仮定から、積分の値の大部分は、原点から$\boldsymbol{R}$離れた部分の寄与が大きくなるはずです。ここで動径部分が、原点と、$\boldsymbol{r} = \boldsymbol{R}$で符号を変えないのであれば、積分全体は負になりそうですが、別にそうとも限らない気がするので、$s$バンドの重なり積分が必ず負になるかどうかは私はまだよくわかっていません。]
+
+
+
+
+# 飛び移り積分関連
+
+$$
+\hat{H}^{\rm c} \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) = \varepsilon_{n,\boldsymbol{k}}\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})
+$$
+
+は、孤立原子ハミルトニアン$\hat{H}^{\rm a} = \frac{-\hbar^2}{2m}\nabla^2 + V(\boldsymbol{r})$に対して、固有値（原子準位）$\varepsilon_m^{\rm a}$を持つ固有状態である原子軌道を$\phi_m(\boldsymbol{r})$からなるBloch和$\Phi_m(\boldsymbol{r}) = \sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r} - \boldsymbol{R})$のうち、固体電子の固有値と原子準位が近い（$\varepsilon_{n,\boldsymbol{k}} \sim \varepsilon_m^{\rm a}$）軌道を集めて線形結合を取った形で以下のように近似できます（ここでは軌道の数を$M$個とします）：
+
+$$
+\varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) \simeq
+\sum_m b_m^n\Phi_m(\boldsymbol{r}) ,\\
+
+\Phi_{m,\boldsymbol{k}}(\boldsymbol{r}) = \sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r} - \boldsymbol{R}).
+$$
+
+また、上の展開式を逆に考えると、
+
+$$
+(B)_{nm} = b_{m}^{n}
+$$
+
+から行列$B$を定義し、また$B^{-1}B = I$（$I$は単位行列）を満たす逆行列$B^{-1}$の要素を
+
+$$
+(B^{-1})_{nm} \equiv \tilde{b}_{m}^{n}
+$$
+
+と書くことにして、これらと$\phi_m(\boldsymbol{r}) = N^{-1}\sum_{\boldsymbol{k}}\Phi_m(\boldsymbol{r})$
+
+
+または上の表現を$-\boldsymbol{R}$だけずらすと、飛び移り積分
+
+$$
+\begin{align*}
+t_{\boldsymbol{R}_I}^{m'm} &= 
+-
+\int_V\phi_{m'}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}_I)
+\phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d \boldsymbol{r} \\
+
+&=
+-
+\int_V\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+\end{align*}
+$$
+
+は（隣接）格子ベクトル$\boldsymbol{R}_I$で指定される格子点に局在した状態$m$の電子が、原点に、原子軌道$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$となって飛び移ってくる確率、とも言えます。
+
+# 飛び移り積分の物理的意味：飛び移り積分の定義変更前
+
+展開係数$c_{m',\boldsymbol{R}}^m$は、$\phi_{m'}(\boldsymbol{r} - \boldsymbol{R})$の係数が$c_{m',-\boldsymbol{R}}^m$であることに注意して、
+
+$$
+c_{m',\boldsymbol{R}}^m = \int\phi^*_{m'}(\boldsymbol{r} + \boldsymbol{R})\left(
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}'}V(\boldsymbol{r}-\boldsymbol{R}')
+\right)\phi_m(\boldsymbol{r})d\boldsymbol{r}
+$$
+
+となります。さらに、孤立原子ハミルトニアン部分の固有関数であることを利用して、
+
+$$
+\begin{align*}
+（上式右辺）&=
+
+\varepsilon_m^{\rm a}\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})\phi_m(\boldsymbol{r})d \boldsymbol{r} + 
+\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})
+\left(
+  \sum_{\boldsymbol{R}' \neq -\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R}')
+\right)
+\phi_m(\boldsymbol{r})d \boldsymbol{r} \\
+
+&=
+\varepsilon_m^{\rm a}\delta_{m,m'}\delta_{\boldsymbol{R},\boldsymbol{0}}+ 
+\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})
+\left(
+  \sum_{\boldsymbol{R}' \neq -\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R}')
+\right)
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+
+\end{align*}
+$$
+
+と書き換えることができます。ついに「飛び移り積分」っぽい形の積分がでてきましたね。
+
+ここで$\boldsymbol{R} = \boldsymbol{0}$とその他で分けると、
+
+### $\boldsymbol{R} = \boldsymbol{0}$
+
+$$
+\begin{align*}
+c_{m',\boldsymbol{0}}^m &\simeq
+
+\varepsilon_m^{\rm a}\delta_{mm'}
+
++
+\int\phi_{m'}^*(\boldsymbol{r})
+\left(
+  \sum_{\boldsymbol{R}' \neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}')
+\right)
+\phi_m(\boldsymbol{r})d \boldsymbol{r} \\
+
+&=
+\varepsilon_m^{\rm a}\delta_{mm'}
+
++\Delta\varepsilon_{m'm}
+\end{align*}
+$$
+
+と、原子準位$\varepsilon_m^{\rm a}$と結晶場積分$\Delta\varepsilon_{m'm}$で書けることがわかります。
+
+### $\boldsymbol{R} \neq \boldsymbol{0}$
+
+また$\boldsymbol{R} \neq \boldsymbol{0}$の場合は、前章と同様にTight-binding近似として、（最）隣接格子間の飛び移り積分ではないものをゼロと置くと、
+
+
+$$
+c_{m',\boldsymbol{R}}^m \simeq
+
+\delta_{\boldsymbol{R},\boldsymbol{R}_I}\sum_{\boldsymbol{R}_I} 
+\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+$$
+
+を得ます。ここで積分$\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)V(\boldsymbol{r})\phi_m(\boldsymbol{r})d \boldsymbol{r}$は、ちゃんと書けば積分範囲が結晶全体の定積分ですが、積分変数を$\boldsymbol{r} +\boldsymbol{R}_I\rightarrow \boldsymbol{r}$と置きなおすと、周期的境界条件より積分範囲は変わらず、飛び移り積分の形
+
+$$
+\int_V\phi_{m'}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}_I)
+\phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d \boldsymbol{r} \equiv - t_{\boldsymbol{R}_I}^{m'm}
+$$
+
+と一致します。以上より、展開係数は
+
+$$
+c_{m',\boldsymbol{R}}^m \simeq
+(\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm})\delta_{\boldsymbol{R},\boldsymbol{0}}
+
+-
+\delta_{\boldsymbol{R},\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m'm}
+$$
+
+となり、原子軌道関数に結晶のハミルトニアンを作用させた関係式は
+
+$$
+\begin{align*}
+\hat{H}^{\rm c} \phi_m(\boldsymbol{r})
+&=
+\left(
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}}V(\boldsymbol{r}-\boldsymbol{R})
+\right) \phi_m(\boldsymbol{r}) \\
+
+
+&\simeq
+\sum_{m,\boldsymbol{R}}
+\left\{
+  (\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm})\delta_{\boldsymbol{R},\boldsymbol{0}}
+  -
+  \delta_{\boldsymbol{R},\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m'm}
+\right\}
+\phi_{m}(\boldsymbol{r} - \boldsymbol{R})\\
+
+&=
+(\varepsilon_m^{\rm a} + \Delta\varepsilon_{mm})\phi_m(\boldsymbol{r})
+
++
+\sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
+
+&\>\>\>\>+\sum_{\boldsymbol{R}_I}\sum_{m'}(-t_{\boldsymbol{R}_I}^{m'm})\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}_I)
+
+\end{align*}
+$$
+
+となることが分かりました。（$\phi_{m'}(\boldsymbol{r} -\boldsymbol{R})$の係数を$c_{m'-\boldsymbol{R}}^m$と置いたので、$\boldsymbol{R}$の符号がプラスになっています。）
+
+
+・・・だからどうしたという感じですが、ここで記憶の片隅から、波動関数にハミルトニアンを作用させた意味を引っ張り出してきます。
+
+
+
+## 波動関数の時間発展
+
+さて、定常状態ばっかり扱っていてもはや記憶の彼方に葬り去られていましたが、本来のシュレーディンガー方程式は時間と位置に関する微分方程式
+
+$$
+i\hbar \frac{\partial}{\partial t}\psi(\boldsymbol{r},t) = \hat{H}\psi(\boldsymbol{r},t)
+$$
+
+なのでした。さらに、時刻$t$から微小時間$\Delta t$の変化を考えると、左辺の偏微分を
+
+$$
+\frac{\partial}{\partial t}\psi(\boldsymbol{r},t)\simeq
+
+\frac{\psi(\boldsymbol{r},t + \Delta t) - \psi(\boldsymbol{r},t)}{\Delta t}
+$$
+
+として、シュレーディンガー方程式の両辺を$i\hbar$で割って整理すると、微小時間についての波動関数の時間発展の式
+
+$$
+\frac{\psi(\boldsymbol{r},t + \Delta t) - \psi(\boldsymbol{r},t)}{\Delta t}
+
+\simeq
+
+\frac{-i}{\hbar}\hat{H}\psi(\boldsymbol{r},t)\\
+
+\Rightarrow
+\psi(\boldsymbol{r},t + \Delta t) \simeq 
+
+\psi(\boldsymbol{r},t ) + \frac{-i}{\hbar}\Delta t\hat{H}\psi(\boldsymbol{r},t)
+$$
+
+を得ることができます。これで準備が整ったので、**結晶の中、$t=0$で原点に一つだけ孤立原子軌道がある場合の時間発展**を考えてみましょう。すなわちハミルトニアン、$t=0$の波動関数を
+
+$$
+\begin{align*}
+&\hat{H} = \hat{H}^{\rm c} 
+=
+\left(
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}}V(\boldsymbol{r}-\boldsymbol{R})
+\right),\\
+&\psi(\boldsymbol{r},0) = \phi_m(\boldsymbol{r})
+\end{align*}
+$$
+
+の時間発展を考えます。これは先ほど得た関係式より、
+
+
+$$
+\begin{align*}
+\psi(\boldsymbol{r},\Delta t) &\simeq 
+
+\psi(\boldsymbol{r},0 ) + \frac{-i}{\hbar}\Delta t\hat{H}\psi(\boldsymbol{r},0)
+\\
+
+&\simeq
+\phi_m(\boldsymbol{r})
++
+\frac{-i}{\hbar}\Delta t\hat{H}\phi_m(\boldsymbol{r})
+\\
+
+&\simeq
+
+\left\{1-\frac{-i}{\hbar}\Delta t
+(\varepsilon_m^{\rm a} + \Delta\varepsilon_{mm})
+\right\}
+\phi_m(\boldsymbol{r})\\
+
+&\>\>\>\>+
+\frac{-i}{\hbar}\Delta t\sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
+
+&\>\>\>\>+\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}_I}\sum_{m'}(-t_{\boldsymbol{R}_I}^{m'm})\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}_I)
+
+
+\end{align*}
+$$
+
+が得られます。すなわち、原点にポツンと1つ原子軌道があるとき、微小時間後の波動関数を各格子点に平行移動した、様々な準位の原子軌道$\{\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}\}$の重ね合わせで書くことができました。この時の$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$の係数はかなり雑に言うと「電子が格子点$-\boldsymbol{R}$上で、$m'$の原子軌道で存在する確率」つまり「原点の格子点$\boldsymbol{R} = \boldsymbol{0}$にいた状態$m$の電子が、格子点$-\boldsymbol{R}$に状態$m'$で「飛び移る」確率」と考えられそうです。
+
+#### 注意点1
+ここで位置を表す変数が$\boldsymbol{r}$と、$\boldsymbol{R}$の二つ出てきて紛らわしいのですが、前者$\boldsymbol{r}$は「電子の波動関数の形」$\simeq$「電子の確率雲の形」に対応する変数で、後者$\boldsymbol{R}$は「波動関数の中心」$\simeq$「固体の中の電子の場所」に対応する変数です。この表現もかなり正確性がアヤシイですが。。。
+
+#### 注意点2
+
+正確（？）には、波動関数は観測することができず、観測できるのはエルミート演算子で表される何かしらの物理量です。そして、ある波動関数を何らかの演算子の固有状態で展開していた時、物理量の測定を通してその固有状態である波動関数が確定します（なんかこの書き方もイマイチな気がする・・）。そこで、波動関数$\phi_m(\boldsymbol{r}-\boldsymbol{R})$は何か物理量に対応する演算子の固有状態になっているかというと、そこが良くわかっていないので、例えば上記のような時間発展を考えたとしても、時刻$\Delta t$後に、「電子が格子点$\boldsymbol{R}$上で、$m'$の原子軌道で存在する」かどうかを確認できるかというとそういうわけではないように思えます。
+
+## 原子軌道の飛び移り積分の物理的意味
+
+
+特に、微小時間$\Delta t$後に、電子が原点から（隣接）格子ベクトル$-\boldsymbol{R}_I$で指定される格子点に局在した原子軌道$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$となっているような確率は、飛び移り積分$t_{\boldsymbol{R}_I}^{m'm}$：
+
+$$
+\begin{align*}
+t_{\boldsymbol{R}_I}^{m'm} &= 
+-
+\int_V\phi_{m'}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}_I)
+\phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d \boldsymbol{r} \\
+
+&=
+-
+\int_V\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+\end{align*}
+$$
+
+に比例することがわかります。ここで、最後の式では$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$と座標をそろえるために再度積分変数を変更しました。
+
+
+
+以上のように（きわめて怪しい）議論を繰り広げることで、飛び移り積分はその名前の通り、**原点（あるいはある格子点$\boldsymbol{R}'$）にいる$m$状態の原子軌道$\phi_m(\boldsymbol{r})$（$\phi_m(\boldsymbol{r}-\boldsymbol{R}')$）が、（微小時間後に）状態$m'$になって原点（あるいはある格子点$\boldsymbol{R}'$）から格子ベクトル$-\boldsymbol{R}_I$離れた場所へ、$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R}_I)$（$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}'+\boldsymbol{R}_I)$）として飛び移って行く確率**（に比例する量）を表すことが分かりました。
+
+ただ、飛び移り積分の（教科書通りの）定義を採用すると、「飛び移り先」が$-\boldsymbol{R}_I$になってしまうのが気になるところなのです。何か対称性をちゃんと考えれば解消されるか、どこかで勘違いしているかもしれませんが、一旦思考停止しておきます。この後来る第二量子化とかを考えていけば何か解消されるかもしれません。
+
+~~まあ、これがわかったところで、微小時間後の波動関数が測定できるわけでもないし、何の意味があるのかは分かりませんが。というか自己満足ですが。~~
+
+

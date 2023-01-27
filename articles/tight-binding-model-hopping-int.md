@@ -3,7 +3,7 @@ title: "飛び移り積分（Hopping Integral）の物理的な意味・Wannier�
 emoji: "🐸"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
-published: false
+published: true
 ---
 # はじめに
 
@@ -19,11 +19,11 @@ $$
 \int
  \phi_n^*(\boldsymbol{r})
  
-   V(\boldsymbol{r} - \boldsymbol{R}_I)
+   V(\boldsymbol{r} - \boldsymbol{R})
  
- \phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d\boldsymbol{r}
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
  \equiv
- - t_{\boldsymbol{R}_I}^{n,m}
+ - t_{\boldsymbol{R}}^{n,m}
 $$
 
 が定義され、それぞれ重なり積分は「小さな値」として近似されたり、飛び移り積分はバンドの形状に大きな影響を与えたり、Tight-bindingモデルの構築に当たり重要な役割を果たしていました。
@@ -34,9 +34,20 @@ $$
 というわけで、色々考えて自分なりに納得した内容について、本章で飛び移り積分について、次の章重なり積分について、書き残しておこうと思います。
 **間違った内容を書いてたりする可能性大なので注意してください。**
 
+特に、前章では（最）隣接格子間の飛び移り積分を考えましたが、本章では一旦は「隣接」しない全ての格子間での飛び移り積分について考えていくことにします。
+
+例によって長くなったので初めに概要を書いておくと、本章では、まずは比較的（多分）まともなことが書けそうな飛び移り積分について、
+
+- 波動関数にハミルトニアンを作用させた後の展開を考えることで、微小時間後の波動関数（時間発展）を考えることができる
+
+- 原子軌道に結晶のハミルトニアンを作用させた関数を、各格子点に局在する原子軌道で展開できることと、その際の展開係数が結局「飛び移り積分」となる
+  
+ことから、「飛び移り積分」は「結晶の中のある格子点で孤立した原子軌道が、微小時間後に別の格子点、別の状態に「飛び移る」確率」に対応しているというようなことを~~妄想して~~考えていきます。
+
+
 # 孤立原子軌道に対する飛び移り積分について
 
-まずは比較的（多分）まともなことが書けそうな飛び移り積分の方から始めていきます。
+早速始めましょう。
 
 「飛び移り積分」と名前がついている通り、格子点間の電子の移動に関係が深い積分であることが予測され、さらに少し先取りして書くと、第二量子化表示をした場合
 
@@ -76,16 +87,16 @@ $$
 $$
 \left(
 \frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}}V(\boldsymbol{r}-\boldsymbol{R})
-\right) \phi_m(\boldsymbol{r}) = \sum_{m,\boldsymbol{R}}c_{m,\boldsymbol{R}}\phi_{m}(\boldsymbol{r} - \boldsymbol{R})
+\right) \phi_m(\boldsymbol{r}) = \sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}}\phi_{m}(\boldsymbol{r} - \boldsymbol{R}')
 $$
 
-と展開できます。
+と展開できます。ここで、係数$c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}}$の上側のラベルの「$\boldsymbol{0}$」は、「格子点の内原点と一致する点$\boldsymbol{R}=\boldsymbol{0}$を中心とする原子軌道の展開」であることを意味しています。
 
 :::details 証明っぽい内容
 
 突然原子軌道関数を格子点だけ平行移動させた関数が登場しましたが、本当にこの関数系で任意の関数を展開できるのでしょうか？
 
-これは以下のように考えれば良さそうです^[もっと正当な証明があるのだろうとは思いますが、あまりここにこだわってもしょうがないですし、よくわかっていないのでオレオレ証明で一旦ごまかしておきます。教科書を眺めていると「Sturm–Liouvilleの理論」のようなキーワードがチラ見えしますがまあ置いておきます。]：
+これは以下のように考えれば良さそうです^[もっと正当なスッキリした証明があるのかもとは思いますが、あまりここにこだわってもしょうがないですし、よくわかっていないので一旦オレオレ証明を書いておきます。教科書を眺めていると「Sturm–Liouvilleの理論」のようなキーワードがチラ見えしますがまあ置いておきます。]：
 
 まず、何度も見てきたように、結晶のハミルトニアン$\hat{H}^{\rm c}$の固有値$\varepsilon_{n,\boldsymbol{k}}$を持つ固有状態$\varphi_{n,\boldsymbol{k}}(\boldsymbol{r})$：
 
@@ -102,7 +113,7 @@ $$
 \Phi_{m,\boldsymbol{k}}(\boldsymbol{r}) = \sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_{m}(\boldsymbol{r} - \boldsymbol{R})
 $$
 
-と展開できます。行列とベクトルっぽい物で表現すると、
+と展開できます。行列とベクトルで表現すると、
 
 $$
 (B)_{nm} = b_{m}^{n}
@@ -209,7 +220,7 @@ $$
 $$
 \begin{align*}
 （上式右辺）&=
-\frac{1}{N}\sum_{n,\boldsymbol{k}}\varepsilon_{n,\boldsymbol{k}}\tilde{b}_m^n\sum_{m'} b_{m'}^n\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_{m'}(\boldsymbol{r} - \boldsymbol{R})
+\frac{1}{N}\sum_{n,\boldsymbol{k}}\varepsilon_{n,\boldsymbol{k}}\tilde{b}_m^n\sum_{m'} b_{m'}^n\sum_{\boldsymbol{R}'}e^{i\boldsymbol{k}\cdot\boldsymbol{R}'} \phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
 \end{align*}
 $$
 
@@ -225,32 +236,33 @@ $$
 $$
 \begin{align*}
 （上式右辺）&=
-\frac{1}{N}\sum_{n,\boldsymbol{k}}\sum_{\boldsymbol{R}'}e^{i\boldsymbol{k}\cdot\boldsymbol{R'}}\varepsilon_{n,\boldsymbol{R}'}\tilde{b}_m^n\sum_{m'} b_{m'}^n\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_{m'}(\boldsymbol{r} - \boldsymbol{R})
+\frac{1}{N}\sum_{n,\boldsymbol{k}}\sum_{\boldsymbol{R}''}e^{i\boldsymbol{k}\cdot\boldsymbol{R''}}\varepsilon_{n,\boldsymbol{R}''}\tilde{b}_m^n\sum_{m'} b_{m'}^n\sum_{\boldsymbol{R}'}e^{i\boldsymbol{k}\cdot\boldsymbol{R}'} \phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
 
 
 
 \end{align*}
 $$
 
-となります。ここで$\boldsymbol{k}$の総和が計算できるので、$\sum_{\boldsymbol{k}}e^{i\boldsymbol{k}\cdot(\boldsymbol{R} + \boldsymbol{R}')} = N\delta_{\boldsymbol{R},-\boldsymbol{R}'}$を用いて
+となります。ここで$\boldsymbol{k}$の総和が計算できるので、$\sum_{\boldsymbol{k}}e^{i\boldsymbol{k}\cdot(\boldsymbol{R}' + \boldsymbol{R}'')} = N\delta_{\boldsymbol{R}',-\boldsymbol{R}''}$を用いて最終的に、
 
 $$
 \begin{align*}
-（上式右辺）&=
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r})&=
 \sum_{m'}
-\sum_{\boldsymbol{R}}
+\sum_{\boldsymbol{R}'}
 
-\left(\sum_{n}\varepsilon_{n,-\boldsymbol{R}}\tilde{b}_m^n b_{m'}^n
-\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R})
+\left(\sum_{n}\varepsilon_{n,-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
+\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
 
 
 \\
 &\equiv
-\sum_{m',\boldsymbol{R}}c_{m',\boldsymbol{R}}^{m}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}).
+\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
 \end{align*}
 $$
 
-以上のように、係数の具体的な中身はともかく、「原子軌道関数に結晶のハミルトニアンを作用させた後の関数」が、関数系$\{\phi_m(\boldsymbol{r}-\boldsymbol{R})\}$で展開できることを示せました。
+$\varepsilon_{n,-\boldsymbol{R}'}$の係数にマイナスがついていることが気になりますが、以上のように、係数の具体的な中身はともかく、「原子軌道関数に結晶のハミルトニアンを作用させた後の関数」が、関数系$\{\phi_m(\boldsymbol{r}-\boldsymbol{R})\}$で展開できることを示せました。
+$\varepsilon_{n,-\boldsymbol{R}'}$を具体的に展開していくともう少し情報が得られるかもしれませんが、一旦考えるのをやめときます。
 
 :::
 
@@ -261,32 +273,33 @@ $$
 \int\varphi_m^*(\boldsymbol{r}-\boldsymbol{R}) \varphi_l(\boldsymbol{r-\boldsymbol{R}'})d\boldsymbol{r} \simeq \delta_{m,n}\delta_{\boldsymbol{R},\boldsymbol{R}'}
 $$
 
-と、展開係数$c_{m',\boldsymbol{R}}^m$は、$\phi_{m'}(\boldsymbol{r} - \boldsymbol{R})$の係数が$c_{m',-\boldsymbol{R}}^m$であることに注意して、
+と、$\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')$にかかる展開係数$c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}}$は、
 
 $$
-c_{m',\boldsymbol{R}}^m = \int\phi^*_{m'}(\boldsymbol{r} + \boldsymbol{R})\left(
-\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}'}V(\boldsymbol{r}-\boldsymbol{R}')
+c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}} = \int\phi^*_{m'}(\boldsymbol{r} - \boldsymbol{R}')\left(
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}''}V(\boldsymbol{r}-\boldsymbol{R}'')
 \right)\phi_m(\boldsymbol{r})d\boldsymbol{r}
 $$
 
-となります。さらに、孤立原子ハミルトニアン部分の固有関数であることを利用して、
+となります。さらに、孤立原子ハミルトニアン部分の固有関数であることを利用して、今回は右側の原子軌道にハミルトニアンの孤立原子部分を作用させて固有値を抜き出し、
 
 $$
 \begin{align*}
 （上式右辺）&=
 
-\varepsilon_m^{\rm a}\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})\phi_m(\boldsymbol{r})d \boldsymbol{r} + 
-\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})
+\varepsilon_m^{\rm a}\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}')\phi_m(\boldsymbol{r})d \boldsymbol{r} 
++ 
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
 \left(
-  \sum_{\boldsymbol{R}' \neq -\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R}')
+  \sum_{\boldsymbol{R}'' \neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}'')
 \right)
 \phi_m(\boldsymbol{r})d \boldsymbol{r} \\
 
 &=
-\varepsilon_m^{\rm a}\delta_{m,m'}\delta_{\boldsymbol{R},\boldsymbol{0}}+ 
-\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R})
+\varepsilon_m^{\rm a}\delta_{m,m'}\delta_{\boldsymbol{R}',\boldsymbol{0}}+ 
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
 \left(
-  \sum_{\boldsymbol{R}' \neq -\boldsymbol{R}}V(\boldsymbol{r} - \boldsymbol{R}')
+  \sum_{\boldsymbol{R}'' \neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}'')
 \right)
 \phi_m(\boldsymbol{r})d \boldsymbol{r} 
 
@@ -295,20 +308,20 @@ $$
 
 と書き換えることができます。ついに「飛び移り積分」っぽい形の積分がでてきましたね。
 
-ここで$\boldsymbol{R} = \boldsymbol{0}$とその他で分けると、
+ここで$\boldsymbol{R}' = \boldsymbol{0}$とその他で分けると、
 
-### $\boldsymbol{R} = \boldsymbol{0}$
+### $\boldsymbol{R}' = \boldsymbol{0}$
 
 $$
 \begin{align*}
-c_{m',\boldsymbol{0}}^m &\simeq
+c_{m',\boldsymbol{0}}^{m,\boldsymbol{0}} &\simeq
 
 \varepsilon_m^{\rm a}\delta_{mm'}
 
 +
 \int\phi_{m'}^*(\boldsymbol{r})
 \left(
-  \sum_{\boldsymbol{R}' \neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}')
+  \sum_{\boldsymbol{R}'' \neq \boldsymbol{0}}V(\boldsymbol{r} - \boldsymbol{R}'')
 \right)
 \phi_m(\boldsymbol{r})d \boldsymbol{r} \\
 
@@ -321,36 +334,79 @@ $$
 
 と、原子準位$\varepsilon_m^{\rm a}$と結晶場積分$\Delta\varepsilon_{m'm}$で書けることがわかります。
 
-### $\boldsymbol{R} \neq \boldsymbol{0}$
+### $\boldsymbol{R}' \neq \boldsymbol{0}$
 
-また$\boldsymbol{R} \neq \boldsymbol{0}$の場合は、前章と同様にTight-binding近似として、（最）隣接格子間の飛び移り積分ではないものをゼロと置くと、
+また$\boldsymbol{R}' \neq \boldsymbol{0}$の場合は、前章で行ったように「3中心積分」をゼロと置くと、
 
 
 $$
-c_{m',\boldsymbol{R}}^m \simeq
+c_{m',\boldsymbol{R}'\neq \boldsymbol{0}}^{m,\boldsymbol{0}} \simeq
 
-\delta_{\boldsymbol{R},\boldsymbol{R}_I}\sum_{\boldsymbol{R}_I} 
-\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)
-  V(\boldsymbol{r})
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
 \phi_m(\boldsymbol{r})d \boldsymbol{r} 
 $$
 
-を得ます。ここで積分$\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)V(\boldsymbol{r})\phi_m(\boldsymbol{r})d \boldsymbol{r}$は、ちゃんと書けば積分範囲が結晶全体の定積分ですが、積分変数を$\boldsymbol{r} +\boldsymbol{R}_I\rightarrow \boldsymbol{r}$と置きなおすと、周期的境界条件より積分範囲は変わらず、飛び移り積分の形
+を得ます。ここで積分$\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')V(\boldsymbol{r}-\boldsymbol{R}')\phi_m(\boldsymbol{r})d \boldsymbol{r}$は、前章で定義した（本章冒頭でも書いた）飛び移り積分の定義の複素共役：
 
 $$
-\int_V\phi_{m'}^*(\boldsymbol{r})
-  V(\boldsymbol{r}-\boldsymbol{R}_I)
-\phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d \boldsymbol{r} \equiv - t_{\boldsymbol{R}_I}^{m'm}
+\begin{align*}
+\left(- t_{\boldsymbol{R}'}^{m,m'}\right)^* &= 
+
+\left(
+  \int
+  \phi_m^*(\boldsymbol{r})
+  
+    V(\boldsymbol{r} - \boldsymbol{R}')
+  
+  \phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')d\boldsymbol{r}
+\right)^*\\
+
+&=
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+ 
+ \end{align*}
 $$
 
-と一致します。以上より、展開係数は
+の形をしていることがわかります。複素共役になっちゃうのがやや違和感があるかもしれませんが、後でその意味もはっきりしてきますのでひとまずこのまま進みます。
+なお、これは定義の問題で、教科書によってはこの形（複素共役の形）を「飛び移り積分」として定義しているものもあります。前章の定義はアシュクロフト・マーミンやグロッソ・パラビチニに従ったのですが、この後考える第二量子化では逆（複素共役の方で定義する）の方が都合が良さそうなので、そっちに切り替えるかもしれません。）
+
+
+
+
+話を戻して、係数$c_{m',\boldsymbol{R}\neq \boldsymbol{0}}^{m,\boldsymbol{0}}$は、「飛び移り積分の複素共役」を用いて
 
 $$
-c_{m',\boldsymbol{R}}^m \simeq
-(\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm})\delta_{\boldsymbol{R},\boldsymbol{0}}
+\begin{align*}
+c_{m',\boldsymbol{R}'\neq \boldsymbol{0}}^{m,\boldsymbol{0}} 
+=
+\left(- t_{\boldsymbol{R}'}^{m,m'}\right)^* = 
 
--
-\delta_{\boldsymbol{R},\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m'm}
+
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+\end{align*}
+$$
+
+
+と書けることが分かりました。
+
+
+以上より、$\hat{H}^{\rm c}\phi_m(\boldsymbol{r}) =\sum_{m',\boldsymbol{R}'} c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')$の展開係数は
+
+$$
+c_{m',\boldsymbol{R}'}^{m,\boldsymbol{0}} \simeq
+
+\left\{
+\begin{array}{ll}
+\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm} & (\boldsymbol{R}' = \boldsymbol{0}) \\
+ -\left(t_{\boldsymbol{R}'}^{m,m'}\right)^* & (\boldsymbol{R}' \neq \boldsymbol{0})
+\end{array}
+\right.
+
 $$
 
 となり、原子軌道関数に結晶のハミルトニアンを作用させた関係式は
@@ -360,31 +416,23 @@ $$
 \hat{H}^{\rm c} \phi_m(\boldsymbol{r})
 &=
 \left(
-\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}}V(\boldsymbol{r}-\boldsymbol{R})
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}''}V(\boldsymbol{r}-\boldsymbol{R}'')
 \right) \phi_m(\boldsymbol{r}) \\
 
 
 &\simeq
-\sum_{m,\boldsymbol{R}}
-\left\{
-  (\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm})\delta_{\boldsymbol{R},\boldsymbol{0}}
-  -
-  \delta_{\boldsymbol{R},\boldsymbol{R}_I} t_{\boldsymbol{R}_I}^{m'm}
-\right\}
-\phi_{m}(\boldsymbol{r} - \boldsymbol{R})\\
 
-&=
 (\varepsilon_m^{\rm a} + \Delta\varepsilon_{mm})\phi_m(\boldsymbol{r})
 
 +
 \sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
 
-&\>\>\>\>+\sum_{\boldsymbol{R}_I}\sum_{m'}(-t_{\boldsymbol{R}_I}^{m'm})\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}_I)
+&\>\>\>\>+\sum_{\boldsymbol{R}'}\sum_{m'}(-t_{\boldsymbol{R}'}^{m,m'})^*\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
 
 \end{align*}
 $$
 
-となることが分かりました。（$\phi_{m'}(\boldsymbol{r} -\boldsymbol{R})$の係数を$c_{m'-\boldsymbol{R}}^m$と置いたので、$\boldsymbol{R}$の符号がプラスになっています。）
+となることが分かりました。
 
 
 ・・・だからどうしたという感じですが、ここで記憶の片隅から、波動関数にハミルトニアンを作用させた意味を引っ張り出してきます。
@@ -461,13 +509,13 @@ $$
 &\>\>\>\>+
 \frac{-i}{\hbar}\Delta t\sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
 
-&\>\>\>\>+\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}_I}\sum_{m'}(-t_{\boldsymbol{R}_I}^{m'm})\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}_I)
+&\>\>\>\>+\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}'}\sum_{m'}\left(-t_{\boldsymbol{R}'}^{mm'}\right)^*\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}')
 
 
 \end{align*}
 $$
 
-が得られます。すなわち、原点にポツンと1つ原子軌道があるとき、微小時間後の波動関数を各格子点に平行移動した、様々な準位の原子軌道$\{\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}\}$の重ね合わせで書くことができました。この時の$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$の係数はかなり雑に言うと「電子が格子点$-\boldsymbol{R}$上で、$m'$の原子軌道で存在する確率」つまり「原点の格子点$\boldsymbol{R} = \boldsymbol{0}$にいた状態$m$の電子が、格子点$-\boldsymbol{R}$に状態$m'$で「飛び移る」確率」と考えられそうです。
+が得られます。すなわち、原点にポツンと1つ原子軌道があるとき、微小時間後の波動関数を各格子点に平行移動した、様々な準位の原子軌道$\{\phi_{m'}(\boldsymbol{r} + \boldsymbol{R})\}$の重ね合わせで書くことができました。この時の$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$の係数はかなり雑に言うと「電子が格子点$-\boldsymbol{R}$上で、$m'$の原子軌道で存在する確率」つまり「原点の格子点$\boldsymbol{R} = \boldsymbol{0}$にいた状態$m$の電子が、格子点$-\boldsymbol{R}$に状態$m'$で「飛び移る」確率」と考えられそうです。
 
 #### 注意点1
 ここで位置を表す変数が$\boldsymbol{r}$と、$\boldsymbol{R}$の二つ出てきて紛らわしいのですが、前者$\boldsymbol{r}$は「電子の波動関数の形」$\simeq$「電子の確率雲の形」に対応する変数で、後者$\boldsymbol{R}$は「波動関数の中心」$\simeq$「固体の中の電子の場所」に対応する変数です。この表現もかなり正確性がアヤシイですが。。。
@@ -479,42 +527,380 @@ $$
 ## 原子軌道の飛び移り積分の物理的意味
 
 
-特に、微小時間$\Delta t$後に、電子が原点から（隣接）格子ベクトル$-\boldsymbol{R}_I$で指定される格子点に局在した原子軌道$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$となっているような確率は、飛び移り積分$t_{\boldsymbol{R}_I}^{m'm}$：
+特に、微小時間$\Delta t$後に、電子が原点から格子ベクトル$\boldsymbol{R}'$で指定される格子点に局在した原子軌道$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')$となっているような確率は、飛び移り積分$(t_{\boldsymbol{R}'}^{m,m'})^*$：
 
 $$
 \begin{align*}
-t_{\boldsymbol{R}_I}^{m'm} &= 
--
-\int_V\phi_{m'}^*(\boldsymbol{r})
-  V(\boldsymbol{r}-\boldsymbol{R}_I)
-\phi_m(\boldsymbol{r}-\boldsymbol{R}_I)d \boldsymbol{r} \\
+-\left(t_{\boldsymbol{R}'}^{m,m'}\right)^* &= 
+
+\left(
+\int_V\phi_{m}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')d \boldsymbol{r} 
+\right)^*\\
 
 &=
--
-\int_V\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R}_I)
+
+\int_V\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
   V(\boldsymbol{r})
 \phi_m(\boldsymbol{r})d \boldsymbol{r} 
 \end{align*}
 $$
 
-に比例することがわかります。ここで、最後の式では$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R})$と座標をそろえるために再度積分変数を変更しました。
+に比例（？）することがわかります。
+
+
+以上のように（きわめて怪しい）議論を繰り広げることで、飛び移り積分 **（の複素共役）** はその名前の通り、**原点（あるいはある格子点$\boldsymbol{R}$）にいる$m$状態の原子軌道$\phi_m(\boldsymbol{r})$（$\phi_m(\boldsymbol{r}-\boldsymbol{R})$）が、（微小時間後に）状態$m'$になって原点（あるいはある格子点$\boldsymbol{R}$）から格子ベクトル$\boldsymbol{R}'$離れた場所へ、$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R})$（$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}-\boldsymbol{R}')$）として飛び移って行く確率**（に比例（？）する量）を表すことが分かりました。
+
+
+### 飛び移り積分の複素共役の意味
+
+さて、最後に複素共役の謎を解明しておきます。これまでは話の展開を簡単にするために、原点にいる原子軌道の時間発展を考えてきました。するとなぜか、飛び移り積分の複素共役が出てきてしまいました。
+
+次に一般の、格子点$\boldsymbol{R}$に局在した原子軌道$\phi_m(\boldsymbol{r} - \boldsymbol{R})$の時間発展を考えてみますと、
+
+$$
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})
+$$
+
+は、「証明」部分と同じような計算をすれば、原点に局在した原子軌道の場合と同様に
+
+
+$$
+\begin{align*}
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})&=
+\sum_{m'}
+\sum_{\boldsymbol{R}'}
+
+\left(\sum_{n}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
+\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
+
+
+\\
+&\equiv
+\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
+\end{align*}
+$$
+
+として展開できます。
+
+この展開係数は、$\boldsymbol{R}' = \boldsymbol{R}$の場合は先ほどと同様に
+
+$$
+c_{m',\boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
+\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm} 
+$$
+
+で、$\boldsymbol{R}'\neq\boldsymbol{R}$の場合は、同様に「3中心積分」をゼロと置いたりなどして、
+
+
+$$
+c_{m',\boldsymbol{R}'\neq \boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
+
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
+$$
+
+となります。ここで$\boldsymbol{R}' = \boldsymbol{0}$、つまり「格子点$\boldsymbol{R}$に局在した原子軌道が、原点$\boldsymbol{R}'=\boldsymbol{0}$に飛び移って**行く**確率」を求めてみると、
+
+$$
+c_{m',\boldsymbol{0}}^{m,\boldsymbol{R}(\neq \boldsymbol{0})} \simeq
+
+\int\phi_{m'}^*(\boldsymbol{r})
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
+$$
+
+となります。これは先ほど求めた、「原点$\boldsymbol{R} = 0$に局在した原子軌道が、格子点$\boldsymbol{R}'$に飛び移っていく確率$\left(t_{\boldsymbol{R}'}^{m,m'}\right)^*$：
+
+
+$$
+\begin{align*}
+-\left(t_{\boldsymbol{R}'}^{m,m'}\right)^* &= 
+
+\left(
+\int_V\phi_{m}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')d \boldsymbol{r} 
+\right)^*\\
+
+&=
+
+\int_V\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+\end{align*}
+$$
+
+の複素共役、あるいは複素共役を取る前と同じ形になっています。従って、（複素共役を取る前の）飛び移り積分は「原点に格子点$\boldsymbol{R}$**から**飛び移って**来る**確率」、その複素共役は「原点**から**格子点$\boldsymbol{R}$**に**飛び移って**行く**確率」という意味であったことが分かり、飛び移り積分の複素共役を取る行為は飛び移り方向を逆転させることに対応していたことが分かりました。
+
+最後に、（これを確かめるのには今回の議論は不要ですが）飛び移り積分は飛び移り前と後の格子ベクトルの **差（＝飛び移り前の格子点から飛び移り先の格子点へ向かう相対ベクトル）** のみに依存することを次のように確認できます。すなわち、格子点$\boldsymbol{R}$から格子点$\boldsymbol{R}'$への飛び移り積分
+
+$$
+c_{m',\boldsymbol{R}'\neq \boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
+
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
+$$
+
+は、積分変数の変換$\boldsymbol{r} - \boldsymbol{R}\rightarrow\boldsymbol{r}$に対して、周期的境界条件より積分の値を変えないので、変数変換後の積分
+
+$$
+\int\phi_{m'}^*(\boldsymbol{r} + \boldsymbol{R} - \boldsymbol{R}')
+  V(\boldsymbol{r} + \boldsymbol{R} -\boldsymbol{R}')
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+$$
+
+を考えて、飛び移り前の格子点$\boldsymbol{R}$から飛び移り後の格子点$\boldsymbol{R}'$へ向かう相対ベクトル$\boldsymbol{R}' - \boldsymbol{R}$により
+
+$$
+c_{m',\boldsymbol{R}'\neq \boldsymbol{R}}^{m,\boldsymbol{R}} =
+
+\int\phi_{m'}^*(\boldsymbol{r} - (\boldsymbol{R}' - \boldsymbol{R}))
+  V(\boldsymbol{r}-(\boldsymbol{R}' - \boldsymbol{R}))
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+$$
+
+であることもわかります。
+
+
+以上をまとめると、飛び移り積分に関する次の物理的意味が分かりました。これでひとまず本章の目標は達成です。
+
+:::message 
+
+### 飛び移り積分の物理的意味
+
+前章で定義した飛び移り積分
+
+$$
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+ \equiv
+ - t_{\boldsymbol{R}}^{n,m}
+$$
+
+は、格子点が相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+
+$$
+
+\int\phi_n^*(\boldsymbol{r} - \boldsymbol{R}_2)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_m(\boldsymbol{r}-\boldsymbol{R}_1)d\boldsymbol{r}
+=
+\left(
+\int\phi_m^*(\boldsymbol{r} - \boldsymbol{R}_1)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
+\right)^*
+
+$$
+
+つまり、格子点$\boldsymbol{R}_{1}$にいる状態$m$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{2} - \boldsymbol{R}$に状態$n$になって飛び移って**来る**確率（に比例（？）する量）を表す
+
+### 飛び移り積分の複素共役の物理的意味
+
+一方、上記飛び移り積分の複素共役
+
+$$
+\begin{align*}
+ \left(t_{\boldsymbol{R}}^{n,m}\right)^*
+&=
+ - \left(
+  \int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+ \right)^*
+
+&=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_n(\boldsymbol{r})d\boldsymbol{r}
+
+\end{align*}
+$$
+
+は、逆に、先ほどと同様に相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+
+$$
+\begin{align*}
+ \left(t_{\boldsymbol{R}}^{n,m}\right)^*
+
+&=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_n(\boldsymbol{r})d\boldsymbol{r}
+
+ &=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R}_1)
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}_1)
+ 
+ \phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
+
+\end{align*}
+$$
+
+
+で、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって飛び移って**行く**確率（に比例（？）する量）を表す
+
+:::
+
+
+なお、先ほどもちらっと述べましたが、後に使うには「飛び移って**行く**確率を（複素共役の付かない）飛び移り積分と定義したほうが使いやすそうです。また、飛び移りの方向もややこしいので明示しておいた方が良さそうです。というわけでこれらがわかりやすいように、
+
+$$
+-t_{(m,\boldsymbol{R}+ \boldsymbol{R}') \leftarrow (n,\boldsymbol{R})}
+\equiv
+
+\int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R}')
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}')
+ 
+ \phi_n(\boldsymbol{r})d\boldsymbol{r}
+
+$$
+
+のようにも書くかもしれません。（結局書かないかもしれません）（あとで微修正するかもしれません）
+
+
+:::details 将来の自分への余談
+今回の話の展開は、あえて最初に$\boldsymbol{R} = 0$の場合を取らず、一般の$\boldsymbol{R}$に局在する原子軌道の展開を扱っていれば、わざわざ話を二段階に分ける必要なく「飛び移り積分の意味」「複素共役の意味」を説明できたような気がする。
+あと、そうすれば積分変数の変換$\boldsymbol{r} - \boldsymbol{R} + \boldsymbol{R}' \rightarrow \boldsymbol{r} - \boldsymbol{R}''$みたいなことを通して、飛び移り前と後の格子点の差分だけで書けるね、みたいな話の展開ができたような気がする。いつか書き直すときはそういう風にしよう
+:::
+
+## ダメ押しのイメージ
+
+さて、これまで飛び移りが「飛び移る確率」に「比例（？）」すると書いてきましたが、よく考えれば波動関数を
+
+$$
+\psi(\boldsymbol{r} )= \sum_i c_i \phi_i(\boldsymbol{r})
+$$
+
+のように展開したとき、その波動関数が$\phi_i(\boldsymbol{r})$である確率（注：これは不正確な表現です）^[正確には$\phi_i$が固有状態となる演算子$\hat{A}$に対応する物理量$A$を測定して、その対応する固有値$A_i: \hat{A}\phi_i(\boldsymbol{r}) = A_i\phi_i(\boldsymbol{r})$が測定される確率]は、展開係数の絶対値の2乗$|c_i|^2$に比例するのでした。
+
+なので、結局、「$(\boldsymbol{R}_1,n)$から$(\boldsymbol{R}_1+\boldsymbol{R},m)$に飛び移る確率」と、「$(\boldsymbol{R}_2 + \boldsymbol{R},m)$から$(\boldsymbol{R}_1,n)$に飛び移る確率」は、どちらも絶対値の2乗を考えれば等しいことがわかります。（繰り返しになりますが格子点$\boldsymbol{R}$を中心とする原子軌道$\phi_m(\boldsymbol{r} - \boldsymbol{R})$が固有状態となる物理量がよくわからない限り具体的にこの「飛び移り」を観測することはかなわないのですが）
+
+そしてダメ押しで今まで見てきた内容をイラスト的にイメージしてみると、
+
+時刻$0$で原点にいた状態$m$の原子軌道$\phi_m(\boldsymbol{r})$
+
+![](/images/tb/hopping-int-1.png)
+
+は、微小時間後に、
+
+![](/images/tb/hopping-int-2.png)
+
+のように、様々な格子点へ、原子軌道を変化させながら飛び移り積分（の絶対値の2乗）に比例する確率で「飛び移って」行くようなイメージが描けました。
+
+~~ただ、これがわかったところで、微小時間後の波動関数が測定できるわけでもないし、何の意味があるのかは分かりませんが。というか自己満足ですが。~~
+
+
+# （おまけ1）LCAO近似：少数の原子軌道での展開との関係
+
+さて、ここからはおまけとして、前々章で行った「固体の固有関数をエネルギー的に近い少数の原子軌道関数で展開する」というLCAO近似と、飛び移り積分との関係について考えてみます。
+
+前々章で導いた展開係数の関係式を見てみると、
+
+$$
+\begin{align*}
+(\varepsilon_{n,\boldsymbol{k}} - \varepsilon_l^{\rm a})b_l^n
+
+&=
+-(\varepsilon_{n,\boldsymbol{k}} - \varepsilon_l^{\rm a})
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} 
+   \int \phi_l^*(\boldsymbol{r})
+   \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+   \right]b_m^n \\
+
+&\>\>\>\>+
+\sum_m 
+\left[
+    \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right) \phi_m(\boldsymbol{r})d\boldsymbol{r}
+      \right] b_m^n\\
+
+&\>\>\>\>+
+\sum_m 
+\left[
+   \sum_{\boldsymbol{R}\neq\boldsymbol{0}}
+   e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \int \phi_l^*(\boldsymbol{r})
+   \left(
+   \sum_{\boldsymbol{R}'\neq \boldsymbol{0}}
+      V(\boldsymbol{r}-\boldsymbol{R}')
+      \right)  \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+      \right]b_m^n
+\end{align*}
+$$
+
+これが$\varepsilon_{n,\boldsymbol{k}} \ll \varepsilon_L^{\rm a}$の時$b_L^n\simeq 0$としたのでした。異なる軌道間の重なり積分がゼロとすれば、残るは異なる軌道間の結晶場積分と、飛び移り積分です。
+
+そしてこれらをゼロと置く近似が、結局のところ「固有関数を少数のエネルギー的に近い原子軌道で展開できる」という近似に対応しているわけでした。
+
+さて、今までスルーしましたが、結晶場積分は「局在する格子点の位置は変えずに、原子準位だけが変わる」確率に対応していそうです。また、飛び移り積分はこれまで見てきたように異なる格子点へ、異なる準位になって飛び移る確率に対応しています。
+
+ここで、エネルギー的に離れた準位$l,L$を考えた場合、その間の飛び移り積分
+
+$$
+t_{(L,\boldsymbol{R}+\boldsymbol{R}')\leftarrow (l,\boldsymbol{R})}
+$$
+
+は、「格子ベクトル$\boldsymbol{R}'$離れた位置に、（突然）高エネルギーになって飛び移る確率」に対応しており、先ほどのイメージと比べてもこれを無視することは、妥当な近似であろうことが納得されます。
+
+また、隣接格子間のみの飛び移り積分を残す近似も、今回考えた展開
+
+$$
+\begin{align*}
+\hat{H}^{\rm c} \phi_m(\boldsymbol{r})
+&=
+\left(
+\frac{-\hbar^2}{2m}\nabla^2 + \sum_{\boldsymbol{R}''}V(\boldsymbol{r}-\boldsymbol{R}'')
+\right) \phi_m(\boldsymbol{r}) \\
+
+
+&\simeq
+
+(\varepsilon_m^{\rm a} + \Delta\varepsilon_{mm})\phi_m(\boldsymbol{r})
+
++
+\sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
+
+&\>\>\>\>+\sum_{\boldsymbol{R}'}\sum_{m'}(-t_{\boldsymbol{R}'}^{m,m'})^*\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
+
+\end{align*}
+$$
+
+の2式目第3項について、隣接格子へ飛び移る過程のみを取り入れる近似だとわかります。（二つの格子点が離れれば離れるほど、飛び移る確率は当然低くなるでしょうから、これも納得の近似です。）
+
+なお、前章でグダグダ書いた、「とはいえ、エネルギーの高い軌道が空間的には広がっているはずだから、積分は大きくなりそうじゃない？」という疑問について、ダメ押しで追記しておくと、確かにエネルギーが高い軌道は広がっていますが、同時に激しく振動している（電子がではなく、関数の形が）と考えられ、（激しく振動する関数）×（穏やかに変化する関数）の積を積分すると、振動部分が打ち消しあって「重なり」は大きくても積分結果は小さくなる、と考えることもできそうです。
 
 
 
-以上のように（きわめて怪しい）議論を繰り広げることで、飛び移り積分はその名前の通り、**原点（あるいはある格子点$\boldsymbol{R}'$）にいる$m$状態の原子軌道$\phi_m(\boldsymbol{r})$（$\phi_m(\boldsymbol{r}-\boldsymbol{R}')$）が、（微小時間後に）状態$m'$になって原点（あるいはある格子点$\boldsymbol{R}'$）から格子ベクトル$-\boldsymbol{R}_I$離れた場所へ、$\phi_{m'}(\boldsymbol{r}+\boldsymbol{R}_I)$（$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}'+\boldsymbol{R}_I)$）として飛び移って行く確率**（に比例する量）を表すことが分かりました。
 
-ただ、飛び移り積分の（教科書通りの）定義を採用すると、「飛び移り先」が$-\boldsymbol{R}_I$になってしまうのが気になるところなのです。何か対称性をちゃんと考えれば解消されるか、どこかで勘違いしているかもしれませんが、一旦思考停止しておきます。この後来る第二量子化とかを考えていけば何か解消されるかもしれません。
+# （おまけ2）Wannier関数の従うべき方程式と時間発展
 
-~~まあ、これがわかったところで、微小時間後の波動関数が測定できるわけでもないし、何の意味があるのかは分かりませんが。というか自己満足ですが。~~
-
-
-
-
-
-
-# （おまけ）Wannier関数の従うべき方程式と時間発展
-
-最後に、~~これも何の役に立つのかわかりませんが、~~局在基底であるWannier関数の関係式と、時間発展についておまけで触れておきます。
+最後に、 ~~これも何の役に立つのかわかりませんが、~~ 局在基底であるWannier関数の関係式と、時間発展についておまけで触れておきます。
 
 先ほどと同様に固体のポテンシャルを1電子近似した1電子ハミルトニアン
 
@@ -542,7 +928,7 @@ $$
 と展開できます。このWannier関数の展開を1体シュレーディンガー方程式に代入すると、固体の1電子ハミルトニアンに対するWannier関数の満たす関係式
 
 $$
-\hat{H}^{\rm c}w_{n,\boldsymbol{R}} = \sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R}'}w_{n,\boldsymbol{R}-\boldsymbol{R}'} 
+\hat{H}^{\rm c}w_{n,\boldsymbol{R}} = \sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R} - \boldsymbol{R}'}w_{n,\boldsymbol{R}'} 
 $$
 
 を導くことができます。ここで$\varepsilon_{n,\boldsymbol{R}}$は、Bloch波数の関数$\varepsilon_{n,\boldsymbol{k}}$のFourier展開
@@ -554,7 +940,7 @@ $$
 
 です。
 
-Wannier関数の正規直交性$\int_V w_{n'}^*(\boldsymbol{r}-\boldsymbol{R}')w_n(\boldsymbol{r} - \boldsymbol{R})dr =\delta_{n,n'}\delta_{\boldsymbol{R},\boldsymbol{R}'}$から、$\varepsilon_{n,\boldsymbol{R}} = \int w_{n,\boldsymbol{0}}^*(\boldsymbol{r})\hat{H}^{\rm c}w_{n,-\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}$です。これはBloch関数が満たすシュレーディンガー方程式に$\varepsilon_{n,\boldsymbol{k}} = \sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}}\varepsilon_{n,\boldsymbol{R}}$を代入して$e^{-i\boldsymbol{k}\cdot\boldsymbol{R}'}$をかけて積分しても示すことができます
+Wannier関数の正規直交性$\int_V w_{n'}^*(\boldsymbol{r}-\boldsymbol{R}')w_n(\boldsymbol{r} - \boldsymbol{R})dr =\delta_{n,n'}\delta_{\boldsymbol{R},\boldsymbol{R}'}$から、$\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'} = \int w_{n,\boldsymbol{R}'}^*(\boldsymbol{r})\hat{H}^{\rm c}w_{n,\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}$です。これはBloch関数が満たすシュレーディンガー方程式に$\varepsilon_{n,\boldsymbol{k}} = \sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}}\varepsilon_{n,\boldsymbol{R}}$を代入して$e^{-i\boldsymbol{k}\cdot\boldsymbol{R}'}$をかけて積分しても示すことができます
 
 :::details 証明
 
@@ -607,23 +993,23 @@ N^{-1}\sum_{\boldsymbol{k}}e^{i\boldsymbol{k}\cdot(\boldsymbol{R} + \boldsymbol{
 &=
  \sum_{\boldsymbol{R}'} \sum_{\boldsymbol{R}}\varepsilon_{n,\boldsymbol{R}'}
 w_{n,\boldsymbol{R}}(\boldsymbol{r})
-\delta_{\boldsymbol{R},\boldsymbol{R}''-\boldsymbol{R}'}\\
+\delta_{\boldsymbol{R}',\boldsymbol{R}''-\boldsymbol{R}}\\
 
 &=
 
-\sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R}'}
-w_{n,\boldsymbol{R}''-\boldsymbol{R}'}(\boldsymbol{r}).
+\sum_{\boldsymbol{R}}\varepsilon_{n,\boldsymbol{R}''-\boldsymbol{R}}
+w_{n,\boldsymbol{R}}(\boldsymbol{r}).
 
 \end{align*}
 $$
 
-ここで記号を整えるために左辺、右辺ともに$\boldsymbol{R}'' = \boldsymbol{R}$と置きなおすと、等式
+ここで記号を整えるために左辺、右辺ともに$\boldsymbol{R}'' \rightarrow \boldsymbol{R}$、$\boldsymbol{R} \rightarrow \boldsymbol{R}'$と置きなおすと、等式
 
 $$
 \hat{H}^{\rm c} w_{n,\boldsymbol{R}}(\boldsymbol{r})
 =
-\sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R}'}
-w_{n,\boldsymbol{R}-\boldsymbol{R}'}(\boldsymbol{r})
+\sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}
+w_{n,\boldsymbol{R}'}(\boldsymbol{r})
 $$
 
 が得られる。
@@ -632,7 +1018,7 @@ $$
 
 ## Wannier関数の時間発展
 
-先ほどと同様に$t=0$で原点に局在したWannier関数の時間発展を考えると、$\psi(\boldsymbol{r},0 ) =w_n(\boldsymbol{r})$として、
+原子軌道の場合と同様に$t=0$で原点に局在したWannier関数の時間発展を考えると、$\psi(\boldsymbol{r},0 ) =w_n(\boldsymbol{r})$として、
 
 $$
 \begin{align*}
@@ -651,8 +1037,8 @@ w_n(\boldsymbol{r})
 
 w_n(\boldsymbol{r})
 +
-\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R}'}
-w_{n,\boldsymbol{R}-\boldsymbol{R}'}(\boldsymbol{r})\\
+\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}'}\varepsilon_{n,\boldsymbol{R} - \boldsymbol{R}'}
+w_{n,\boldsymbol{R}'}(\boldsymbol{r})\\
 
 \end{align*}
 $$
@@ -661,10 +1047,172 @@ $$
 
 従って、結晶のポテンシャルの中で局在した一つのWannier関数は、形を変えることなく格子点を「飛び移って」行くことがわかります。
 
+これも結局、格子点$\boldsymbol{R}$に局在したWannier関数が固有状態となる何かの物理量が無ければ、測定と結びつけることができないので本当に（？）物理的な理解とも言い難い気もするのですが、なんとなくのイメージとして面白いので書いておきました。
+
+（逆にWannier関数が固有状態となる（エルミート）演算子＝物理量を上手く構成できれば、上のような飛び移りが実際に観測できて面白そうですが、私には何も分かりません）
+
 # おわりに
 
+以上のようにして飛び移り積分や原子軌道の振る舞いについて親しみを深められたところで、本章を終わりにします。
+
+本章を通して、原子軌道関数に結晶のハミルトニアンを作用させた場合の展開
+
+$$
+\begin{align*}
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})&=
+\sum_{m'}
+\sum_{\boldsymbol{R}'}
+
+\left(\sum_{n}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
+\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
+
+
+\\
+&\equiv
+\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
+\end{align*}
+$$
+
+
+と、波動関数の時間発展
+
+$$
+\begin{align*}
+\psi(\boldsymbol{r},\Delta t) &\simeq 
+
+\psi(\boldsymbol{r},0 ) + \frac{-i}{\hbar}\Delta t\hat{H}\psi(\boldsymbol{r},0)
+\\
+
+&\simeq
+\phi_m(\boldsymbol{r})
++
+\frac{-i}{\hbar}\Delta t\hat{H}\phi_m(\boldsymbol{r})
+\\
+
+&\simeq
+
+\left\{1-\frac{-i}{\hbar}\Delta t
+(\varepsilon_m^{\rm a} + \Delta\varepsilon_{mm})
+\right\}
+\phi_m(\boldsymbol{r})\\
+
+&\>\>\>\>+
+\frac{-i}{\hbar}\Delta t\sum_{m'} \Delta\varepsilon_{m'm}\phi_{m'}(\boldsymbol{r})\\
+
+&\>\>\>\>+\frac{-i}{\hbar}\Delta t\sum_{\boldsymbol{R}'}\sum_{m'}\left(-t_{\boldsymbol{R}'}^{mm'}\right)^*\phi_{m'}(\boldsymbol{r} + \boldsymbol{R}')
+
+
+\end{align*}
+$$
+
+
+を考えることにより、突然定義された意味深な積分「飛び移り積分」について、具体的な「飛び移り」のイメージと結びつけることができました。
+
+また同時に（副産物として）飛び移り積分の複素共役を取ると、「飛び移り方向」が逆になることを見ました。
+
+以上まとめると以下のようになります。
 
 
 
 
+:::message 
 
+### 飛び移り積分の物理的意味
+
+前章で定義した飛び移り積分
+
+$$
+\int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+ \equiv
+ - t_{\boldsymbol{R}}^{n,m}
+$$
+
+は、格子点が相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+
+$$
+
+\int\phi_n^*(\boldsymbol{r} - \boldsymbol{R}_2)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_m(\boldsymbol{r}-\boldsymbol{R}_1)d\boldsymbol{r}
+=
+\left(
+\int\phi_m^*(\boldsymbol{r} - \boldsymbol{R}_1)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
+\right)^*
+
+$$
+
+つまり、格子点$\boldsymbol{R}_{1}$にいる状態$m$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{2} - \boldsymbol{R}$に状態$n$になって飛び移って**来る**確率（に比例（正確には絶対値の2乗が比例）する量）を表す
+
+### 飛び移り積分の複素共役の物理的意味
+
+一方、上記飛び移り積分の複素共役
+
+$$
+\begin{align*}
+ \left(t_{\boldsymbol{R}}^{n,m}\right)^*
+&=
+ - \left(
+  \int
+ \phi_n^*(\boldsymbol{r})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
+ \right)^*
+
+&=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_n(\boldsymbol{r})d\boldsymbol{r}
+
+\end{align*}
+$$
+
+は、逆に、先ほどと同様に相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+
+$$
+\begin{align*}
+ \left(t_{\boldsymbol{R}}^{n,m}\right)^*
+
+&=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R})
+ 
+   V(\boldsymbol{r} - \boldsymbol{R})
+ 
+ \phi_n(\boldsymbol{r})d\boldsymbol{r}
+
+ &=
+-
+ \int
+ \phi_m^*(\boldsymbol{r}-\boldsymbol{R}_1)
+ 
+   V(\boldsymbol{r} - \boldsymbol{R}_1)
+ 
+ \phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
+
+\end{align*}
+$$
+
+
+で、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって飛び移って**行く**確率（に比例（正確には絶対値の2乗が比例）する量）を表す
+
+:::
+
+つまり、時刻$0$で原点にいた状態$m$の原子軌道$\phi_m(\boldsymbol{r})$
+
+![](/images/tb/hopping-int-1.png)
+
+は、微小時間後に、
+
+![](/images/tb/hopping-int-2.png)
+
+のように、様々な格子点へ、原子軌道を変化させながら飛び移り積分（の絶対値の2乗）に比例する確率で「飛び移って」行くようなイメージが描けました。
