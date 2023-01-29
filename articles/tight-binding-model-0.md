@@ -50,6 +50,8 @@ $$
 ## [飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式](https://zenn.dev/ponzumai/articles/tight-binding-model-hopping-int)
 ## 重なり積分（Overlap Integral）の物理的意味（の妄想）
 ## Tight-binding modelの第二量子化表示
+## （おまけ）2体ポテンシャルの第二量子化表示とHubbard Model
+## （おまけ）局在磁気モーメントがある系の第二量子化モデル
 
 # さいごに
 質問やわかりにくい点などあればコメントを頂けますと幸いです。（もちろん感想だけでもいただけるととても喜びます。）

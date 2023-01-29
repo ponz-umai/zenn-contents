@@ -1275,3 +1275,76 @@ $$
 ~~まあ、これがわかったところで、微小時間後の波動関数が測定できるわけでもないし、何の意味があるのかは分かりませんが。というか自己満足ですが。~~
 
 
+# 重なり積分
+
+
+
+
+
+
+一応、前章の展開
+
+$$
+\begin{align*}
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})&=
+\sum_{m'}
+\sum_{\boldsymbol{R}'}
+
+\left(\sum_{n}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
+\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
+
+
+\\
+&\equiv
+\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
+\end{align*}
+$$
+
+において、重なり積分をゼロとしなければ、展開係数
+
+$$
+\begin{align*}
+c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}} 
+&= \int \phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})d\boldsymbol{r} 
+
+- 
+\sum_{m',\boldsymbol{R}'\neq \boldsymbol{R}}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}s_{\boldsymbol{R},\boldsymbol{R}'}^{m,m'}\\
+
+&\simeq
+
+-t_{(m',\boldsymbol{R}')\leftarrow (m,\boldsymbol{R})}
+
+-
+\sum_{m',\boldsymbol{R}'\neq \boldsymbol{R}}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}s_{\boldsymbol{R},\boldsymbol{R}'}^{m,m'}
+\end{align*}
+$$
+
+のような感じで「飛び移り積分の補正」みたいな形で出てきますが、そもそも別の展開係数が掛かってしまってますし、この方向で考えると前章の内容が全部成立しなくなっちゃうので、上手い方向ではなさそうです。
+
+
+
+
+
+
+エネルギー固有値に対応する固有状態：原点の原子軌道
+
+たまたま隣の原子に束縛された状態の電子が、ふわふわと漂っていたとする
+
+その電子が、原点の原子核ポテンシャルに束縛される確率
+
+一見するとポテンシャルに束縛されてもいないし、飛び移り積分よりも大きな値（確率）を持ちそうである。
+
+しかし飛び移り積分は、全方向を格子ポテンシャルに囲まれており、逃げ場はない。とどまるか、どこかに移るか。
+
+一方原子核ポテンシャルは、ちょうどよい角度でいかないと、変な方向に飛んで行ったり、束縛しきれなかったりするだろう
+
+というわけで小さいのも納得である
+
+
+
+重なり積分
+一見、「広がっている」から、「重なり」は大きい気もする
+
+でも物理的な描像で考えてみると、「違う原子に束縛された瞬間に大きなエネルギーを持ってしまう確率
+
+これは小さいと考えられるし、実際、広がっていたとしても、実際は重なりは小さいのだと納得できるような気もする
