@@ -1,5 +1,5 @@
 ---
-title: "重なり積分（Overlap Integral）の物理的意味"
+title: "重なり積分（Overlap Integral）の物理的意味（の妄想）"
 emoji: "📚"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
