@@ -1348,3 +1348,163 @@ $$
 でも物理的な描像で考えてみると、「違う原子に束縛された瞬間に大きなエネルギーを持ってしまう確率
 
 これは小さいと考えられるし、実際、広がっていたとしても、実際は重なりは小さいのだと納得できるような気もする
+
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
+
+
+
+
+
+
+
+
+
+多電子の波動関数は、軌道部分の波動関数$\varphi_a, \varphi_b\cdots$と、上向き/下向きスピン状態$\varphi_{1\uparrow}, \varphi_{1\downarrow},\varphi_{2\uparrow}, \varphi_{2\downarrow}\cdots$、または別の表現をするとスピン関数$\alpha(\sigma)$、$\beta(\sigma)$の積を考え、軌道部分の関数をラベルする量子数（例えば水素様原子中の電子の場合だと$(n,l,m)$）とスピン状態のラベル$\uparrow,\downarrow$をまとめて、ギリシャ文字$\lambda,\mu,\xi$などと表した「スピン軌道関数」$\varphi_\lambda(\tau_1), \varphi_\mu(\tau_2),\cdots,\varphi_\xi(\tau_N)$を用いて、
+
+$$
+\begin{align*}
+\Phi_\mathrm{F}(\tau_1, \tau_2,\cdots,\tau_N) &= 
+\frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\varphi_\lambda(\tau_1) & \varphi_\mu(\tau_1) & \cdots & \varphi_\xi(\tau_1)\\
+\varphi_\lambda(\tau_2) & \varphi_\mu(\tau_2) & \cdots & \varphi_\xi(\tau_2)\\
+& \cdots & \cdots\\
+\varphi_\lambda(\tau_N) & \varphi_\mu(\tau_N) & \cdots & \varphi_\xi(\tau_N)
+\end{vmatrix}\\
+
+&=\frac{1}{\sqrt{N!}}\sum_P(-1)^P\hat{P}\varphi_\lambda(\tau_1)\varphi_\mu(\tau_2)\cdots\varphi_\xi(\tau_{N})\\
+
+&\equiv \left| \varphi_a \overline{\varphi}_b\cdots \overline{\varphi}_n\right|
+\end{align*}
+$$
+
+と書けることを[この章](https://zenn.dev/ponzumai/articles/tight-binding-model-spin)で確認しました。左辺二つ目の式は、行列式を、座標を入れ替える置換演算子$\hat{P}$と、置換の回数だけ$(-1)$を掛ける$(-1)^P$で表したものです。また多体波動関数の添え字$\rm F$は、フェルミオンの$\rm F$です。
+
+ここで、軌道部分の波動関数$\varphi_a, \varphi_b\cdots$について正規直交性を満たすものとし、また完全系をなすと仮定します。（スピン関数もスピン空間内で完全系を成すので、その積のスピン軌道関数も完全系をなすと仮定していることになります）
+
+というわけで多体ハミルトニアンをスレーター行列式に作用させてみると、
+
+$$
+\begin{align*}
+&\mathcal{H}\Phi_{\rm F}(\tau_1, \tau_2,\cdots,\tau_N)\\
+
+
+
+&=
+\left|
+\left(\hat{H}\varphi_\lambda\right)\varphi_\mu\cdots\varphi_\xi
+    \right|
+
++
+\left|
+\varphi_\lambda\left(\hat{H}\varphi_\mu\right)\cdots\varphi_\xi
+    \right|
+
++\cdots
+
++
+\left|
+\varphi_\lambda\varphi_\mu\cdots\left(\hat{H}\varphi_\xi\right)
+    \right|
+
+\end{align*}
+$$
+
+と、スレーター行列式の各1電子の波動関数のどれか一つに対して、1体ハミルトニアンが作用したスレーター行列式の総和となります。
+
+:::details 証明
+
+証明というか確認ですが、実際にスレーター行列式に作用させた後に、出てきた項を並べ替えることで以下のように示せます。
+
+$$
+\begin{align*}
+&\mathcal{H}\Phi_{\rm F}(\tau_1, \tau_2,\cdots,\tau_N)\\
+
+&=
+\sum_i\hat{H}_i
+\frac{1}{\sqrt{N!}}\sum_P(-1)^P\hat{P}\varphi_\lambda(\tau_1)\varphi_\mu(\tau_2)\cdots\varphi_\xi(\tau_{N})\\
+
+&=
+\frac{1}{\sqrt{N!}}
+\left[
+\left\{
+    \hat{H}_1+ \hat{H}_2 + \cdots\hat{H}_N
+    \right\}
+    \left\{
+(-1)^0\varphi_\lambda(\tau_1)\varphi_\mu(\tau_2)\cdots\varphi_\xi(\tau_{N})
+        \right. \right.\\
+        
+&\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>
+
++(-1)^1\varphi_\lambda(\tau_2)\varphi_\mu(\tau_1)\cdots\varphi_\xi(\tau_{N})
++\cdots
+        \left.\left.
+        
+        \right\}
+    \right]\\
+
+&=
+\frac{1}{\sqrt{N!}}
+\left[
+    (-1)^0\left(\hat{H}_1\varphi_\lambda(\tau_1)\right)\varphi_\mu(\tau_2)\cdots\varphi_\xi(\tau_{N}) 
+    +
+    (-1)^0\varphi_\lambda(\tau_1)\left(\hat{H}_2\varphi_\mu(\tau_2)\right)\cdots\varphi_\xi(\tau_{N}) 
+    +\cdots
+    \right.
+    \\
+&\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>\>
+\left.
++
+(-1)^1\varphi_\lambda(\tau_2)\left(\hat{H}_1\varphi_\mu(\tau_1)\right)\cdots\varphi_\xi(\tau_{N})
++
+(-1)^1\left(\hat{H}_2\varphi_\lambda(\tau_2)\right)\varphi_\mu(\tau_1)\cdots\varphi_\xi(\tau_{N})
++\cdots
+\right]\\
+
+&=
+\frac{1}{\sqrt{N!}}
+\left[
+    (-1)^0\left(\hat{H}_1\varphi_\lambda(\tau_1)\right)\varphi_\mu(\tau_2)\cdots\varphi_\xi(\tau_{N}) 
+    +
+    (-1)^1\left(\hat{H}_2\varphi_\lambda(\tau_2)\right)\varphi_\mu(\tau_1)\cdots\varphi_\xi(\tau_{N})
+    + \cdots\right]
+\\
+
+&\>\>\>\>+
+\frac{1}{\sqrt{N!}}
+\left[
+
+    (-1)^0\varphi_\lambda(\tau_1)\left(\hat{H}_2\varphi_\mu(\tau_2)\right)\cdots\varphi_\xi(\tau_{N}) 
+    
++
+(-1)^1\varphi_\lambda(\tau_2)\left(\hat{H}_1\varphi_\mu(\tau_1)\right)\cdots\varphi_\xi(\tau_{N})
++
+
++\cdots
+\right]\\
+
+&=
+\left|
+\left(\hat{H}\varphi_\lambda\right)\varphi_\mu\cdots\varphi_\xi
+    \right|
+
++
+\left|
+\varphi_\lambda\left(\hat{H}\varphi_\mu\right)\cdots\varphi_\xi
+    \right|
+
++\cdots
+
++
+\left|
+\varphi_\lambda\varphi_\mu\cdots\left(\hat{H}\varphi_\xi\right)
+    \right|.
+
+\end{align*}
+$$
+:::
+

@@ -49,6 +49,7 @@ $$
 ## [第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)
 ## [飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式](https://zenn.dev/ponzumai/articles/tight-binding-model-hopping-int)
 ## [重なり積分（Overlap Integral）の物理的意味（の妄想）](https://zenn.dev/ponzumai/articles/tight-binding-model-overlap-int)
+## [第二量子化表示/生成・消滅演算子の方法](https://zenn.dev/ponzumai/articles/tight-binding-model-2nd-q)
 ## Tight-binding modelの第二量子化表示
 
 
