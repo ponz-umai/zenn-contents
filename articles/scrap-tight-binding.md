@@ -1508,3 +1508,338 @@ $$
 $$
 :::
 
+# TB第二量子化表示
+
+
+
+
+
+
+この場合格子定数を$a$とすると、基本格子ベクトルは
+
+
+$$
+\boldsymbol{a}_1 = (a,0,0),\\
+\boldsymbol{a}_2 = (0,a,0),\\
+\boldsymbol{a}_3 = (0,0,a)
+$$
+
+となり、隣接格子ベクトルは基本格子ベクトルの逆方向まで考えて
+
+$$
+\boldsymbol{N}_i = (\pm a,0,0), (0,\pm a,0),(0,0,\pm a)
+$$
+
+です。また、再隣接への飛び移り積分は、$x,y,z$方向が等価なので全ての再隣接ベクトルに対して同じ値になるため、
+
+$$
+\begin{align*}
+-t_{(s,\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow (s,\boldsymbol{R})}
+&=
+
+\int
+ \phi_s(|\boldsymbol{r}-\boldsymbol{N}_i|)
+ 
+   V(|\boldsymbol{r} - \boldsymbol{N}_i|)
+ 
+ \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}\\
+
+
+&=
+
+\int
+ \phi_s(|\boldsymbol{r}-(\pm a,0,0)|)
+ 
+   V(|\boldsymbol{r} - (\pm a,0,0)|)
+ 
+ \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}=\cdots\\
+
+&\equiv
+
+-t_s^{\rm NN}
+
+
+\end{align*}
+$$
+
+と置けます。（"NN"は、Nearlest Neighbour"の頭文字）
+
+このように考えるとハミルトニアンは飛び移り積分を和の外に出せて、
+
+
+
+$$
+\begin{align*}
+\mathcal{H}^s
+
+&=
+        -t_{s}^{\rm NN} 
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\boldsymbol{R}}
+    \sum_{i\in I}
+
+
+    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
+    
+\end{align*}
+$$
+
+となります。これはかなり見覚えのある形になりました。ここで和$\sum_{\boldsymbol{R}}\sum_{i\in I}$ですが、
+
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+## s軌道の具体例
+
+
+
+
+
+=========================================
+
+ここで、第一量子化で考えたように、「固体の固有関数をとりあえず3次元格子
+
+が、今、1つの（$s$軌道の）原子軌道関数のみを考えているということは、固体の固有関数をこの原子軌道関数のみのBloch和で近似できると考えていることに対応します。（あるいは（Wannier関数を一つの原子軌道関数で近似しているとも見れます）
+
+この時固有関数を$\varphi_{s,\boldsymbol{k}}(\boldsymbol{r})$とすると
+
+
+$$
+\varphi_{s,\boldsymbol{k}}(\boldsymbol{r})\simeq
+\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}}\phi_s(\boldsymbol{r}-\boldsymbol{R})
+$$
+
+$$
+\phi_s(\boldsymbol{r}-\boldsymbol{R})
+=
+\frac{1}{N^3}
+\sum_{\boldsymbol{k}}e^{-i\boldsymbol{k}\cdot\boldsymbol{R}}
+\varphi_{s,\boldsymbol{k}}(\boldsymbol{r})
+$$
+
+特に、$\boldsymbol{R} = n\boldsymbol{a}_1$の時は、
+
+$$
+\phi_s(\boldsymbol{r}-n\boldsymbol{a}_1)
+=
+\frac{1}{N^3}
+\sum_{\boldsymbol{k}}
+e^{-ik_1na}
+\varphi_{s,\boldsymbol{k}}(\boldsymbol{r})
+$$
+
+これを変換と考えると
+$$
+\hat{a}^\dagger_{s,j,\gamma}
+
+=
+\sum_{\boldsymbol{k}} \braket{ \varphi_{s,\boldsymbol{k},\gamma}|\phi_{s,j,\gamma}}\hat{b}_{s,\boldsymbol{k},\gamma}^\dagger
+=
+\frac{1}{N^3}\sum_{\boldsymbol{k}}e^{-ik_1aj}b_{s,\boldsymbol{k},\gamma}^\dagger
+$$
+
+$$
+\hat{a}_{s,j,\gamma} = \sum_{\boldsymbol{k}} \braket{\phi_{s,j,\gamma} | \varphi_{s,\boldsymbol{k},\gamma}}\hat{b}_{s,\boldsymbol{k},\gamma}
+
+= \sum_{\boldsymbol{k}}e^{ik_1aj}b_{s,\boldsymbol{k},\gamma}
+$$
+
+
+となる。これを代入すると、
+
+$$
+\begin{align*}
+\mathcal{H}^{s,1D}
+
+&=
+   -t_{s}^{\rm NN}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{j}
+    \sum_{\delta=\pm 1}
+
+  \frac{1}{N^3}\sum_{\boldsymbol{k},\boldsymbol{k}'}
+  e^{i((k_1-k_1')a_1\times j)}
+    e^{-ik_1'a_1\delta}
+  b_{s,\boldsymbol{k}',\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^3}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\delta=\pm 1}
+
+ \sum_{\boldsymbol{k},\boldsymbol{k}'}
+  N\delta_{k_1,k_1'}
+  e^{-ik_1'a_1\delta}
+  b_{s,\boldsymbol{k}',\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^2}
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k_1}\sum_{k_2,k_3,k_2',k_3'}
+ \sum_{\delta=\pm 1}
+  e^{-ik_1a_1\delta}
+  b_{s,\boldsymbol{k},\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^2}
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k_1}
+ \sum_{k_2,k_3,k_2',k_3'}
+ 2\cos(k_1a_1)
+  b_{s,\boldsymbol{k},\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+\end{align*}
+$$
+
+ここでスレーター行列式$|\varphi_{\boldsymbol{k}}\cdots|$に対して
+
+$$
+2\cos(k_1a_1)
+\sum_{k_2,k_3,k_2',k_3'}
+ 
+  b_{s,\boldsymbol{k}',\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+  |\varphi_{\boldsymbol{k}}\cdots|
+
+=
+2\cos(k_1a_1)
+\sum_{k_2,k_3}
+ 
+  b_{s,\boldsymbol{k},\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+
+  |\varphi_{\boldsymbol{k}}\cdots|
+$$
+
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+
+
+$$
+\hat{a}^\dagger_{s,n + \delta,\gamma}
+=
+\frac{1}{N^3}
+\sum_{\boldsymbol{k}} e^{-i(k_1a_1\times (n + \delta))}
+b_{s,\boldsymbol{k},\gamma}^\dagger,\\
+
+\hat{a}_{s,j,\gamma} = 
+\sum_{\boldsymbol{k}} 
+e^{i(k_1a_1\times j)}
+b_{s,\boldsymbol{k},\gamma}
+$$
+
+ここで
+
+$$
+\hat{a}_\nu = \sum_\eta c_{\eta,\nu}^* \hat{b}_\eta = \sum_\eta \braket{\phi_\eta|\varphi_\nu} \hat{b}_\eta
+$$
+
+
+
+
+
+==================================
+
+
+
+
+$$
+\varphi_{s,k_1}(\boldsymbol{r})\simeq
+\sum_{j}e^{ik_1a\times j}\phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)
+$$
+
+逆変換
+
+$$
+\phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)
+=
+\frac{1}{N}
+\sum_{k_1}
+e^{-ik_1a\times j}
+\varphi_{s,k_1}(\boldsymbol{r})
+$$
+
+であると考えられます。
+
+
+これを基底$\phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)$から$\varphi_{s,k_1}(\boldsymbol{r})$への変換と考え、$\varphi_{s,k_1}(\boldsymbol{r})$とスピン関数の積の生成消滅演算子を$\hat{b}_{s,k_1,\gamma}^\dagger,\hat{b}_{s,\boldsymbol{k},\gamma}$とすれば、生成消滅演算子の変換は前後でスピン状態は変わらないので
+
+$$
+\hat{a}^\dagger_{s,j + \delta,\gamma}
+=
+\frac{1}{N}
+\sum_{k_1} e^{-i(k_1a_1\times (j + \delta))}
+b_{s,k_1,\gamma}^\dagger,\\
+
+\hat{a}_{s,j,\gamma} = 
+\frac{1}{N}
+\sum_{k_1} 
+e^{i(k_1a_1\times j)}
+b_{s,k_1,\gamma}
+$$
+
+となります。これをハミルトニアンに代入すると、
+
+
+$$
+\begin{align*}
+\mathcal{H}^{s,1D}
+
+&=
+   -t_{s}^{\rm NN}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{j}
+    \sum_{\delta=\pm 1}
+
+  \frac{1}{N^6}\sum_{\boldsymbol{k},\boldsymbol{k}'}
+  e^{i((k_1-k_1')a_1\times j)}
+    e^{-ik_1'a_1\delta}
+  b_{s,\boldsymbol{k}',\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^6}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\delta=\pm 1}
+
+ \sum_{\boldsymbol{k},\boldsymbol{k}'}
+  N\delta_{k_1,k_1'}
+  e^{-ik_1'a_1\delta}
+  b_{s,\boldsymbol{k}',\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^5}
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k_1}\sum_{k_2,k_3,k_2',k_3'}
+ \sum_{\delta=\pm 1}
+  e^{-ik_1a_1\delta}
+  b_{s,\boldsymbol{k},\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N^6}
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k_1}
+ \sum_{k_2,k_3,k_2',k_3'}
+ 2\cos(k_1a_1)
+  b_{s,\boldsymbol{k},\gamma}^\dagger
+  b_{s,\boldsymbol{k},\gamma}
+    \\
+\end{align*}
+$$
+
+
+
