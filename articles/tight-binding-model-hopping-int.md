@@ -5,6 +5,10 @@ type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
 published: true
 ---
+
+:::message alert
+飛び移り積分の複素共役の部分に勘違いがありそうなので注意。「複素共役を取ると逆向きになる」と書いてますが、多分違う。そのうち直します。
+:::
 # はじめに
 
 前章でTight-bindingモデルを導出していく中で、原子軌道関数や局所ポテンシャルの積分で定義された重なり積分
