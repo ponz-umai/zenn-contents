@@ -72,8 +72,8 @@ $$
 
 となります。ここで質量$m$は正確には換算質量
 $\mu =\frac{mM}{m+M}$なのですが、電子の質量は原子核の数千分の一程度なので実質電子の質量となります。（静止した原子核の周りを電子が運動している描像になります）
-### 水素原子中の電子の固有状態
-この微分方程式は解析的に解けます。解法をちゃんと追うのも重要だとは思うのですが、まずは原子核に束縛された電子（$\simeq$水素原子中の電子）の性質を掴めるようになることを目標にします。
+### 水素様原子中の電子の固有状態
+この微分方程式は解析的に解けます。解法をちゃんと追うのも重要だとは思うのですが、まずは電荷$Ze$の原子核に束縛された電子（$\simeq$水素様原子中の電子）の性質を掴めるようになることを目標にします。
 
 具体的な計算はおいおい[別ページ](https://zenn.dev/ponzumai/articles/appendix-hidrogen-atom)にまとめていこうと思いますが、ここでは計算の概要や解の性質については引用を駆使しつつ、特に過去の私のような人が引っかかりそうな点についてまとめようと思います。
 
@@ -88,7 +88,7 @@ $$
         -\frac{\lambda }{r^2} R
         \right)
         -
-       \frac{e}{4\pi\epsilon _0r}R = \epsilon R,\\
+       \frac{Ze}{4\pi\epsilon _0r}R = \epsilon R,\\
 \frac{1}{\sin\theta } \frac{d}{d\theta } \left( \sin\theta \frac{d\Theta }{d\theta }   \right) + \left( \lambda - \frac{m^2}{\sin^2\theta }  \right) \Theta =0,\\
 \frac{d^2\Phi }{d\phi ^2} + m^2\Phi =0.
 $$
@@ -105,13 +105,9 @@ l: 0または正の整数, かつ \>\>\>\> l+1\leq n\\
 m: 整数、かつ\>\>\>\> |m|<l
 $$
 
-$R_{nl}(r)$は「ラゲールの陪多項式」、$\Theta (\theta )$が「ルジャンドルの陪多項式」、$\Theta \Phi$を合わせた$Y_l^m(\theta ,\phi )$が「球面調和関数」と呼ばれる関数で表され、それぞれ一般項は
+$R_{nl}(r)$は「ラゲールの陪多項式」、$\Theta (\theta )$が「ルジャンドルの陪多項式」、$\Theta \Phi$を合わせた$Y_l^m(\theta ,\phi )$が「球面調和関数」と呼ばれる関数で表されます。球面調和関数の一般項は
 
 $$
-R_{nl}(r)= e^{-r/2\alpha}F(\alpha r) ,\alpha^2 =\frac{8m|\epsilon |}{\hbar^2} , \\
-F(\rho ) = \rho ^lL_{n+l}^{2l+1},\\
-L_{n+l}^{2l+1} = \sum_{k=0}^{n-l-1}(-1)^{k+2l+1}\frac{\left\{ (n+l)! \right\}^2 }{(n-l-1-k)!(2l+1+k)!k!}\rho ^k ,\\
-\Theta(\theta ) \Phi(\phi )= Y_l^m(\theta ,\phi ),\\
 Y_l^m(\theta ,\phi )= 
     (-1)^{\frac{|m|+m}{2} }
         \left[
@@ -121,10 +117,12 @@ P_l^m(\omega ) = (1-\omega ^2)^{|m|/2}\frac{d^{|m|}}{d\omega^{|m|}} P_l(\omega )
  P_l(\omega ) = \frac{1}{2^ll!}\frac{d^l}{d\omega ^l} \left( \omega ^2 -1 \right) ^l
 $$
 
-となり、固有エネルギー$\epsilon _n$は
+と書かれます。動径関数の一般項は、ちょっとややこしすぎて全然理解できていないのでまたいずれ書きます。
+
+また固有エネルギー$\varepsilon _n$は
 
 $$
-\epsilon _n = -\frac{me^4}{(4\pi\epsilon )^22\hbar^2} \frac{1}{n^2} , \>\>\>\> n=1,2,\cdots
+\varepsilon _n = -\frac{Z^2me^4}{(4\pi\epsilon_0 )^22\hbar^2} \frac{1}{n^2} , \>\>\>\> n=1,2,\cdots
 $$
 
 となります。ある$n$を選ぶと、その値に対して$l$が$l=0,1,\cdots n-1$の$n$個あり、かつそれぞれの$l$に対して$m$が$m=-l, -(l-1)\cdots ,0,\cdots l$の$2l+1$個あるので、合計$\sum_{k=0}^{n-1}(2k+1)=n^2$個のエネルギーが等しい（縮退した）状態が存在することになります。

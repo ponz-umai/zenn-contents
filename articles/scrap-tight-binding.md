@@ -1843,3 +1843,223 @@ $$
 
 
 
+## 1次元の具体例
+
+
+この時、大きな特徴として
+
+
+
+ですが、$s$軌道関数が球対称実関数、局所ポテンシャル$V(\boldsymbol{r})$も球対称実関数と置いているので、どちらの方向の飛び移り積分も等しくかつ実数の定数、
+
+$$
+\begin{align*}
+-t_{(s,\boldsymbol{R}\pm\boldsymbol{a}_1) \leftarrow (s,\boldsymbol{R})}
+&=
+
+\int
+ \phi_s(|\boldsymbol{r}\pm\boldsymbol{a}_1|)
+ 
+   V(|\boldsymbol{r} \pm \boldsymbol{a}_1|)
+ 
+ \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}\\
+
+ &\equiv-t_s^{\rm NN} = -(t_s^{\rm NN})^*\\
+
+ 
+\end{align*}
+$$
+
+となります。これらを踏まえて第二量子化表示のハミルトニアンは
+
+
+$$
+\begin{align*}
+\mathcal{H}^{s,1D}
+
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\boldsymbol{R}}
+    \sum_{i\in I}
+
+     -t_{(s,\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow ({s},\boldsymbol{R})}
+    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
+    \\
+&\simeq
+
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\boldsymbol{R}}
+    \sum_{\boldsymbol{N}_i=\pm \boldsymbol{a}_1}
+
+     -t_{s}^{\rm NN}
+    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
+    \\
+
+
+\end{align*}
+$$
+
+
+となります。ここで、このハミルトニアンはスレーター行列式の中の1電子状態$\phi_{s,\boldsymbol{R}}$のラベル$\boldsymbol{R}$を、$\boldsymbol{a}_1$方向にしか変えないため、スレーター行列式を1次元上に並んだ原子軌道関数$\phi_s(\boldsymbol{r}), \phi_s(\boldsymbol{r}\pm \boldsymbol{a}_1),\phi_s(\boldsymbol{r}\pm 2\boldsymbol{a}_1),\cdots ,\phi_s(\boldsymbol{r}\pm i\boldsymbol{a}_1)\cdots$のみを考えることにして^[この辺の説明がまだ自分でも混乱している気がするのでいつか修正する]、関数
+
+$$
+\phi_s(\boldsymbol{r}\pm i\boldsymbol{a}_1)
+$$
+
+（とスピン関数の積）の生成消滅演算子を
+
+$$
+    \hat{a}_{s,i,\gamma}^\dagger,\hat{a}_{s,i,\gamma}
+$$
+
+と書くことにすると、1次元的なハミルトニアン
+
+$$
+\begin{align*}
+\mathcal{H}^{s,1D}
+
+&=
+   -t_{s}^{\rm NN}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{i}
+    \sum_{\delta=\pm 1}
+
+  
+    \hat{a}_{s,i+\delta,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+    \\
+
+
+\end{align*}
+$$
+
+が得られます。ここで、$\sum_{i}\sum_{\delta=\pm 1}$ですが、全ての$i$とその隣接項$i\pm 1$についての和を取るので、これを隣接した$i,j$のみ和を取るという意味で、$i<j$として
+
+$$
+-t_{s}^{\rm NN}
+    \sum_{<i,j>}
+    \left(\hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}
++
+\hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+\right)
+$$
+
+と書くこともあります。
+余談ですが、この第2項をエルミート共役の意味で"+h.c."と書いていることが多いですが、エルミート共役だと$\hat{a}_{s,j,\gamma}\hat{a}_{s,i,\gamma}^\dagger = -\hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}$になってしまうのでつじつまが合わない気がするのですが、正直この辺はあまりよくわかっていません。
+
+# 水素原子
+
+動径関数の一般項。これ自分がどこ見て書いたかすら覚えていない
+
+$$
+R_{nl}(r)= e^{-r/2\alpha}F(\alpha r) ,\alpha^2 =\frac{8m|\epsilon |}{\hbar^2} , \\
+F(\rho ) = \rho ^lL_{n+l}^{2l+1},\\
+L_{n+l}^{2l+1} = \sum_{k=0}^{n-l-1}(-1)^{k+2l+1}\frac{\left\{ (n+l)! \right\}^2 }{(n-l-1-k)!(2l+1+k)!k!}\rho ^k ,\\
+\Theta(\theta ) \Phi(\phi )= Y_l^m(\theta ,\phi ),\\
+
+$$
+
+# 飛び移り積分の物理的意味
+
+## 複素共役について間違ったことを書いていた当り
+
+さて、最後に複素共役の謎を解明しておきます。これまでは話の展開を簡単にするために、原点にいる原子軌道の時間発展を考えてきました。するとなぜか、飛び移り積分の複素共役が出てきてしまいました。
+
+次に一般の、格子点$\boldsymbol{R}$に局在した原子軌道$\phi_m(\boldsymbol{r} - \boldsymbol{R})$の時間発展を考えてみますと、
+
+$$
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})
+$$
+
+は、「証明」部分と同じような計算をすれば、原点に局在した原子軌道の場合と同様に
+
+
+$$
+\begin{align*}
+\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})&=
+\sum_{m'}
+\sum_{\boldsymbol{R}'}
+
+\left(\sum_{n}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
+\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
+
+
+\\
+&\equiv
+\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
+\end{align*}
+$$
+
+として展開できます。
+
+この展開係数は、$\boldsymbol{R}' = \boldsymbol{R}$の場合は先ほどと同様に
+
+$$
+c_{m',\boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
+\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm} 
+$$
+
+で、$\boldsymbol{R}'\neq\boldsymbol{R}$の場合は、同様に「3中心積分」をゼロと置いたりなどして、
+
+
+$$
+c_{m',\boldsymbol{R}'\neq \boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
+
+\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
+$$
+
+となります。ここで$\boldsymbol{R}' = \boldsymbol{0}$、つまり「格子点$\boldsymbol{R}$に局在した原子軌道が、原点$\boldsymbol{R}'=\boldsymbol{0}$に飛び移って**行く**確率」を求めてみると、
+
+$$
+c_{m',\boldsymbol{0}}^{m,\boldsymbol{R}(\neq \boldsymbol{0})} \simeq
+
+\int\phi_{m'}^*(\boldsymbol{r})
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
+$$
+
+となります。これは先ほど求めた、「原点$\boldsymbol{R} = 0$に局在した原子軌道が、格子点$\boldsymbol{R}'$に飛び移っていく確率$\left(t_{\boldsymbol{R}'}^{m,m'}\right)^*$：
+
+
+$$
+\begin{align*}
+-\left(t_{\boldsymbol{R}'}^{m,m'}\right)^* &= 
+
+\left(
+\int_V\phi_{m}^*(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}')
+\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')d \boldsymbol{r} 
+\right)^*\\
+
+&=
+
+\int_V\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
+  V(\boldsymbol{r})
+\phi_m(\boldsymbol{r})d \boldsymbol{r} 
+\end{align*}
+$$
+
+の複素共役、あるいは複素共役を取る前と同じ形になっています。従って、（複素共役を取る前の）飛び移り積分は「原点に格子点$\boldsymbol{R}$**から**飛び移って**来る**確率」、その複素共役は「原点**から**格子点$\boldsymbol{R}$**に**飛び移って**行く**確率」という意味であったことが分かり、飛び移り積分の複素共役を取る行為は飛び移り方向を逆転させることに対応していたことが分かりました。
+
+
+## まとめの文章
+
+
+
+$$
+
+\int\phi_n^*(\boldsymbol{r} - \boldsymbol{R}_2)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_m(\boldsymbol{r}-\boldsymbol{R}_1)d\boldsymbol{r}
+=
+\left(
+\int\phi_m^*(\boldsymbol{r} - \boldsymbol{R}_1)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
+\right)^*
+
+$$
+
+つまり、格子点$\boldsymbol{R}_{1}$にいる状態$m$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{2} - \boldsymbol{R}$に状態$n$になって飛び移って**来る**確率（に比例（？）する量）を表す
+
+### 飛び移り積分の複素共役の物理的意味
+
+一方、上記飛び移り積分

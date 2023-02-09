@@ -7,8 +7,9 @@ published: true
 ---
 
 :::message alert
-飛び移り積分の複素共役の部分に勘違いがありそうなので注意。「複素共役を取ると逆向きになる」と書いてますが、多分違う。そのうち直します。
+飛び移り積分の複素共役の部分に勘違いがありました。「複素共役を取ると逆向きになる」と書いてましたが、多分勘違いでした。修正しました。空間の対称性とか波動関数の対称性とかを考えるともう少し正確なことが言えるような気もします。また、波動関数を実数化して考えるともう少し色々言えそうな気もしますが、そのあたりはおいおい追記することにします。。
 :::
+
 # はじめに
 
 前章でTight-bindingモデルを導出していく中で、原子軌道関数や局所ポテンシャルの積分で定義された重なり積分
@@ -57,7 +58,8 @@ $$
 
 
 $$
-\mathcal{H} = \sum_{\left <i,j \right>,\sigma }-t_{ij}a^\dagger_{i\sigma }a_{j\sigma } + h.c.
+\mathcal{H} = \sum_{\left <i,j \right>,\sigma }-t_{ij}
+\left(a^\dagger_{i\sigma }a_{j\sigma } + h.c.\right)
 $$
 
 のように書かれ、「サイトjの電子が、サイトiの電子に変わる」＝飛び移っていくようなそんな式の係数になっていたりします。
@@ -374,13 +376,12 @@ $$
  \end{align*}
 $$
 
-の形をしていることがわかります。複素共役になっちゃうのがやや違和感があるかもしれませんが、後でその意味もはっきりしてきますのでひとまずこのまま進みます。
-なお、これは定義の問題で、教科書によってはこの形（複素共役の形）を「飛び移り積分」として定義しているものもあります。前章の定義はアシュクロフト・マーミンやグロッソ・パラビチニに従ったのですが、この後考える第二量子化では逆（複素共役の方で定義する）の方が都合が良さそうなので、そっちに切り替えるかもしれません。）
+の形をしていることがわかります。複素共役になっちゃうのがやや違和感があるかもしれませんが、これは定義の問題で、教科書によってはこの形（複素共役の形）を「飛び移り積分」として定義しているものもあります。前章の定義はアシュクロフト・マーミンやグロッソ・パラビチニに従ったのですが、この後考える第二量子化では逆（複素共役の方で定義する）の方が都合が良さそうなので、この後は上記の方を「飛び移り積分」と書くことが多くなります。
 
 
 
 
-話を戻して、係数$c_{m',\boldsymbol{R}\neq \boldsymbol{0}}^{m,\boldsymbol{0}}$は、「飛び移り積分の複素共役」を用いて
+話を戻して、係数$c_{m',\boldsymbol{R}\neq \boldsymbol{0}}^{m,\boldsymbol{0}}$は、「前の章で定義した飛び移り積分の複素共役」を用いて
 
 $$
 \begin{align*}
@@ -546,7 +547,7 @@ $$
 &=
 
 \int_V\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
-  V(\boldsymbol{r})
+  V(\boldsymbol{r}-\boldsymbol{R}')
 \phi_m(\boldsymbol{r})d \boldsymbol{r} 
 \end{align*}
 $$
@@ -557,87 +558,8 @@ $$
 以上のように（きわめて怪しい）議論を繰り広げることで、飛び移り積分 **（の複素共役）** はその名前の通り、**原点（あるいはある格子点$\boldsymbol{R}$）にいる$m$状態の原子軌道$\phi_m(\boldsymbol{r})$（$\phi_m(\boldsymbol{r}-\boldsymbol{R})$）が、（微小時間後に）状態$m'$になって原点（あるいはある格子点$\boldsymbol{R}$）から格子ベクトル$\boldsymbol{R}'$離れた場所へ、$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R})$（$\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}-\boldsymbol{R}')$）として飛び移って行く確率**（に比例（？）する量）を表すことが分かりました。
 
 
-### 飛び移り積分の複素共役の意味
+### 飛び移り積分が前後の格子点の相対ベクトルのみに依存する性質
 
-さて、最後に複素共役の謎を解明しておきます。これまでは話の展開を簡単にするために、原点にいる原子軌道の時間発展を考えてきました。するとなぜか、飛び移り積分の複素共役が出てきてしまいました。
-
-次に一般の、格子点$\boldsymbol{R}$に局在した原子軌道$\phi_m(\boldsymbol{r} - \boldsymbol{R})$の時間発展を考えてみますと、
-
-$$
-\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})
-$$
-
-は、「証明」部分と同じような計算をすれば、原点に局在した原子軌道の場合と同様に
-
-
-$$
-\begin{align*}
-\hat{H}^{\rm c}\phi_m(\boldsymbol{r} - \boldsymbol{R})&=
-\sum_{m'}
-\sum_{\boldsymbol{R}'}
-
-\left(\sum_{n}\varepsilon_{n,\boldsymbol{R}-\boldsymbol{R}'}\tilde{b}_m^n b_{m'}^n
-\right)\phi_{m'}(\boldsymbol{r} - \boldsymbol{R}')
-
-
-\\
-&\equiv
-\sum_{m',\boldsymbol{R}'}c_{m',\boldsymbol{R}'}^{m,\boldsymbol{R}}\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}').
-\end{align*}
-$$
-
-として展開できます。
-
-この展開係数は、$\boldsymbol{R}' = \boldsymbol{R}$の場合は先ほどと同様に
-
-$$
-c_{m',\boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
-\varepsilon_m^{\rm a}\delta_{mm'} +\Delta\varepsilon_{m'm} 
-$$
-
-で、$\boldsymbol{R}'\neq\boldsymbol{R}$の場合は、同様に「3中心積分」をゼロと置いたりなどして、
-
-
-$$
-c_{m',\boldsymbol{R}'\neq \boldsymbol{R}}^{m,\boldsymbol{R}} \simeq
-
-\int\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
-  V(\boldsymbol{r}-\boldsymbol{R}')
-\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
-$$
-
-となります。ここで$\boldsymbol{R}' = \boldsymbol{0}$、つまり「格子点$\boldsymbol{R}$に局在した原子軌道が、原点$\boldsymbol{R}'=\boldsymbol{0}$に飛び移って**行く**確率」を求めてみると、
-
-$$
-c_{m',\boldsymbol{0}}^{m,\boldsymbol{R}(\neq \boldsymbol{0})} \simeq
-
-\int\phi_{m'}^*(\boldsymbol{r})
-  V(\boldsymbol{r})
-\phi_m(\boldsymbol{r} - \boldsymbol{R})d \boldsymbol{r} 
-$$
-
-となります。これは先ほど求めた、「原点$\boldsymbol{R} = 0$に局在した原子軌道が、格子点$\boldsymbol{R}'$に飛び移っていく確率$\left(t_{\boldsymbol{R}'}^{m,m'}\right)^*$：
-
-
-$$
-\begin{align*}
--\left(t_{\boldsymbol{R}'}^{m,m'}\right)^* &= 
-
-\left(
-\int_V\phi_{m}^*(\boldsymbol{r})
-  V(\boldsymbol{r}-\boldsymbol{R}')
-\phi_{m'}(\boldsymbol{r}-\boldsymbol{R}')d \boldsymbol{r} 
-\right)^*\\
-
-&=
-
-\int_V\phi_{m'}^*(\boldsymbol{r} - \boldsymbol{R}')
-  V(\boldsymbol{r})
-\phi_m(\boldsymbol{r})d \boldsymbol{r} 
-\end{align*}
-$$
-
-の複素共役、あるいは複素共役を取る前と同じ形になっています。従って、（複素共役を取る前の）飛び移り積分は「原点に格子点$\boldsymbol{R}$**から**飛び移って**来る**確率」、その複素共役は「原点**から**格子点$\boldsymbol{R}$**に**飛び移って**行く**確率」という意味であったことが分かり、飛び移り積分の複素共役を取る行為は飛び移り方向を逆転させることに対応していたことが分かりました。
 
 最後に、（これを確かめるのには今回の議論は不要ですが）飛び移り積分は飛び移り前と後の格子ベクトルの **差（＝飛び移り前の格子点から飛び移り先の格子点へ向かう相対ベクトル）** のみに依存することを次のように確認できます。すなわち、格子点$\boldsymbol{R}$から格子点$\boldsymbol{R}'$への飛び移り積分
 
@@ -689,23 +611,7 @@ $$
  - t_{\boldsymbol{R}}^{n,m}
 $$
 
-は、格子点が相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
-
-$$
-
-\int\phi_n^*(\boldsymbol{r} - \boldsymbol{R}_2)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_m(\boldsymbol{r}-\boldsymbol{R}_1)d\boldsymbol{r}
-=
-\left(
-\int\phi_m^*(\boldsymbol{r} - \boldsymbol{R}_1)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
-\right)^*
-
-$$
-
-つまり、格子点$\boldsymbol{R}_{1}$にいる状態$m$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{2} - \boldsymbol{R}$に状態$n$になって飛び移って**来る**確率（に比例（？）する量）を表す
-
-### 飛び移り積分の複素共役の物理的意味
-
-一方、上記飛び移り積分の複素共役
+の複素共役
 
 $$
 \begin{align*}
@@ -732,7 +638,9 @@ $$
 \end{align*}
 $$
 
-は、逆に、先ほどと同様に相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+は、原点の格子点$\boldsymbol{0}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}$に状態$m$になって飛び移って行く確率（に比例（？）する量）を表す
+
+これは、格子点が相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えて、相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると、周期的境界条件を考えると
 
 $$
 \begin{align*}
@@ -759,13 +667,15 @@ $$
 \end{align*}
 $$
 
+のように、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって飛び移って**行く**確率（に比例（？）する量）と一致する
 
-で、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって飛び移って**行く**確率（に比例（？）する量）を表す
+
+
 
 :::
 
 
-なお、先ほどもちらっと述べましたが、後に使うには「飛び移って**行く**確率を（複素共役の付かない）飛び移り積分と定義したほうが使いやすそうです。また、飛び移りの方向もややこしいので明示しておいた方が良さそうです。というわけでこれらがわかりやすいように、
+なお、先ほどもちらっと述べましたが、後に使うには元々定義しておいた飛び移り積分の複素共役を改めて飛び移り積分と定義したほうが使いやすそうです。また、飛び移りの方向もややこしいので明示しておいた方が良さそうです。というわけで今後はこれらがわかりやすいように、
 
 $$
 -t_{(m,\boldsymbol{R}+ \boldsymbol{R}') \leftarrow (n,\boldsymbol{R})}
@@ -780,7 +690,7 @@ $$
 
 $$
 
-のようにも書くかもしれません。（結局書かないかもしれません）（あとで微修正するかもしれません）
+のようにも書くと思います。
 
 
 :::details 将来の自分への余談
@@ -1134,36 +1044,7 @@ $$
 
 ### 飛び移り積分の物理的意味
 
-前章で定義した飛び移り積分
-
-$$
-\int
- \phi_n^*(\boldsymbol{r})
- 
-   V(\boldsymbol{r} - \boldsymbol{R})
- 
- \phi_m(\boldsymbol{r}-\boldsymbol{R})d\boldsymbol{r}
- \equiv
- - t_{\boldsymbol{R}}^{n,m}
-$$
-
-は、格子点が相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
-
-$$
-
-\int\phi_n^*(\boldsymbol{r} - \boldsymbol{R}_2)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_m(\boldsymbol{r}-\boldsymbol{R}_1)d\boldsymbol{r}
-=
-\left(
-\int\phi_m^*(\boldsymbol{r} - \boldsymbol{R}_1)V(\boldsymbol{r} - \boldsymbol{R}_1)\phi_n(\boldsymbol{r}-\boldsymbol{R}_2)d\boldsymbol{r}
-\right)^*
-
-$$
-
-つまり、格子点$\boldsymbol{R}_{1}$にいる状態$m$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{2} - \boldsymbol{R}$に状態$n$になって飛び移って**来る**確率（に比例（正確には絶対値の2乗が比例）する量）を表す
-
-### 飛び移り積分の複素共役の物理的意味
-
-一方、上記飛び移り積分の複素共役
+前章で定義した飛び移り積分の複素共役
 
 $$
 \begin{align*}
@@ -1190,7 +1071,7 @@ $$
 \end{align*}
 $$
 
-は、逆に、先ほどと同様に相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
+は、相対ベクトル$\boldsymbol{R}$だけ離れた2つの格子点$\boldsymbol{R}_1 - \boldsymbol{R}_2 = \boldsymbol{R}$を考えると
 
 $$
 \begin{align*}
@@ -1218,7 +1099,7 @@ $$
 $$
 
 
-で、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって飛び移って**行く**確率（に比例（正確には絶対値の2乗が比例）する量）を表す
+で、格子点$\boldsymbol{R}_{2}$にいる状態$n$の電子が、（微小時間後に）格子点$\boldsymbol{R}_{2} = \boldsymbol{R}_{1} + \boldsymbol{R}$に状態$m$になって「飛び移って」行く確率（に比例（正確には絶対値の2乗が比例）する量）を表す
 
 :::
 

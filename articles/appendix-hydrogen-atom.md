@@ -76,7 +76,7 @@ $$
 \left\{
     -\frac{\hbar^2}{2m}\left(
         \frac{\partial ^2}{\partial r^2} + \frac{2}{r}\frac{\partial }{\partial r} + \frac{1}{r^2}\hat{\Lambda} (\theta ,\phi)
-         \right) -\frac{e}{4\pi\epsilon _0r}  
+         \right) -\frac{Ze}{4\pi\epsilon _0r}  
     \right\}
  \varphi(\boldsymbol{r}) =\epsilon \varphi (\boldsymbol{r} ),\\
 \hat{\Lambda} (\theta ,\phi) = \left\{
@@ -97,7 +97,7 @@ $$
         \right)Y
          + \frac{R}{r^2}\hat{\Lambda} Y
     \right\}      
-         -\frac{e}{4\pi\epsilon _0r}  RY
+         -\frac{Ze}{4\pi\epsilon _0r}  RY
  =\epsilon RY
 $$
 
@@ -108,7 +108,7 @@ $$
         \frac{d ^2R}{d r^2} + \frac{2}{r}\frac{d R}{d r}
         \right)
         +
-        \frac{2m}{\hbar^2}r^2\left( \epsilon + \frac{e}{4\pi\epsilon _0r} \right)  
+        \frac{2m}{\hbar^2}r^2\left( \epsilon + \frac{Ze}{4\pi\epsilon _0r} \right)  
  =-\frac{\hat{\Lambda}Y }{Y} 
 $$
 
@@ -120,7 +120,7 @@ $$
         -\frac{\lambda }{r^2} R
         \right)
         -
-       \frac{e}{4\pi\epsilon _0r}R = \epsilon R
+       \frac{Ze}{4\pi\epsilon _0r}R = \epsilon R
 $$
 
 と$\theta , \phi$ に関する微分方程式
@@ -188,7 +188,7 @@ $$
         -\frac{\lambda }{r^2} R
         \right)
         -
-       \frac{e}{4\pi\epsilon _0r}R = \epsilon R,\\
+       \frac{Ze}{4\pi\epsilon _0r}R = \epsilon R,\\
 \frac{1}{\sin\theta } \frac{d}{d\theta } \left( \sin\theta \frac{d\Theta }{d\theta }   \right) + \left( \lambda - \frac{m^2}{\sin^2\theta }  \right) \Theta =0,\\
 \frac{d^2\Phi }{d\phi ^2} + m^2\Phi =0.
 $$

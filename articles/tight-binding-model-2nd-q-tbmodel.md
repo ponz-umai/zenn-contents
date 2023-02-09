@@ -14,12 +14,15 @@ published: false
 第二量子化表示のTight-bindingモデルは、おそらく物性に関連する研究をしていたら見ない日は無いだろうと思われる、
 
 $$
-\mathcal{H} = \sum_{ i,j ,\sigma } -t_{ij}a^\dagger_{i\sigma }a_{j\sigma }  
+\mathcal{H} = \sum_{ \left<i,j\right> ,\sigma } -t_{ij}
+\left(
+  a^\dagger_{i\sigma }a_{j\sigma }  + {\rm h.c.}
+  \right)
 $$
 
-のように「飛び移り積分」（や"Hopping Integral", "Transfer Integral"等）と呼ばれる謎の定数$t$と、サイト$i,j$に電子を作ったり消したりする謎の演算子「生成・消滅演算子」によって構成される謎の式です。
+のように「飛び移り積分」（や"Hopping Integral", "Transfer Integral"等）と呼ばれる謎の定数$t$と、サイト$i,j$に電子を作ったり消したりする謎の演算子「生成・消滅演算子」とその突然のエルミート共役とあと謎の和の取り方$\sum_{\left<ij\right>}$等によって構成される謎の式です。
 
-おおよそ上式を眺めながら、
+上式を眺めながら、
 
 - サイト$i,j$に電子を「生成する」「消滅させる」って何？そんなことできるの？
 - あとそもそもサイト$i,j$も何？どういう理屈で空間が離散化されてんの？（実はされてません）
@@ -31,7 +34,7 @@ $$
 
 そんな日々に終止符を打つため、本章ではこれまでまとめてきた内容をもとに、上記のような第二量子化表示のTight-bindingモデルについて整理していきます。
 
-# 前章の振り返り
+# 第二量子化表示の振り返り
 
 初めに今回使う道具として、[前章](https://zenn.dev/ponzumai/articles/tight-binding-model-2nd-q)でまとめた第二量子化表示の基本的な考え方をこちらにまず再掲します。
 
@@ -44,7 +47,7 @@ E
 \Phi(\tau_1,\tau_2,\cdots,\tau_N)
 $$
 
-において、任意の多体の波動関数$\Phi(\tau_1,\tau_2,\cdots,\tau_N)$を完全正規直交系$\{\varphi_\nu\}$で構成されるスレーター行列式の線形結合として
+において、任意の多体の波動関数$\Phi(\tau_1,\tau_2,\cdots,\tau_N)$は1体の完全正規直交系$\{\varphi_\nu\}$で構成されるスレーター行列式の線形結合で
 
 $$
 \Phi(\tau_1,\tau_2,\cdots,\tau_N)
@@ -55,7 +58,9 @@ $$
     \right|
 $$
 
-と展開すると考えると、「完全正規直交系$\{\varphi_\nu\}$にハミルトニアンを作用させるとどうなるか？」を考え、何かしらの演算子を対応させることでハミルトニアンを書き換えることができます。
+と展開できます。
+
+このとき「完全正規直交系$\{\varphi_\nu\}$で構成される任意のスレーター行列式にハミルトニアンを作用させるとどうなるか？」を考え、何かしらの演算子を対応させることでハミルトニアンを書き換えることができます。
 
 特に多体のハミルトニアン$\mathcal{H}$が1電子のハミルトニアン$\hat{H}$の和で
 
@@ -140,7 +145,7 @@ $$
     \right|
 $$
 
-またはスレーター行列式に対応するラベルの1電子状態があった場合生成演算子$\hat{a}_\delta^\dagger$を作用させた結果は$0$となる：
+スレーター行列式に対応するラベルの1電子状態がある場合は生成演算子$\hat{a}_\delta^\dagger$を作用させた結果は$0$となる：
 
 $$
 \hat{a}_\delta^\dagger
@@ -173,7 +178,7 @@ $$
 
 （この定義は$\hat{a}_\kappa\hat{a}_\kappa^\dagger = 1$とも見れる（多分））
 
-また、スレーター行列式に消滅演算子$\hat{a}_\kappa$の示す状態$\varphi_\kappa$が含まれない場合は、消滅演算子を作用させた結果は$0$を返す：
+スレーター行列式に消滅演算子$\hat{a}_\kappa$の示す状態$\varphi_\kappa$が含まれない場合は、消滅演算子を作用させた結果は$0$を返す：
 
 $$
 \hat{a}_\kappa|\cdots(\varphi_\kappa 無し) \cdots|=0.
@@ -182,7 +187,7 @@ $$
 :::
 
 
-多体のハミルトニアンのスレーター行列式への作用は二つの演算子を用いて
+このように生成消滅演算子を定義すると、多体のハミルトニアンのスレーター行列式への作用は二つの演算子を用いて
 
 $$
 \mathcal{H}\left|
@@ -253,6 +258,8 @@ $$
 ここで、特に1体のハミルトニアンがスピンに関する項を含まない場合、第二量子化表示のハミルトニアンは
 
 
+:::message
+
 $$
 \begin{align*}
 \mathcal{H} &= \sum_{\delta\kappa}H_{\delta\kappa}\hat{a}^\dagger_\delta \hat{a}_\kappa\\
@@ -270,6 +277,8 @@ H_{dk}
 
 \end{align*}
 $$
+
+:::
 
 と、スピン部分については同じスピン状態を取り、軌道関数でハミルトニアンを挟んだ積分を係数とする形で書くことができます。
 
@@ -316,6 +325,7 @@ $$
 そこで、まず第一の近似として、
 
 - 原子核（格子点）は静止しているものと近似する（Born–Oppenheimer近似）
+- 原子核間の相互作用は無視する
 - 同じ原子核内の多電子の相互作用は（例えば[多電子原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-many-electron-atom)の章で考えたような手法で）1体ポテンシャルとして近似し、結晶の周期と同じ周期で局所的な孤立原子のポテンシャルとして扱う
 - 価電子間のCoulomb相互作用（やその他の相互作用）はひとまず無視する
 
@@ -338,11 +348,11 @@ $$
 
 ハミルトニアンが1体演算子の形で書けたので、次はスレーター行列式を展開するための完全正規直交関数系を決めましょう。どんな関数系がこの条件を満たすでしょうか？
 
-結論から言うと格子点$\boldsymbol{R}$を中心とする原子軌道関数（孤立原子ポテンシャルの固有関数）$\{\phi_m(\boldsymbol{r} - \boldsymbol{R})\}$で展開していくことになります。
+結論から言うと格子点$\boldsymbol{R}$を中心とする原子軌道関数（孤立原子ポテンシャルの固有関数）$\{\phi_m(\boldsymbol{r} - \boldsymbol{R})\}$で展開していくことになりますが、その結論に至るまでいくつかの関数系を渡り歩いていくことになります。
 
 ### 周期的境界条件と平面波展開
 
-関数系を考える前に、境界条件を設定します。ここではよく使われる（というか「表面状態を見たい」等特別な理由がない限りほぼ使われている）Born–von Karmanの周期的境界条件と呼ばれる境界条件を設定します。これは周期的な境界条件ではありますが、その周期を十分大きく取ることで結局とても（無限に）大きい結晶を考えるような条件です。具体的には、先ほど周期的なポテンシャルにおいて設定した格子の周期を表す基本格子ベクトルと「十分大きな整数」$N_i$を用いて、波動関数が
+早速始めていきますが、まず関数系を考える前に、境界条件を設定します。ここではよく使われる（というか「表面状態を見たい」等特別な理由がない限りほぼ使われている）Born–von Karmanの周期的境界条件と呼ばれる境界条件を設定します。これは周期的な境界条件ではありますが、その周期を十分大きく取ることで結局とても（無限に）大きい結晶を考えるような条件です。具体的には、先ほど周期的なポテンシャルにおいて設定した格子の周期を表す基本格子ベクトルと「十分大きな整数」$N_i$を用いて、波動関数が
 
 $$
 \varphi(\boldsymbol{r} + N_1\boldsymbol{a}_1) = \varphi(\boldsymbol{r} + N_2\boldsymbol{a}_2) = \varphi(\boldsymbol{r} + N_3\boldsymbol{a}_3) = \varphi(\boldsymbol{r} ) 
@@ -430,7 +440,9 @@ $$
 
 ### Blochの定理とBloch関数とWannier関数
 
-次に、[固体（結晶）中の電子状態](https://zenn.dev/ponzumai/articles/tight-binding-model-electrons-in-solids)で整理したBlochの定理を思い出していきます。
+ここから、多電子の波動関数を展開するための完全正規直交関数系候補を一つずつ取り上げていきます。
+
+まずは[固体（結晶）中の電子状態](https://zenn.dev/ponzumai/articles/tight-binding-model-electrons-in-solids)で整理したBlochの定理を思い出していきながら、第一候補のBloch関数を考えます。（もしかしたら本章のように固体のハミルトニアンの固有状態のことを「Bloch関数」と呼ぶ使い方は間違っているのかもしれませんが、ひとまず気にせずに進みます）
 
 #### Blochの定理（の一部）
 
@@ -450,7 +462,9 @@ $$
 e^{i(\boldsymbol{k} - \boldsymbol{K} )\cdot \boldsymbol{r}}
 $$
 
-によって書くことができます。このように固有関数は、組み合わせる波数を代表する波数$\boldsymbol{k}$（この波数を「Bloch波数」と呼びます）と、（無限個の）逆格子ベクトルだけ異なる平面波の組み合わせから得られる（無限個の）固有値に対応したラベル$n$によって指定され、Bloch関数などと呼ばれます。
+によって書くことができます。このように固有関数は、組み合わせる波数を代表する波数$\boldsymbol{k}$（この波数を「Bloch波数」と呼びます）と、（無限個の）逆格子ベクトルだけ異なる平面波の組み合わせから得られる（無限個の）固有値に対応したラベル$n$によって指定され、Bloch関数などと呼ばれます。この時の係数はシュレーディンガー方程式を解くことによって得られますが、ここでは係数を具体的に求めることはしません。（導出が知りたい場合は[固体（結晶）中の電子状態](https://zenn.dev/ponzumai/articles/tight-binding-model-electrons-in-solids)にまとめてありますのでご確認ください）
+
+
 Bloch関数に対応する固有値を、ラベル$n,\boldsymbol{k}$を用いて$\varepsilon_{n,\boldsymbol{k}}$と書き、固有値、固有関数（Bloch関数）は$\hat{H}^{\rm c}\varphi_{n,\boldsymbol{k}} = \varepsilon_{n,\boldsymbol{k}}\varphi_{n,\boldsymbol{k}}$を満たします。固有値のラベル$n$は、固有値（固有エネルギー）が小さい順に番号を振ることにしておきます。
 
 #### 完全正規直交基底その2：Bloch関数
@@ -587,9 +601,14 @@ C_{n,\boldsymbol{R}}(\boldsymbol{r})= \frac{1}{v_{BZ}}\int_{BZ} \varphi_n(\bolds
 $$
 
 
-できるのでした。ここで2式目の積分は逆格子空間の単位胞、すなわちブリルアンゾーンを積分範囲として取ります。また$v_{BZ}$はブリルアンゾーンの体積$\boldsymbol{b}_1\cdot(\boldsymbol{b}_2\times\boldsymbol{b}_3)$です。
+できるのでした。ここでこの平面波展開は、波数空間で波数$\boldsymbol{k}$を「座標変数」として、格子ベクトルを「波数」のようにかんがえた平面波$e^{i\boldsymbol{R}\cdot\boldsymbol{k}}$による平面波展開であることに注意してください（この説明逆にややこしいかな？）
 
-そして、上記のように展開したBloch関数において、波数$\boldsymbol{k}$についての展開を考えていたことから、展開係数$C_{n,\boldsymbol{R}}$もまた、$\boldsymbol{r}$の関数となっており電子の観測確立に対応した波動関数的なものであると考えられます。このように定義された$C_{n,\boldsymbol{R}}(\boldsymbol{r})$を$w_{n,\boldsymbol{R}}(\boldsymbol{r})$と書き、この関数を提唱者の名前を取ってWannier関数と呼びます。改めて書くと、
+2式目の積分は逆格子空間の単位胞を積分範囲として取ります。単位胞であれば何でもいいですが、多くの場合ブリルアンゾーンと呼ばれる、逆格子空間のWigner-Seitz cellを積分範囲として取ります。
+
+また$v_{BZ}$は単位胞（ブリルアンゾーン）の体積$\boldsymbol{b}_1\cdot(\boldsymbol{b}_2\times\boldsymbol{b}_3)$です。
+この辺の話の概要は[格子ベクトルと逆格子ベクトル](https://zenn.dev/ponzumai/articles/tight-binding-model-lattice-vec)に書いてあります。
+
+そして、上記のように展開したBloch関数において、波数$\boldsymbol{k}$についての展開を考えていたことから、展開係数$C_{n,\boldsymbol{R}}$もまた、$\boldsymbol{r}$の関数となっており電子の観測確率に対応した波動関数的なものであると考えられます。このように定義された$C_{n,\boldsymbol{R}}(\boldsymbol{r})$を$w_{n,\boldsymbol{R}}(\boldsymbol{r})$と書き、この関数を提唱者の名前を取ってWannier関数と呼びます。改めて書くと、
 
 $$
 \varphi_{n,\boldsymbol{k}}(\boldsymbol{r}) = \varphi_n(\boldsymbol{r},\boldsymbol{k}) = \sum_{\boldsymbol{R}}w_{n,\boldsymbol{R}}(\boldsymbol{r})e^{i\boldsymbol{k}\cdot\boldsymbol{R}},\\
@@ -624,7 +643,7 @@ w_{n,\boldsymbol{R}}(\boldsymbol{r})
 \frac{1}{N}\sum_{\boldsymbol{k}\in BZ} \varphi_{n\boldsymbol{k}}(\boldsymbol{r})e^{-i\boldsymbol{k}\cdot\boldsymbol{R}}
 $$
 
-と書くこともできます。（この式を利用する方が多いです）
+と書くこともできます。（この式を今後多用します）
 
 ::: message alert
 文献によっては$1/N$を2式に振り分けて、
@@ -661,6 +680,8 @@ w_{n,\boldsymbol{R}}(\boldsymbol{r})&=
 $$
 
 もまた、完全正規直交関数系であるBloch関数$\{\varphi_{n\boldsymbol{k}}\}$の変換・逆変換ができるため、先ほど平面波$\rightarrow$Bloch関数で示したように完全性を満たす基底になり得ます。
+
+この辺の話は [Bloch関数の局在関数ーWannier関数ーを用いた展開](https://zenn.dev/ponzumai/articles/tight-binding-model-wannier-func)の章に書いてあります。
 
 とはいえそもそものBloch関数の具体的な関数系が指定されなければ、Wannier関数やWannier関数によるハミルトニアンの積分も計算できません。次へ進みましょう。
 
@@ -733,7 +754,7 @@ $$
 
 とできません。これは困ってしまいます。
 
-世の中には中心が異なる原子軌道が直交性を満たすように原子軌道関数系を定義する方法もあるっぽいのですが^[または[格子ベクトルと逆格子ベクトル](https://zenn.dev/ponzumai/articles/tight-binding-model-lattice-vec)の場合の類推で考えると、何か「双対関数」とでも呼ぶべき関数$\tilde{\phi}_{m,\boldsymbol{R}}(\boldsymbol{r}): \int\tilde{\phi}_{m',\boldsymbol{R}'}^*(\boldsymbol{r})\phi_{m,\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}=\delta_{m'm}\delta_{\boldsymbol{R}'\boldsymbol{R}}$を考えれば展開係数を$c_{m'\boldsymbol{R}'}^{m,\boldsymbol{R}}=\int \tilde{\phi}_{m'\boldsymbol{R}'}^*(\boldsymbol{r})\hat{H}\phi_{m,\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}$と定義することができるかもしれないが、そんなことどこでも見たことないしどうやってそんな関数を作るのかもよくわからない。]、一旦そういうややこしいことは考えず、以下のように原子軌道間の**重なり積分**を定義し
+世の中には中心が異なる原子軌道が直交性を満たすように原子軌道関数系を定義する方法もあるっぽいのですが^[「最局在ワニエ関数」や"Maximally localized Wannier functions"等のワードでググるとそれっぽい定義が出てきますが、一旦見なかったことにしてあります。もしかしたらちゃんと見たら全然違うこと書いてあるかもしれません。または[格子ベクトルと逆格子ベクトル](https://zenn.dev/ponzumai/articles/tight-binding-model-lattice-vec)の場合の類推で考えると、何か「双対関数」とでも呼ぶべき関数$\tilde{\phi}_{m,\boldsymbol{R}}(\boldsymbol{r}): \int\tilde{\phi}_{m',\boldsymbol{R}'}^*(\boldsymbol{r})\phi_{m,\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}=\delta_{m'm}\delta_{\boldsymbol{R}'\boldsymbol{R}}$を考えれば展開係数を$c_{m'\boldsymbol{R}'}^{m,\boldsymbol{R}}=\int \tilde{\phi}_{m'\boldsymbol{R}'}^*(\boldsymbol{r})\hat{H}\phi_{m,\boldsymbol{R}}(\boldsymbol{r})d\boldsymbol{r}$と定義することができるかもしれないですが、そんなことどこでも見たことないしどうやってそんな関数を作るのかもよくわかりません。]、一旦そういうややこしいことは考えず、以下のように原子軌道間の**重なり積分**を定義し
 
 $$
 s_{\boldsymbol{R}',\boldsymbol{R}}^{m',m} = \int \phi_{m'}^*(\boldsymbol{r}-\boldsymbol{R}')\phi_m(\boldsymbol{r} - \boldsymbol{R})d\boldsymbol{r}
@@ -880,12 +901,13 @@ $$
 Q = \{m_{q_1},m_{q_2},\cdots m_{q_{|Q|}}\}
 $$
 
-を考えます。（ラベルの付け方をスッキリさせるために「集合」等と書いてますが要はグループにして名前を付けただけです）ここで$Q$に含まれる原子軌道の数を$|Q|$と書いています
+を考えます。（ラベルの付け方をスッキリさせるために「集合」等と書いてますが要はグループにして名前を付けただけです（それこそが「集合」とばれるものなのではというツッコミはさておき））ここで$Q$に含まれる原子軌道の数を$|Q|$と書いています
 
 $Q$に属する原子軌道の原子準位を$\varepsilon_{m_{q_1}}^{\rm a}, \varepsilon_{m_{q_2}}^{\rm a},\cdots \varepsilon_{m_{q_{|Q|}}}^{\rm a}$として、これら原子準位と近い固有値を$\varepsilon_{n_q,\boldsymbol{k}} \simeq \varepsilon_{{q_1}}^{\rm a}, \cdots$と書きます。
 
 以上のように考えると、$|Q|$個の原子軌道関数から作られたBloch和の重ね合わせから、$|Q|$個の固体の固有関数が以下のように**近似的に**展開されます
 （ラベルの付け方のセンスが絶望的で申し訳ありません。何か改善案を思いついたらもう少し見やすくします）：
+
 $$
 \varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r}) \simeq \sum_{m \in Q}b_m^{n_{p_i}}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R}),\\
 i = 1,2,\cdots |Q|.
@@ -897,11 +919,11 @@ $$
 P = \{n_{p_1}, n_{p_2}, \cdots \} 
 $$
 
-と置きます。
+と置いておきます。
 
 この時詳細は[第一量子化のTight-bindingモデル（前編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-1)を見ていただくとして、近似的な固有関数$\varphi_{n_i,\boldsymbol{k}}$は行列の一般化固有値問題の解として得られるため、固有関数は自動的に「エネルギーが近い」と選んだ原子軌道の数$|Q|$と同じ数だけ得られます。つまり$|P|=|Q|$を満たします。
 
-また「どれくらい近ければ同じ集合に入れるのか？」と疑問に思うかもしれません。実際の研究でどうやっているのかは分かりませんが、あくまで近似なので「実験で得られたエネルギーバンドを再現できるまで」ということになるかとは思います。例えば教科書には、「遷移金属のバンド構造を計算するときには、一般には$d$と$s$の両方の準位」^[アシュクロフト・マーミン上(I)p.241]である6準位を一つのエネルギーが近いグループとして考える等と書いてあります。
+また「どれくらい近ければ同じ集合に入れるのか？」と疑問に思うかもしれません。実際の研究でどうやっているのかは分かりませんが、あくまで近似なので「実験で得られたエネルギーバンドを再現できるまで」ということになるかとは思います。また、例えば教科書には、「遷移金属のバンド構造を計算するときには、一般には$d$と$s$の両方の準位」^[アシュクロフト・マーミン上(I)p.241]である6準位を一つのエネルギーが近いグループとして考える等と書いてあります。
 また[水素原子中の電子](https://zenn.dev/ponzumai/articles/tight-binding-model-hydrogen-atom)で書いたように、原子準位はその角度部分のラベル$s,p,d\cdots$ごとに$1,3,5,\cdots$個に縮退しているので、そのうち一つ縮退したの軌道群を考えるのが最も素朴な近似で、少し先取りして書くとこのように一つの準位（例えば$s$）のみとりだして得られるバンドを「$s$バンド」等と呼び、この時に定義される生成消滅演算子を「$s$電子の生成消滅演算子」等と呼んだりします。この辺はまた後で再度言及します。
 
 
@@ -946,6 +968,7 @@ $$
 
 
 は、以下のようにして**同じ「エネルギー的に近いグループ」に属する原子軌道**の、原子準位と格子点の位置についての線形結合で展開できます：
+
 $$
 \begin{align*}
 \hat{H}^{\rm c}\phi_{m_{q_j}}(\boldsymbol{r}-\boldsymbol{R})&=
@@ -1137,7 +1160,7 @@ $$
 
 と、原子準位$\varepsilon_{m_{q_j}}^{\rm a}$と結晶場積分$\Delta\varepsilon_{m'{m_{q_j}}}$で書けることがわかります。
 
-ここで、多くの場合結晶場積分は[第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)の章でちらっと述べたようにラベルによらない定数と近似されます。（一応今は残しておきます）
+ここで、多くの場合結晶場積分は[第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)の章でちらっと述べたようにラベルによらない定数と近似されます。（一応今は残しておき、後で消します）
 
 
 $\boldsymbol{R}' \neq \boldsymbol{R}$の場合：
@@ -1189,14 +1212,13 @@ $$
 
 $$
 
-と定義しました。なお、飛び移り積分はポテンシャルの周期性と周期的境界条件から、格子点の座標ベクトルの差$\boldsymbol{R}'-\boldsymbol{R}$のみに依存するため、$t_{(m',\boldsymbol{R}') \leftarrow ({m_{q_j}},\boldsymbol{R})}=t_{(m',\boldsymbol{R}'-\boldsymbol{R}) \leftarrow ({m_{q_j}},\boldsymbol{0})}$が成り立ちます。（なので「前後の座標ベクトルの差の関数」みたいにかければいいのですが、そうするとなんかわかりにくくなるので辞めました）
+と定義しました。なお、飛び移り積分はポテンシャルの周期性と周期的境界条件から、格子点の座標ベクトルの差$\boldsymbol{R}'-\boldsymbol{R}$のみに依存するため、$t_{(m',\boldsymbol{R}') \leftarrow ({m_{q_j}},\boldsymbol{R})}=t_{(m',\boldsymbol{R}'-\boldsymbol{R}) \leftarrow ({m_{q_j}},\boldsymbol{0})}$が成り立ちます。（なので「前後の座標ベクトルの差の関数」みたいにかければいいのですが、そうするとなんかわかりにくくなるのでやめました）
 
 
 またラベル$(m,\boldsymbol{R}') \leftarrow (n,\boldsymbol{R})$は、[飛び移り積分（Hopping Integral）の物理的意味・Wannier関数の従う方程式](https://zenn.dev/ponzumai/articles/tight-binding-model-hopping-int)の章で~~妄想~~考察したように、「状態$m$,格子点$\boldsymbol{R}$にいる原子軌道が、微小時間後に状態$n$で格子点$\boldsymbol{R}'$に「飛び移っている」確率（に比例する量）と解釈できることに対応しています。
 
 最後に、全ての飛び移り積分を考えるのではなく、**隣接格子**間の飛び移り積分のみが値を持つと考える近似を行います。
 
-この時飛び移り積分は二つの格子点の相対ベクトルのみに依存するので、相対ベクトルだけで指定することにします。
 
 すなわち、ある格子点$\boldsymbol{R}$から、必要に応じた分だけの（多くは最近接か、次近接くらいまでのようです）隣接格子への相対ベクトルを$\boldsymbol{N}$と置くと、ある格子点で状態$n$から、隣接格子ベクトルだけ離れた格子点$\boldsymbol{R}+\boldsymbol{N}$へ、状態$m$となる飛び移り積分を、
 
@@ -1224,7 +1246,9 @@ $$
 \end{align*}
 $$
 
-と書けます。ここで、「隣接ベクトル」$\boldsymbol{N}$は1つではないことに注意してください。（例えば1次元格子をイメージしてもらうと、最低でも「右隣」と「左隣」の二方向を考える必要があります）
+と書き、これ以外の飛び移り積分をゼロと近似します。
+
+ここで、「隣接ベクトル」$\boldsymbol{N}$は1つではないことに注意してください。（例えば1次元格子をイメージしてもらうと、最低でも「右隣」と「左隣」の二方向を考える必要があります）
 
 
 この時$\boldsymbol{N}$として$\boldsymbol{N}_1, \boldsymbol{N}_2\cdots \boldsymbol{N}_i\cdots$を考えるとして、$\boldsymbol{N}_i$のラベルの集合を$I$とおくと
@@ -1848,36 +1872,373 @@ $$
 ただ、上記の通りまだ何やら記号がたくさんあるので、さらに具体的な例を考えていきます。
 
 
-## 1つの原子軌道からなるTight-bindingハミルトニアンと対角化
+## 1次元Tight-bindingハミルトニアンと対角化
 
-まずは1つだけの原子軌道を考える場合について考えてみます。これは例えば原子準位に縮退のない$s$軌道の関数とその格子ベクトルだけの平行移動$\phi_s(\boldsymbol{r}-\boldsymbol{R})$を考え、まず固有関数がそれらだけで展開できると仮定し、かつ多体の波動関数は$\phi_s(\boldsymbol{r}-\boldsymbol{R})$だけで構成されたスレーター行列式で展開されると仮定することに対応しています。
+ここで例えば簡単な例として**1次元格子**を考えてみます。今まで考えた第二量子化表示を1次元の場合に書き換えるための論理をどう考えればよいのか正解はわからないのですが、[第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)で扱ったように、基本格子ベクトル$\boldsymbol{a}_i$を、
 
-### 第二量子化表示のハミルトニアン
+$$
+|\boldsymbol{a}_2| = |\boldsymbol{a}_3| = A \gg |\boldsymbol{a}_1|
+$$
 
-このように考えた際のハミルトニアンを書いてみると、$s$軌道だけを考えればよいので$\sum_{m\in Q_i}$部分が不要になり
+と置くことで一応それらしい変形ができます。これは実際の1次元系について、それ以外の方向との格子間距離が離れている状況を表しています。
+
+こうすると$\boldsymbol{a}_2,\boldsymbol{a}_3$方向の飛び移り積分が、原子軌道関数が中心から離れた場所では十分小さいとしてゼロとできます：
 
 $$
 \begin{align*}
-\mathcal{H}^s
+-t_{(m',\boldsymbol{R}+n\boldsymbol{a}_i) \leftarrow (m,\boldsymbol{R})}
+&=
+
+\int
+ \phi_s(\boldsymbol{r}-n\boldsymbol{a}_i)
+ 
+   V(\boldsymbol{r} - n\boldsymbol{a}_i)
+ 
+ \phi_s(\boldsymbol{r})d\boldsymbol{r}\\
+
+ &\simeq 0\\
+
+ i = 2,3.
+\end{align*}
+$$
+
+これは$-t_{(m',\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow (m,\boldsymbol{R})}(1-\delta_{\boldsymbol{a}_2\cdot\boldsymbol{N}_2,0})(1-\delta_{\boldsymbol{a}_3\cdot\boldsymbol{N}_3,0})$とでも書けそうです。（別に書かなくてもいいですが）
+
+するとハミルトニアンの第二量子化表示は
+
+$$
+\begin{align*}
+\mathcal{H}^{1D}
 
 &=
    
 \sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
     \sum_{\boldsymbol{R}}
     \sum_{i\in I}
 
-     -t_{(s,\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow ({s},\boldsymbol{R})}
-    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
+     -t_{(m',\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow (m,\boldsymbol{R})}
+     (1-\delta_{\boldsymbol{a}_2\cdot\boldsymbol{N}_2,0})(1-\delta_{\boldsymbol{a}_3\cdot\boldsymbol{N}_3,0})
+    \hat{a}_{m',\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{m,\boldsymbol{R},\gamma}
     \\
+&\simeq
+
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+    \sum_{\boldsymbol{R}}
+    \sum_{ n =1}^{N-1}
+
+     -t_{(m',\boldsymbol{R}+n\boldsymbol{a}_1) \leftarrow (m,\boldsymbol{R})}
+   \hat{a}_{m',\boldsymbol{R}+n\boldsymbol{a}_1,\gamma}^\dagger\hat{a}_{m,\boldsymbol{R},\gamma}
+    \\
+
+&=
+\sum_{\boldsymbol{R}_2=\boldsymbol{0}}^{N\boldsymbol{a_2}}
+\sum_{\boldsymbol{R}_3=\boldsymbol{0}}^{N\boldsymbol{a_3}}
+\left\{
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+    \sum_{\boldsymbol{R}_1=\boldsymbol{0}}^{N\boldsymbol{a_1}}
+    \sum_{ n =1}^{N-1}
+
+     -t_{(m',\boldsymbol{R}_1+n\boldsymbol{a}_1) \leftarrow (m,\boldsymbol{R})}
+   \hat{a}_{m',\boldsymbol{R}+n\boldsymbol{a}_1,\gamma}^\dagger\hat{a}_{m,\boldsymbol{R},\gamma}
+   \right\}
+    
 
 
 \end{align*}
 $$
 
-となります。ここで$s$軌道の原子軌道関数をベクトル$\boldsymbol{R}$平行移動した関数$\phi_s(\boldsymbol{r}-\boldsymbol{R})$をスレーター行列式に付け加える（消す）生成（消滅）演算子を、$\hat{a}_{s,\boldsymbol{R},\gamma}^\dagger$（$\hat{a}_{s,\boldsymbol{R},\gamma}$）としました。
+と、$\boldsymbol{R}$の任意の$\boldsymbol{R}_2,\boldsymbol{R}_3$成分に対して同じ形になります。そこで、多電子の波動関数を、$\boldsymbol{R}_2=\boldsymbol{R}_3 = 0$である1次元の$\boldsymbol{a}_1$方向の平行移動のみを考えた原子軌道関数のセット$\phi_m(\boldsymbol{r}), \phi_m(\boldsymbol{r} - \boldsymbol{a}_1),\cdots,\phi_m(\boldsymbol{r}- i\boldsymbol{a}_1),\cdots ,\phi_{m'}(\boldsymbol{r}- j\boldsymbol{a}_1),\cdots,\phi_{m''}(\boldsymbol{r}- l\boldsymbol{a}_1)\cdots$のみで構成されたスレーター行列式で展開することを考えます。ここで記号がちょっと混乱していますが、$i,j,l$はいずれも整数と考えてください。
+
+$\cdots$何やらややこしくなってきたので、一度原点に戻って今考えている状況を整理します。
+
+### 一旦整理
+
+今、多体電子のハミルトニアン
+
+$$
+\mathcal{H}
+
+\simeq
+
+\sum_i
+  \left(
+\frac{-\hbar^2}{2m}\nabla_i{}^2 + \sum_{\boldsymbol{R}''}V(\boldsymbol{r}_i-\boldsymbol{R}'')
+\right) 
+$$
+
+に対して、シュレーディンガー方程式
+
+$$
+\mathcal{H}\Phi(\tau_1, \tau_2, \cdots, \tau_N) =
+E
+\Phi(\tau_1, \tau_2, \cdots, \tau_N) 
+$$
+
+を解きたいのでした。そこで任意の多電子の波動関数は一般に、正規直交関数系$\phi_{m,\boldsymbol{R},\gamma}, \phi_{m',\boldsymbol{R}',\gamma'},\cdots\phi_{m'''',\boldsymbol{R}'''',\gamma''''}\cdots$を指定することで
+
+$$
+\Phi(\tau_1, \tau_2, \cdots, \tau_N) = \sum C_{m,m'\cdots;\boldsymbol{R},\boldsymbol{R}'\cdots;\gamma,\gamma'\cdots}
+\left|
+    \phi_{m,\boldsymbol{R},\gamma}, \phi_{m',\boldsymbol{R}',\gamma'},\cdots\phi_{m'''',\boldsymbol{R}'''',\gamma''''}
+    \right|
+$$
+
+と、スレーター行列式を用いて展開できると考えて、ハミルトニアンの第二量子化表示を求めるわけなのでした。
+
+ここで正規直交基底として$\boldsymbol{R}=n\boldsymbol{a}_1$のみを考えるということは、イメージとしては、周期的だけど$\boldsymbol{a}_2,\boldsymbol{a}_3$方向はと置く離れているポテンシャル
+
+$$
+ \sum_{\boldsymbol{R}''}V(\boldsymbol{r}_i-\boldsymbol{R}'')
+$$
+
+が並んでいるような系の中に（相互作用しない）電子が沢山あるとして、それぞれの電子の状態は$\boldsymbol{a}_2,\boldsymbol{a}_3$方向は固定してある$\boldsymbol{a}_1$方向だけの格子点に束縛された原子軌道の重ね合わせで書けるだろう、と仮定していることを意味するのだと思われます。$\cdots$そう考えるとなんとなく納得できて来たような気がします。
+（本当（？）は、ポテンシャルを1次元に並べた系を考えて、それ以外の方向には適当な周期的境界条件や無限遠で波動関数がゼロになる境界条件を仮定するのが正確？なような気がしてきましたが、まあそこにこだわってもしょうがないということと、今回のようにする方が多分今までの結果を流用しやすいので。。いつかの自分への宿題に残しておきます。）
+
+### 話を戻す
+
+一旦納得できたところで話を戻して、以上を踏まえて関数
+
+$$
+\phi_m(\boldsymbol{r}\pm i\boldsymbol{a}_1)
+$$
+
+（とスピン関数の積）の生成消滅演算子を
+
+$$
+    \hat{a}_{m,i,\gamma}^\dagger,\hat{a}_{m,i,\gamma}
+$$
+
+と書くことにすると、1次元的なハミルトニアン
+
+$$
+\begin{align*}
+\mathcal{H}^{1D}
+
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+
+    \sum_{j=0}^{N-1}
+    \sum_{i=0}^{N-1}
+    
+    
+     -t_{(m',j) \leftarrow (m,i)}
+   \hat{a}_{m',j,\gamma}^\dagger\hat{a}_{m,i,\gamma}
+  
+\end{align*}
+$$
+
+が得られます。さらに再隣接の飛び移り積分のみを考えることにして、$-t_{(m',j) \leftarrow (m,i)}\simeq-t_{(m',j) \leftarrow (m,i)}\delta_{j,i\pm 1}$とすると、
+
+$$
+\begin{align*}
+\mathcal{H}^{1D}
+
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+
+    \sum_{i=0}^{N-1}
+    \sum_{\delta=\pm 1}
+    
+    
+     -t_{(m',i+\delta) \leftarrow (m,i)}
+   \hat{a}_{m',i+\delta,\gamma}^\dagger\hat{a}_{m,i,\gamma}
+  
+\end{align*}
+$$
+
+となり、さらに和の取り方について、色々ある$i,i+\delta$のラベルを一旦$f(i,i+\delta)$で代表させておいて
+
+$$
+\begin{align*}
+   \sum_{i=0}^{N-1}
+    \sum_{\delta=\pm 1}f(i,i+\delta)
+
+&=\sum_{i=0}^{N-1}
+\left\{
+    f(i,i+1) + f(i,i-1)
+    \right\}\\
+
+&=
+\sum_{i=0}^{N-1}
+\left\{
+    f(i,i+1) + f(i+1,i)
+    \right\}\\
+
+&\equiv
+\sum_{\left<i,j\right>}
+    f(i,j) + f(j,i)
+
+\end{align*}
+$$
+
+と隣接格子の和$\sum_{\left<ij\right>}$を定義すると（2つ目の式変形は周期的境界条件による）、ラベル$m,m'$を入れ替えても全てのラベルにわたって和を取るので問題ないので適宜入れ替えて
+
+$$
+\begin{align*}
+\mathcal{H}^{1D}
+
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+
+    \sum_{\left<i,j\right>}
+        
+     -t_{(m',j) \leftarrow (m,i)}
+   \hat{a}_{m',j,\gamma}^\dagger\hat{a}_{m,i,\gamma}
+   +
+       -t_{(m,i) \leftarrow (m',j)}
+   \hat{a}_{m,i,\gamma}^\dagger\hat{a}_{m',j,\gamma}\\
+
+\end{align*}
+$$
+
+となります。
+
+特に、飛び移り積分がどちら向きでも値が等しいとき、つまり
+
+$$
+\begin{align*}
+-t_{(m',j) \leftarrow (m,i)}
+
+&=
+
+\int
+ \phi_{m'}^*(\boldsymbol{r}-j\boldsymbol{a})
+ 
+   V(\boldsymbol{r} - j\boldsymbol{a})
+ 
+ \phi_m(\boldsymbol{r}-i\boldsymbol{a})d\boldsymbol{r}\\
+
+ &=
+
+\int
+ \phi_{m'}^*(\boldsymbol{r}-(j-i)\boldsymbol{a})
+ 
+   V(\boldsymbol{r} - (j-i)\boldsymbol{a})
+ 
+ \phi_m(\boldsymbol{r})d\boldsymbol{r}
+
+\end{align*}
+$$
+
+と、
+
+$$
+\begin{align*}
+-t_{(m,i) \leftarrow (m',j)}
+
+&=
+\int
+ \phi_{m}^*(\boldsymbol{r}-i\boldsymbol{a})
+ 
+   V(\boldsymbol{r} - i\boldsymbol{a})
+ 
+ \phi_{m'}(\boldsymbol{r}- j\boldsymbol{a})d\boldsymbol{r}
+\\
+
+&=
+\int
+ \phi_{m}^*(\boldsymbol{r}-(i-j)\boldsymbol{a})
+ 
+   V(\boldsymbol{r} - (i-j)\boldsymbol{a})
+ 
+ \phi_{m'}(\boldsymbol{r})d\boldsymbol{r}
+\\
+
+&=
+
+\int
+ \phi_{m}^*(\boldsymbol{r}+ (j-i)\boldsymbol{a})
+ 
+   V(\boldsymbol{r} + (j-i)\boldsymbol{a})
+ 
+ \phi_{m'}(\boldsymbol{r})d\boldsymbol{r}
+
+\end{align*}
+$$
+
+が等しい時、これを向きの指定を無くして
+
+$$
+t_{(m',j) \leftarrow (m,i)} = t_{(m,i) \leftarrow (m',j)}\equiv
+t_{(m',j;m,i)} 
+$$
+
+と書くことにします。これは例えば、単純には$m$として一つのバンドのみ考えて、かつ実関数で球対称なポテンシャル・波動関数を考えている場合等に対応すると思いますが、まあ細かいことは具体的な問題設定の際に考えることにしましょう。
+
+すると、最終的に
+
+$$
+\begin{align*}
+    \mathcal{H}^{1D}
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+
+    \sum_{\left<i,j\right>}
+    t_{(m',j;m,i)} 
+    \left(
+        
+   \hat{a}_{m',j,\gamma}^\dagger\hat{a}_{m,i,\gamma}
+   +
+       
+   \hat{a}_{m,i,\gamma}^\dagger\hat{a}_{m',j,\gamma}
+   \right)\\
+  
+&=
+   
+\sum_{\gamma=\uparrow,\downarrow}
+\sum_{m,m'\in Q_i}
+
+    \sum_{\left<i,j\right>}
+      t_{(m',j;m,i)} 
+    \left(
+        
+   \hat{a}_{m',j,\gamma}^\dagger\hat{a}_{m,i,\gamma}
+   +
+       
+   {\rm h.c.}
+   \right)
+\end{align*}
+$$
 
 
-この時、大きな特徴として$s$軌道の原子軌道は球対称かつ実関数なので、実関数局所ポテンシャル$V(\boldsymbol{r})$も球対称と仮定すると、飛び移り積分が
+と、よく見る1次元Tight-bindingハミルトニアンが得られました。
+
+ここで、"h.c."はエルミート共役（Hermitian conjugate）の略です。何気なく書いていますが、生成消滅演算子の積のエルミート共役が
+
+$$
+(\hat{a}_{\alpha}^\dagger\hat{a}_{\beta})^\dagger = 
+\hat{a}_{\beta}^\dagger\hat{a}_{\alpha}
+$$
+
+であることに対応しています。これは一見違和感があるのですが、次のように証明（？）できます。なお、ここでは仕方なくブラケット記法と演算子とベクトルの積のエルミート共役の公式$(A\ket{\alpha})^\dagger=\bra{\alpha}A^\dagger$と、それの生成消滅演算子バージョン$\bra{\beta}\hat{a}_\beta^\dagger=(\hat{a}_\beta\ket{\beta})^\dagger=$（$\ket{\beta}$から$\beta$の状態を消した状態）を使います。
+
+$$
+\bra{\alpha} = 
+(\hat{a}_{\alpha}^\dagger\hat{a}_{\beta}\ket{\beta})^\dagger
+=
+\bra{\beta}(\hat{a}_{\alpha}^\dagger\hat{a}_{\beta})^\dagger
+\Rightarrow
+(\hat{a}_{\alpha}^\dagger\hat{a}_{\beta})^\dagger
+=
+\hat{a}_{\beta}^\dagger\hat{a}_{\alpha}.
+$$
+
+## 1つだけの軌道を考えた場合のTight-bindingモデル
+
+最後に、1つだけの原子軌道を考える場合について考えてみます。これは例えば原子準位に縮退のない$s$軌道の原子軌道関数とその$\boldsymbol{a}_1$方向の格子ベクトルだけの平行移動$\phi_s(\boldsymbol{r}-j\boldsymbol{a})$を考えることに対応しています。
+
+このように考えた際のハミルトニアンを書いてみると、$s$軌道だけを考えればよいので$\sum_{m\in Q_i}$部分が不要になり、また$s$軌道の原子軌道は球対称かつ実関数なので、実関数局所ポテンシャル$V(\boldsymbol{r})$も球対称と仮定していたので、飛び移り積分が
 
 $$
 \begin{align*}
@@ -1889,181 +2250,173 @@ $$
  
    V(|\boldsymbol{r} - \boldsymbol{N}_i|)
  
- \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}
+ \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}\\
 
-\end{align*}
-$$
 
-### 1次元格子、再隣接の飛び移り積分のみ考える
-
-となります。ここで例えば簡単な例として1次元格子を考え、隣接格子ベクトルとして**再隣接格子**を考えてみます。
-[第一量子化のTight-bindingモデル（後編）](https://zenn.dev/ponzumai/articles/tight-binding-model-1st-q-2)で扱ったように、1次元系を表現する方法は例えば、基本格子ベクトル$\boldsymbol{a}_i$を、
-
-$$
-|\boldsymbol{a}_2| = |\boldsymbol{a}_3| = A \gg |\boldsymbol{a}_1|
-$$
-
-と置いてしまうことかと思います。これは実際の1次元系について、それ以外の方向との格子間距離が離れている状況を表しています。こうすると$\boldsymbol{a}_2,\boldsymbol{a}_3$方向の再隣接格子の飛び移り積分が、原子軌道関数が中心から離れた場所では十分小さいとしてゼロとできます：
-
-$$
-\begin{align*}
--t_{(s,\boldsymbol{R}+\boldsymbol{a}_i) \leftarrow (s,\boldsymbol{R})}
 &=
 
 \int
- \phi_s(|\boldsymbol{r}-\boldsymbol{a}_i|)
+ \phi_s(|\boldsymbol{r}|)
  
-   V(|\boldsymbol{r} - \boldsymbol{a}_i|)
+   V(|\boldsymbol{r} |)
  
- \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}\\
+ \phi_s(|\boldsymbol{r}+\boldsymbol{N}_i|)d\boldsymbol{r}\\
 
- &\simeq 0\\
-
- i = 2,3.
-\end{align*}
-$$
-
-さらにこの時$\boldsymbol{a}_1$方向の再隣接は
-
-$$
-\boldsymbol{N}=\pm \boldsymbol{a}_1
-$$
-
-ですが、$s$軌道関数が球対称実関数、局所ポテンシャル$V(\boldsymbol{r})$も球対称実関数と置いているので、どちらの方向の飛び移り積分も等しくかつ実数の定数、
-
-$$
-\begin{align*}
--t_{(s,\boldsymbol{R}\pm\boldsymbol{a}_1) \leftarrow (s,\boldsymbol{R})}
 &=
 
 \int
- \phi_s(|\boldsymbol{r}\pm\boldsymbol{a}_1|)
+ \phi_s(|-\boldsymbol{r}|)
  
-   V(|\boldsymbol{r} \pm \boldsymbol{a}_1|)
+   V(|-\boldsymbol{r} |)
  
- \phi_s(|\boldsymbol{r}|)d\boldsymbol{r}\\
+ \phi_s(|-\boldsymbol{r}+\boldsymbol{N}_i|)d\boldsymbol{r}\\
 
- &\equiv-t_s^{\rm NN} = -(t_s^{\rm NN})^*\\
+&=
 
+\int
+ \phi_s(|\boldsymbol{r}|)
  
+   V(|\boldsymbol{r} |)
+ 
+ \phi_s(|\boldsymbol{r}-\boldsymbol{N}_i|)d\boldsymbol{r}\\
+
+ =
+-t_{(s,\boldsymbol{R}) \leftarrow (s,\boldsymbol{R}+\boldsymbol{N}_i)}
+
 \end{align*}
 $$
 
-となります。これらを踏まえて第二量子化表示のハミルトニアンは
+と向きによらず、かつ実数になります。再隣接の飛び移り積分だけを考える場合は定数と置けるので、これを
 
+$$
+-t_{(s,\boldsymbol{R}) \leftarrow (s,\boldsymbol{R}+\boldsymbol{a})}=-t^{NN}_s
+$$
+
+と置くと、
 
 $$
 \begin{align*}
-\mathcal{H}^{s,1D}
+    \mathcal{H}^{s,1D}
+&=
+   
+-t^{NN}_s
+
+\sum_{\gamma=\uparrow,\downarrow}
+
+    \sum_{\left<i,j\right>}
+    
+    \left(
+        
+   \hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+   +
+       
+   \hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}
+   \right)\\
 
 &=
    
-\sum_{\gamma=\uparrow,\downarrow}
-    \sum_{\boldsymbol{R}}
-    \sum_{i\in I}
-
-     -t_{(s,\boldsymbol{R}+\boldsymbol{N}_i) \leftarrow ({s},\boldsymbol{R})}
-    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
-    \\
-&\simeq
+-t^{NN}_s
 
 \sum_{\gamma=\uparrow,\downarrow}
-    \sum_{\boldsymbol{R}}
-    \sum_{\boldsymbol{N}_i=\pm \boldsymbol{a}_1}
 
-     -t_{s}^{\rm NN}
-    \hat{a}_{s,\boldsymbol{R}+\boldsymbol{N}_i,\gamma}^\dagger\hat{a}_{s,\boldsymbol{R},\gamma}
-    \\
-
-
+    \sum_{\left<i,j\right>}
+    
+    \left(
+        
+   \hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+   +
+       
+   {\rm h.c.}
+   \right)
 \end{align*}
 $$
 
+となります。ここで1次元方向の格子点に中心を持つ$s$軌道の原子軌道関数$\phi_s(\boldsymbol{r}-i\boldsymbol{a}_1)$をスレーター行列式に付け加える（消す）生成（消滅）演算子を、$\hat{a}_{s,i,\gamma}^\dagger$（$\hat{a}_{s,i,\gamma}$）としました。
 
-となります。ここで、このハミルトニアンはスレーター行列式の中の1電子状態$\phi_{s,\boldsymbol{R}}$のラベル$\boldsymbol{R}$を、$\boldsymbol{a}_1$方向にしか変えないため、スレーター行列式を1次元上に並んだ原子軌道関数$\phi_s(\boldsymbol{r}), \phi_s(\boldsymbol{r}\pm \boldsymbol{a}_1),\phi_s(\boldsymbol{r}\pm 2\boldsymbol{a}_1),\cdots ,\phi_s(\boldsymbol{r}\pm i\boldsymbol{a}_1)\cdots$のみを考えることにして^[この辺の説明がまだ自分でも混乱している気がするのでいつか修正する]、関数
-
-$$
-\phi_s(\boldsymbol{r}\pm i\boldsymbol{a}_1)
-$$
-
-（とスピン関数の積）の生成消滅演算子を
-
-$$
-    \hat{a}_{s,i,\gamma}^\dagger,\hat{a}_{s,i,\gamma}
-$$
-
-と書くことにすると、1次元的なハミルトニアン
-
-$$
-\begin{align*}
-\mathcal{H}^{s,1D}
-
-&=
-   -t_{s}^{\rm NN}
-\sum_{\gamma=\uparrow,\downarrow}
-    \sum_{i}
-    \sum_{\delta=\pm 1}
-
-  
-    \hat{a}_{s,i+\delta,\gamma}^\dagger\hat{a}_{s,i,\gamma}
-    \\
-
-
-\end{align*}
-$$
-
-が得られます。ここで、$\sum_{i}\sum_{\delta=\pm 1}$ですが、全ての$i$とその隣接項$i\pm 1$についての和を取るので、これを隣接した$i,j$のみ和を取るという意味で、$i<j$として
-
-$$
--t_{s}^{\rm NN}
-    \sum_{<i,j>}
-    \left(\hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}
-+
-\hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
-\right)
-$$
-
-と書くこともあります。
-余談ですが、この第2項をエルミート共役の意味で"+h.c."と書いていることが多いですが、エルミート共役だと$\hat{a}_{s,j,\gamma}\hat{a}_{s,i,\gamma}^\dagger = -\hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}$になってしまうのでつじつまが合わない気がするのですが、正直この辺はあまりよくわかっていません。
-
-
+ちらっと先述したように、このような$s$軌道の原子軌道関数を用いて書かれたTight-bindingモデルを「$s$電子のTight-bindingモデル」とか「$s$電子のTight-bindingハミルトニアン」とか言ったりします。
 
 
 ### ハミルトニアンの対角化
 
 最後に、このハミルトニアンのシュレーディンガー方程式を解いてみます。つまり固有状態を求めてみます。
 
-それにはハミルトニアンを自明な固有状態を持つ形$\sum_\alpha\varepsilon_\alpha\hat{a}_\alpha^\dagger\hat{a}_\alpha$にすれば良かったのでした。この形を「対角化された」等と呼んだりします。
+それにはハミルトニアンを自明な固有状態を持つ形$\sum_\alpha\varepsilon_\alpha\hat{a}_\alpha^\dagger\hat{a}_\alpha$（「対角化された形」）にすれば良かったのでした。
 
-現状はまだ対角化されていません。
-
-
-ここで基底変換
+現状はまだ対角化されていませんね。そこで基底変換
 
 $$
 \phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)
 =
 \frac{1}{\sqrt{N}}
-\sum_{k_1}
-e^{-ik_1a\times j}
-\varphi_{s,k_1}(\boldsymbol{r})
+\sum_{k}
+e^{-ikaj}
+\varphi_{s,k}(\boldsymbol{r})
 $$
 
 
-を考えると、変換後の$\varphi_{s,k_1}(\boldsymbol{r})$とスピン関数の積の生成消滅演算子を$\hat{b}_{s,k_1,\gamma}^\dagger,\hat{b}_{s,k_1,\gamma}$とすれば、生成消滅演算子の変換は前後でスピン状態は変わらないので
+を考えると上手くいきます。
+ただ、これはただの1次元の変換で済ませられそうにも思うのですが、どうも引っかかるので一応立ち止まって考えてみることにします。
+
+まず1次元格子の方向を$x$軸として固定し、原子軌道関数を$s$軌道だけではなく一般の場合について考え$\varphi_m(\boldsymbol{r})=\varphi_m(x,y,z)$と書くことにすると、周期的境界条件より、$\boldsymbol{a}_1$方向の周期$\phi_m(x+Na,y,z) \phi_m(x,y,z) =\phi_m(\boldsymbol{r})$についてFourier展開して
+
+$$
+\phi_m(x,y,z) = 
+\frac{1}{\sqrt{N}}\sum_q C_q(y,z)e^{iqx},\\
+
+q = \frac{2\pi}{Na}n,\>\>n = 0,\pm 1,\pm 2,\cdots 
+$$
+
+と書けます。ここで$q$を、「Bloch波数」
+
+$$
+k = \frac{2\pi}{Na}n, \>\>n = 0,1,2,\cdots N-1
+$$
+
+と、「逆格子ベクトル」（ベクトルじゃないけど）
+
+$$
+K = \frac{2\pi}{a}m, \>\> m = 0,\pm 1, \pm 2\cdots
+$$
+
+に分けると全ての$q$についての和と同じことになり、
+
+$$
+\phi_m(x,y,z) = \frac{1}{\sqrt{N}}\sum_k \sum_K C_{k-K}(y,z)e^{i(k-K)x}
+$$
+
+と、「Fourier展開」できます。（これが結局、Bloch関数を構成していることになるのですが）
+
+それで（係数$C_{k-K}(y,z)$については何も考えずに）（ラベル$k$と$\boldsymbol{r} = (x,y,z)$の関数であることは間違いないので）$\sum_K C_{k-K}(y,z)e^{i(k-K)x} \equiv \varphi_{m,k}(\boldsymbol{r})$と置けば、$\boldsymbol{a}_1$方向の格子点の平行移動に対して$e^{i(k-K)(x-ja)} =e^{i(k-K)x} e^{-ikja}$より
+
+$$
+\phi_m(\boldsymbol{r}-j\boldsymbol{a}_1)
+=
+\frac{1}{\sqrt{N}}
+\sum_{k}
+e^{-ika\times j}
+\varphi_{s,k}(\boldsymbol{r})
+$$
+
+が成り立ちます。途中色々としましたが、基本的にはただのFourier級数展開による基底変換であることがわかります。
+
+
+
+
+
+というわけで話を戻して、変換後の$\varphi_{s,k_1}(\boldsymbol{r})$とスピン関数の積の生成消滅演算子を$\hat{b}_{s,k,\gamma}^\dagger,\hat{b}_{s,k,\gamma}$とすれば、生成消滅演算子の変換は前後でスピン状態は変わらないので
 
 $$
 \hat{a}^\dagger_{s,j + \delta,\gamma}
 =
 \frac{1}{\sqrt{N}}
-\sum_{k_1} e^{-i(k_1a\times (j + \delta))}
-b_{s,k_1,\gamma}^\dagger,\\
+\sum_{k_1} e^{-i(ka\times (j + \delta))}
+b_{s,k,\gamma}^\dagger,\\
 
 \hat{a}_{s,j,\gamma} = 
 \frac{1}{\sqrt{N}}
-\sum_{k_1} 
-e^{i(k_1a\times j)}
-b_{s,k_1,\gamma}
+\sum_{k} 
+e^{i(ka\times j)}
+b_{s,k,\gamma}
 $$
 
 となります。
@@ -2082,11 +2435,11 @@ $$
     \sum_{j}
     \sum_{\delta=\pm 1}
 
-  \frac{1}{N}\sum_{k_1,k_1'}
-  e^{i((k_1-k_1')a\times j)}
-    e^{-ik_1'a\delta}
-  b_{s,k_1',\gamma}^\dagger
-  b_{s,k_1,\gamma}
+  \frac{1}{N}\sum_{k,k'}
+  e^{i((k-k')a\times j)}
+    e^{-ik'a\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
     \\
 
 &=
@@ -2094,42 +2447,63 @@ $$
 \sum_{\gamma=\uparrow,\downarrow}
     \sum_{\delta=\pm 1}
 
- \sum_{k_1,k_1'}
-  N\delta_{k_1,k_1'}
-  e^{-ik_1'a\delta}
-  b_{s,k_1',\gamma}^\dagger
-  b_{s,k_1,\gamma}
+ \sum_{k,k'}
+  N\delta_{k,k'}
+  e^{-ik'a\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
     \\
 
 &=
    -t_{s}^{\rm NN}
 \sum_{\gamma=\uparrow,\downarrow}
- \sum_{k_1}
+ \sum_{k}
  \sum_{\delta=\pm 1}
-  e^{-ik_1a\delta}
-  b_{s,k_1',\gamma}^\dagger
-  b_{s,k_1,\gamma}
+  e^{-ika\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
     \\
 
 &=
 
 \sum_{\gamma=\uparrow,\downarrow}
- \sum_{k_1}
- -2t_{s}^{\rm NN}\cos(k_1a)
-  b_{s,k_1',\gamma}^\dagger
-  b_{s,k_1,\gamma}
+ \sum_{k}
+ -2t_{s}^{\rm NN}\cos(ka)
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
     \\
 \end{align*}
 $$
 
-と、対角化された形になります。これはまさしく、第一量子化で考えた場合と同じく、多電子状態の固有関数はエネルギーバンドが
+と、対角化された形になります。これはまさしく、第一量子化で考えた場合と同じく、多電子状態の固有関数は、1電子の状態$\varphi_{s,k}(\boldsymbol{r})$（のスピン上向き状態または下向き状態をスレーター行列式に詰めていったもの）となっていおり、その固有エネルギー、つまりエネルギーバンドは
 
 $$
 \varepsilon_s(k) = -2t_{s}^{\rm NN}\cos(ka)
 $$
 
-で表される状態（のスピン上向き状態または下向き状態をスレーター行列式に詰めていったもの）となっていることがわかります。
+となっていることがわかりました。
 
+なお、この1電子固有状態は$s$軌道の原子軌道関数と
+
+$$
+\phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)
+=
+\frac{1}{\sqrt{N}}
+\sum_{k}
+e^{-ika\times j}
+\varphi_{s,k}(\boldsymbol{r})
+$$
+
+で結びついていたのでした。これの逆変換を考えると、固有状態を具体的な関数である原子軌道関数で表現できます。やってみると、
+
+$$
+\varphi_{s,k}(\boldsymbol{r})=
+\frac{1}{\sqrt{N}}
+\sum_le^{ika\times l}
+\phi_s(\boldsymbol{r} - j\boldsymbol{a}_1)
+$$
+
+これは、原子軌道関数が平面波で位相を変えながら各格子点上にいるような状態の重ね合わせになっていることが分かりました。これはWannier関数を、$s$軌道関数で近似した際のBloch関数の形です。
 
 
 # おわりに
@@ -2141,11 +2515,11 @@ $$
 
 - サイト$i,j$に電子を「生成する」「消滅させる」って何？そんなことできるの？
   - →**スレーター行列式に付け加える・消す演算子のことでした**
-- あとそもそもサイト$i,j$も何？どういう理屈で空間が離散化されてんの？（実はされてません）
+- あとそもそもサイト$i,j$も何？どういう理屈で空間が離散化されてんの？
 - 場の演算子ってやつ？でもそっちは連続変数の位置座標$\boldsymbol{r}$に電子を生成するって書いてあったけど？それを離散化したやつなの？ 
-  - →**空間が離散化されているわけではなく、離散的な格子点$\boldsymbol{R}$をラベルとする原子軌道関数$\phi_{\boldsymbol{R}}(\boldsymbol{r})=\phi(\boldsymbol{r}-\boldsymbol{R})$のラベル$\boldsymbol{R}$を指定する添え字なのでした**
+  - →**空間が離散化されているわけではなく、離散的な格子点$\boldsymbol{R}$をラベルとする原子軌道関数$\phi_{\boldsymbol{R}}(\boldsymbol{r})=\phi(\boldsymbol{r}-\boldsymbol{R})$のラベル$\boldsymbol{R}$を指定する添え字なのでした**。場の演算子とは関係ありません。（場の演算子について本稿では何も書いていないので断言するのもあれなのですが）
 - それでその係数の飛び移り積分ってのも何？
-  - 隣接格子への飛び移り積分を、隣接格子への相対ベクトルを$\boldsymbol{N}$と置いてのように定義できる積分で、原子軌道関数に固体のハミルトニアンを作用させた場合の展開係数なのでした。
+  - →隣接格子への飛び移り積分を、隣接格子への相対ベクトルを$\boldsymbol{N}$と置いて以下のように定義される積分で、原子軌道関数に固体のハミルトニアンを作用させた場合の展開係数なのでした。また、定性的には「矢印の右側の状態$(n,\boldsymbol{R})$：$\varphi_n(\boldsymbol{r}-\boldsymbol{R})$から、状態$(m,\boldsymbol{R}+\boldsymbol{N})$：$\varphi_n(\boldsymbol{r}-(\boldsymbol{R}+\boldsymbol{N}))$に（微小時間後に）移動する（＝飛び移る）確率に比例する量なのでした。
 
 $$
 \begin{align*}
@@ -2175,7 +2549,7 @@ $$
 
 ## 本章のまとめ
 
-また本章の概要をまとめておくと、まず第二量子化表示の概要として、
+まず第二量子化表示の概要として、
 
 - (1) 多体電子系のハミルトニアンを設定して1体演算子の総和で表し、
 - (2) スレーター行列式を展開するための何かしらの完全正規直交関数系を決めて
@@ -2197,7 +2571,9 @@ $$
     \right|
 $$
 
-と生成消滅演算子を用いて表現でき、これを第二量子化表示というのでした。特にTight-bindingモデルにおいては、上記3ステップは以下のようになります。
+と生成消滅演算子を用いて表現でき、これを第二量子化表示というのでした。
+
+特にTight-bindingモデルにおいては、上記3ステップは以下のようになります。
 
 ### (1) 多体電子系のハミルトニアンを設定する：
 :::message
@@ -2235,30 +2611,31 @@ $$
 \phi_m(\boldsymbol{r}-\boldsymbol{R})
 $$
 
+を正規直交基底と置く。この時直交性を満たすように、異なるラベルの重なり積分をゼロと置く近似をする：
+
+$$
+\int\varphi_m^*(\boldsymbol{r}-\boldsymbol{R}) \varphi_l(\boldsymbol{r-\boldsymbol{R}'})d\boldsymbol{r}
+
+\equiv
+
+s_{\boldsymbol{R},\boldsymbol{R}'}^{m,l}
+\simeq
+\delta_{m,l}\delta_{\boldsymbol{R},\boldsymbol{R}'}
+$$
+
+
 なお、LCAO近似・Tight-binding近似より、この原子軌道関数のうちエネルギー的に近い原子準位を持つ原子軌道のラベルの集合
 
 $$
 Q = \{m_{q_1},m_{q_2},\cdots m_{q_{|Q|}}\}
 $$
 
-を考え、$Q$に属する原子軌道の原子準位を$\varepsilon_{m_{q_1}}^{\rm a}, \varepsilon_{m_{q_2}}^{\rm a},\cdots \varepsilon_{m_{q_{|Q|}}}^{\rm a}$とし、これら原子準位と近い固有値をもつ固体のハミルトニアンの固有状態$\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r})$：$\hat{H}^{\rm c}\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r}) = \varepsilon_{n_{p_i},\boldsymbol{k}}\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r})$、$\varepsilon_{n_q,\boldsymbol{k}} \simeq \varepsilon_{{q_1}}^{\rm a}, \cdots$とする。
-
-すると$|Q|$個の原子軌道関数から作られたBloch和の重ね合わせから、$|Q|$個の固体の固有関数を以下のように**近似的に**展開できる：
+を考え、$Q$に属する原子軌道の原子準位を$\varepsilon_{m_{q_1}}^{\rm a}, \varepsilon_{m_{q_2}}^{\rm a},\cdots \varepsilon_{m_{q_{|Q|}}}^{\rm a}$とし、これら原子準位と近い固有値をもつ固体のハミルトニアンの固有状態$\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r})$：$\hat{H}^{\rm c}\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r}) = \varepsilon_{n_{p_i},\boldsymbol{k}}\varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r})$、$\varepsilon_{n_q,\boldsymbol{k}} \simeq \varepsilon_{{q_1}}^{\rm a}, \cdots$とすると、$|Q|$個の原子軌道関数から作られたBloch和の重ね合わせから、$|Q|$個の固体の固有関数を以下のように**近似的に**展開できる：
 
 $$
 \varphi_{n_{p_i},\boldsymbol{k}}(\boldsymbol{r}) \simeq \sum_{m \in Q}b_m^{n_{p_i}}\sum_{\boldsymbol{R}}e^{i\boldsymbol{k}\cdot\boldsymbol{R}} \phi_m(\boldsymbol{r}-\boldsymbol{R}),\\
 i = 1,2,\cdots |Q|.
 $$
-
-また、この展開によって得られる固有関数のラベルの集合を
-
-$$
-P = \{n_{p_1}, n_{p_2}, \cdots \} 
-$$
-
-と置き、$|P|=|Q|$を満たす。
-
-
 :::
   
 ### (3) 完全正規直交関数系でハミルトニアンを挟んで積分したハミルトニアン行列を求める
@@ -2352,6 +2729,8 @@ $$
 
 ### Tight-bindingモデルの第二量子化表示
 
+以上の準備を踏まえて、Tight-bindingモデルの第二量子化表示は以下のように表される：
+
 :::message
 
 完全正規直交関数系に対応して、関数$\phi_{m,\boldsymbol{R}}(\boldsymbol{r})=\phi_{m}(\boldsymbol{r}-\boldsymbol{R})$とスピン関数$\gamma(\sigma)=\alpha(\sigma), \beta(\sigma)$の積
@@ -2417,6 +2796,136 @@ $$
 $$
 
 と、**「エネルギーが近いグループ」ごとに分かれた形**になる。
+
+例えば簡単な例として$s$軌道の原子軌道関数のみを考え（これを「$s$電子のTight-bindingモデル」等と呼んだりする）、さらに1次元格子系を考えると、1次元方向の格子点に中心を持つ$s$軌道の原子軌道関数$\phi_s(\boldsymbol{r}-i\boldsymbol{a}_1)$をスレーター行列式に付け加える（消す）生成（消滅）演算子を、$\hat{a}_{s,i,\gamma}^\dagger$（$\hat{a}_{s,i,\gamma}$）として、また再隣接格子間の飛び移り積分は実関数かつ飛び移りの方向によらず、これを$t_s^{NN}$と置くとハミルトニアンは
+
+$$
+\begin{align*}
+    \mathcal{H}^{s,1D}
+&\simeq
+   
+-t^{NN}_s
+
+\sum_{\gamma=\uparrow,\downarrow}
+
+    \sum_{\left<i,j\right>}
+    
+    \left(
+        
+   \hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+   +
+       
+   \hat{a}_{s,i,\gamma}^\dagger\hat{a}_{s,j,\gamma}
+   \right)\\
+
+&=
+   
+-t^{NN}_s
+
+\sum_{\gamma=\uparrow,\downarrow}
+
+    \sum_{\left<i,j\right>}
+    
+    \left(
+        
+   \hat{a}_{s,j,\gamma}^\dagger\hat{a}_{s,i,\gamma}
+   +
+       
+   {\rm h.c.}
+   \right)
+\end{align*}
+$$
+
+と書ける。
+ここで基底変換
+
+$$
+\phi_s(\boldsymbol{r}-j\boldsymbol{a}_1)
+=
+\frac{1}{\sqrt{N}}
+\sum_{k}
+e^{-ikja}
+\varphi_{s,k_1}(\boldsymbol{r})
+$$
+
+
+を考えると、変換後の$\varphi_{s,k_1}(\boldsymbol{r})$とスピン関数の積の生成消滅演算子を$\hat{b}_{s,k,\gamma}^\dagger,\hat{b}_{s,k,\gamma}$とすれば、生成消滅演算子の変換は前後でスピン状態は変わらないので
+
+$$
+\hat{a}^\dagger_{s,j + \delta,\gamma}
+=
+\frac{1}{\sqrt{N}}
+\sum_{k_1} e^{-i(ka\times (j + \delta))}
+b_{s,k,\gamma}^\dagger,\\
+
+\hat{a}_{s,j,\gamma} = 
+\frac{1}{\sqrt{N}}
+\sum_{k} 
+e^{i(ka\times j)}
+b_{s,k,\gamma}
+$$
+
+となり、これをハミルトニアンに代入すると、
+
+
+$$
+\begin{align*}
+\mathcal{H}^{s,1D}
+
+&=
+   -t_{s}^{\rm NN}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{j}
+    \sum_{\delta=\pm 1}
+
+  \frac{1}{N}\sum_{k,k'}
+  e^{i((k-k')a\times j)}
+    e^{-ik'a\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN} \frac{1}{N}
+\sum_{\gamma=\uparrow,\downarrow}
+    \sum_{\delta=\pm 1}
+
+ \sum_{k,k'}
+  N\delta_{k,k'}
+  e^{-ik'a\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
+    \\
+
+&=
+   -t_{s}^{\rm NN}
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k}
+ \sum_{\delta=\pm 1}
+  e^{-ika\delta}
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
+    \\
+
+&=
+
+\sum_{\gamma=\uparrow,\downarrow}
+ \sum_{k}
+ -2t_{s}^{\rm NN}\cos(ka)
+  b_{s,k',\gamma}^\dagger
+  b_{s,k,\gamma}
+    \\
+\end{align*}
+$$
+
+と、対角化された形になり、第一量子化で考えた場合と同じく、多電子状態の固有関数としてエネルギーバンドが
+
+$$
+\varepsilon_s(k) = -2t_{s}^{\rm NN}\cos(ka)
+$$
+
+で表される状態（のスピン上向き状態または下向き状態をスレーター行列式に詰めていったもの）であることが得られる。
+
 :::
 
 
