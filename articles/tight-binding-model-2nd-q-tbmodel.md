@@ -3,7 +3,7 @@ title: "Tight-binding modelの第二量子化表示"
 emoji: "🎉"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["quantum","quantumcomputing","quantumcomputer","物理","物理学"]
-published: false
+published: true
 ---
 
 # はじめに
