@@ -1,5 +1,5 @@
 ---
-title: "z.com WPがサービス終了してしまうのでGWSに移行しようと思たら、、、結局お名前メールと無料アカウントのGoogleサイトで足りた話（前編）"
+title: "z.comがサービス終了するのでGWSに移行しようと思ったら、、、結局お名前メールと無料アカウントのGoogleサイトで足りた話（前編）"
 emoji: "✈️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [google,googlecloud]
