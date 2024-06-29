@@ -1,6 +1,6 @@
 ---
 title: "z.comがサービス終了するのでGWSに移行しようと思ったら、、、結局お名前メールと無料アカウントのGoogleサイトで足りた話（中編）"
-emoji: "🛬"
+emoji: "✈️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: [google,googlecloud]
 published: true
